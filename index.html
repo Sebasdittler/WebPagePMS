@@ -25,19 +25,9 @@
   --shadow:     0 4px 32px rgba(27,58,45,0.15);
   --nav-h:      68px;
 }
-
 html, body { height: 100%; overflow: hidden; font-family: 'DM Sans', sans-serif; color: var(--text); font-size: 16px; line-height: 1.6; }
-
 /* ── NAV ────────────────────────────────────────────────── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  height: var(--nav-h);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 3rem;
-  background: rgba(27,58,45,0.97);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.2);
-}
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 3rem; background: rgba(27,58,45,0.97); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.2); }
 .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; letter-spacing: 0.08em; color: var(--white); background: none; border: none; cursor: pointer; transition: opacity .2s; }
 .logo:hover { opacity: .8; }
 .logo span { color: var(--sage); }
@@ -52,7 +42,6 @@ nav {
 .ham.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .ham.open span:nth-child(2) { opacity: 0; }
 .ham.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
 /* ── HOST & VISTAS ──────────────────────────────────────── */
 #host { position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0; overflow: hidden; }
 .vista { position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity .28s ease; overflow-y: auto; scroll-behavior: smooth; }
@@ -60,7 +49,6 @@ nav {
 .vista::-webkit-scrollbar { width: 5px; }
 .vista::-webkit-scrollbar-track { background: var(--cream); }
 .vista::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 3px; }
-
 /* ── ANIMACIONES ────────────────────────────────────────── */
 @keyframes fadeInUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
 @keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
@@ -68,41 +56,23 @@ nav {
 .anim.visible { opacity:1; transform:translateY(0); }
 .anim-d1{transition-delay:.08s} .anim-d2{transition-delay:.16s} .anim-d3{transition-delay:.24s}
 .anim-d4{transition-delay:.32s} .anim-d5{transition-delay:.40s} .anim-d6{transition-delay:.48s}
-
 /* ── BOTONES ────────────────────────────────────────────── */
 .btn { display:inline-block; background:var(--leaf); color:var(--white); padding:.88rem 2.1rem; border-radius:8px; border:none; cursor:pointer; font-size:.88rem; font-weight:500; font-family:inherit; text-decoration:none; letter-spacing:.04em; transition:background .2s, transform .15s; }
 .btn:hover { background:var(--forest-mid); transform:translateY(-2px); }
 .btn-ghost { background:transparent; color:var(--white); cursor:pointer; border:1.5px solid rgba(255,255,255,.42); padding:.88rem 2.1rem; border-radius:8px; font-size:.88rem; font-family:inherit; transition:border-color .2s, transform .15s; }
 .btn-ghost:hover { border-color:rgba(255,255,255,.85); transform:translateY(-2px); }
-
 /* ── ETIQUETAS / LAYOUT ─────────────────────────────────── */
 .slbl { font-size:.7rem; font-weight:500; letter-spacing:.26em; text-transform:uppercase; color:var(--leaf); margin-bottom:.8rem; }
 .stit { font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,4vw,3.2rem); font-weight:300; line-height:1.12; color:var(--forest); margin-bottom:.9rem; }
 .ssub { font-size:.95rem; color:var(--text-muted); font-weight:300; line-height:1.8; max-width:500px; }
 .inner { max-width:1200px; margin:0 auto; padding:3.5rem 3rem 4rem; }
-
-/* ══════════════════════════════════════════════════════════
-   INICIO — hero ocupa 100% de la vista, props. debajo
-══════════════════════════════════════════════════════════ */
 #v-inicio { background: var(--forest); }
-
-/* Hero: pantalla completa dentro de la vista */
-.hero-screen {
-  position: relative;
-  min-height: 100%;          /* llena la vista */
-  display: flex; flex-direction: column;
-}
+.hero-screen { position: relative; min-height: 100%; display: flex; flex-direction: column; }
 .slides { position: absolute; inset: 0; }
 .slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.4s ease-in-out; }
 .slide.on { opacity:1; }
 .slide::after { content:''; position:absolute; inset:0; background:linear-gradient(160deg,rgba(27,58,45,.78) 0%,rgba(27,58,45,.4) 55%,rgba(27,58,45,.72) 100%); }
-
-.hero-body {
-  position:relative; z-index:2; flex:1;
-  display:flex; flex-direction:column; align-items:center;
-  justify-content:center; text-align:center; padding:2rem;
-  min-height: calc(100vh - var(--nav-h));
-}
+.hero-body { position:relative; z-index:2; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:2rem; min-height: calc(100vh - var(--nav-h)); }
 .hero-eyebrow { font-size:.72rem; font-weight:500; letter-spacing:.28em; text-transform:uppercase; color:var(--sage); margin-bottom:1.4rem; animation:fadeIn 1.2s ease both; }
 .hero-body h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,7vw,5.8rem); font-weight:300; line-height:1.04; color:var(--white); margin-bottom:1.5rem; animation:fadeInUp 1s ease .2s both; }
 .hero-body h1 em { font-style:italic; color:var(--sage); }
@@ -111,38 +81,19 @@ nav {
 .dots { display:flex; gap:8px; margin-top:2.5rem; animation:fadeIn 1s ease .8s both; }
 .dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.32); border:none; cursor:pointer; padding:0; transition:all .3s; }
 .dot.on { background:var(--sage); transform:scale(1.3); }
-
-/* Flecha scroll-down */
-.hero-arrow {
-  position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%);
-  z-index:3; display:flex; flex-direction:column; align-items:center; gap:4px;
-  cursor:pointer; animation:fadeIn 1.2s ease 1.2s both;
-}
+.hero-arrow { position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%); z-index:3; display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer; animation:fadeIn 1.2s ease 1.2s both; }
 .hero-arrow span { display:block; width:1px; height:36px; background:linear-gradient(to bottom,transparent,rgba(138,176,154,.7)); animation:arrowPulse 2s ease-in-out infinite; }
 .hero-arrow svg { color:var(--sage); animation:arrowPulse 2s ease-in-out infinite .3s; }
 @keyframes arrowPulse { 0%,100%{opacity:.4;transform:translateY(0)} 50%{opacity:1;transform:translateY(5px)} }
-
-/* Sección de propiedades dentro del Inicio */
-.inicio-props {
-  position: relative; z-index: 2;
-  background: var(--cream);
-  padding: 4rem 3rem;
-}
+.inicio-props { position: relative; z-index: 2; background: var(--cream); padding: 4rem 3rem; }
 .inicio-props-inner { max-width: 1200px; margin: 0 auto; }
 .inicio-props .stit { color: var(--forest); }
-
-/* ══════════════════════════════════════════════════════════
-   CARDS DE RESERVA (Inicio) — compactas con calendario
-══════════════════════════════════════════════════════════ */
 .props-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(360px,1fr)); gap:2rem; }
 .loading { text-align:center; padding:4rem 0; color:var(--text-muted); grid-column:1/-1; }
 .spinner { width:36px; height:36px; border:3px solid var(--cream-dark); border-top-color:var(--leaf); border-radius:50%; animation:spin .8s linear infinite; margin:0 auto 1rem; }
 @keyframes spin { to { transform:rotate(360deg); } }
-
 .pcard { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; transition:transform .35s cubic-bezier(.22,.68,0,1.2), box-shadow .35s; }
 .pcard:hover { transform:translateY(-6px); box-shadow:0 20px 56px rgba(27,58,45,.22); }
-
-/* Galería (cards de reserva) */
 .pgallery { position:relative; width:100%; height:210px; overflow:hidden; background:linear-gradient(135deg,var(--forest-mid),var(--leaf)); flex-shrink:0; }
 .pgallery-track { display:flex; height:100%; transition:transform .42s cubic-bezier(.4,0,.2,1); }
 .pgallery-slide { flex-shrink:0; width:100%; height:100%; }
@@ -155,15 +106,12 @@ nav {
 .gal-dots { position:absolute; bottom:7px; left:50%; transform:translateX(-50%); display:flex; gap:5px; z-index:2; }
 .gal-dot { width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,.4); border:none; cursor:pointer; padding:0; transition:background .25s, transform .25s; }
 .gal-dot.on { background:var(--white); transform:scale(1.3); }
-
 .pbody { padding:1.4rem; flex:1; display:flex; flex-direction:column; }
 .ptag { display:inline-block; background:var(--cream); color:var(--leaf); font-size:.64rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; padding:3px 9px; border-radius:4px; margin-bottom:.6rem; }
 .pname { font-family:'Cormorant Garamond',serif; font-size:1.45rem; font-weight:400; color:var(--forest); margin-bottom:.35rem; }
 .pdesc { font-size:.84rem; color:var(--text-muted); font-weight:300; margin-bottom:.9rem; line-height:1.7; flex:1; }
 .pam { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:.9rem; }
 .pill { background:var(--cream); color:var(--text-muted); font-size:.68rem; padding:2px 7px; border-radius:4px; }
-
-/* Calendario */
 .calwrap { border:1px solid var(--cream-dark); border-radius:8px; padding:.85rem; margin-bottom:.85rem; }
 .calhead { display:flex; align-items:center; justify-content:space-between; margin-bottom:.65rem; }
 .calmth { font-family:'Cormorant Garamond',serif; font-size:.93rem; color:var(--forest); }
@@ -183,8 +131,6 @@ nav {
 .li { display:flex; align-items:center; gap:4px; font-size:.63rem; color:var(--text-muted); }
 .ld { width:9px; height:9px; border-radius:2px; }
 .caltxt { text-align:center; padding:.7rem; color:var(--text-muted); font-size:.78rem; font-style:italic; }
-
-/* Datebox + WA */
 .datebox { background:var(--cream); border-radius:8px; padding:.75rem 1rem; margin-bottom:.8rem; font-size:.78rem; color:var(--text-muted); min-height:50px; }
 .datelbl { font-size:.65rem; font-weight:500; text-transform:uppercase; letter-spacing:.06em; color:var(--forest); display:block; margin-bottom:3px; }
 .dateclr { background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:.68rem; text-decoration:underline; float:right; font-family:inherit; }
@@ -205,20 +151,9 @@ nav {
 .pprice { display:flex; align-items:baseline; gap:6px; border-top:1px solid var(--cream-dark); padding-top:.85rem; margin:.75rem 0; }
 .pv { font-family:'Cormorant Garamond',serif; font-size:1.35rem; color:var(--forest); }
 .pl { font-size:.72rem; color:var(--text-muted); }
-
-/* ══════════════════════════════════════════════════════════
-   PROPIEDADES TAB — cards galería con más detalle
-══════════════════════════════════════════════════════════ */
 #v-propiedades { background: var(--cream); }
-
-.gcard {
-  background: var(--white); border-radius: var(--radius); overflow: hidden;
-  box-shadow: var(--shadow); display: flex; flex-direction: column;
-  transition: transform .35s cubic-bezier(.22,.68,0,1.2), box-shadow .35s;
-}
+.gcard { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform .35s cubic-bezier(.22,.68,0,1.2), box-shadow .35s; }
 .gcard:hover { transform: translateY(-5px); box-shadow: 0 20px 56px rgba(27,58,45,.2); }
-
-/* Galería grande */
 .ggallery { position:relative; width:100%; height:300px; overflow:hidden; background:linear-gradient(135deg,var(--forest-mid),var(--leaf)); flex-shrink:0; }
 .ggallery .pgallery-track { height:100%; }
 .ggallery .pgallery-slide { height:300px; }
@@ -226,45 +161,21 @@ nav {
 .ggallery:hover .gal-btn { opacity:1; }
 .ggallery .gal-dots { bottom:10px; }
 .ggallery .gal-dot { width:7px; height:7px; }
-/* contador de fotos */
-.gal-counter {
-  position:absolute; top:12px; right:12px; z-index:2;
-  background:rgba(27,58,45,.6); color:rgba(255,255,255,.85);
-  font-size:.68rem; padding:3px 9px; border-radius:12px;
-  backdrop-filter:blur(4px);
-}
-
-/* Body galería */
+.gal-counter { position:absolute; top:12px; right:12px; z-index:2; background:rgba(27,58,45,.6); color:rgba(255,255,255,.85); font-size:.68rem; padding:3px 9px; border-radius:12px; backdrop-filter:blur(4px); }
 .gbody { padding:1.8rem; flex:1; display:flex; flex-direction:column; }
 .gtag { display:inline-block; background:var(--cream); color:var(--leaf); font-size:.65rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; padding:3px 10px; border-radius:4px; margin-bottom:.7rem; }
 .gname { font-family:'Cormorant Garamond',serif; font-size:1.75rem; font-weight:400; color:var(--forest); margin-bottom:.5rem; }
 .gdesc { font-size:.88rem; color:var(--text-muted); font-weight:300; margin-bottom:1.2rem; line-height:1.75; flex:1; }
-
-/* Amenities expandidos */
 .gam { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:1.3rem; }
 .gpill { background:var(--cream); color:var(--text-muted); font-size:.72rem; padding:4px 10px; border-radius:5px; display:flex; align-items:center; gap:5px; }
-
-/* Precio prominente */
-.gprice {
-  display:flex; align-items:baseline; gap:8px;
-  padding: 1rem 0;
-  border-top:1px solid var(--cream-dark);
-  border-bottom:1px solid var(--cream-dark);
-  margin-bottom:1.2rem;
-}
+.gprice { display:flex; align-items:baseline; gap:8px; padding: 1rem 0; border-top:1px solid var(--cream-dark); border-bottom:1px solid var(--cream-dark); margin-bottom:1.2rem; }
 .gpv { font-family:'Cormorant Garamond',serif; font-size:1.9rem; color:var(--forest); }
 .gpl { font-size:.78rem; color:var(--text-muted); }
-
-/* Botones galería */
 .gbtns { display:flex; gap:.75rem; }
 .gbwa { flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:.9rem; background:#25D366; color:#fff; border:none; border-radius:8px; font-family:inherit; font-size:.88rem; font-weight:500; cursor:pointer; text-decoration:none; transition:background .2s, transform .15s; }
 .gbwa:hover { background:#1da851; transform:translateY(-1px); }
 .gbcal { padding:.9rem 1.1rem; background:var(--cream); color:var(--forest); border:1.5px solid var(--cream-dark); border-radius:8px; font-family:inherit; font-size:.82rem; cursor:pointer; transition:background .2s, border-color .2s; white-space:nowrap; }
 .gbcal:hover { background:var(--cream-dark); border-color:var(--sage); }
-
-/* ══════════════════════════════════════════════════════════
-   NOSOTROS
-══════════════════════════════════════════════════════════ */
 #v-nosotros { background: var(--white); }
 .ngrid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
 .nimgw { position:relative; }
@@ -281,10 +192,6 @@ nav {
 .vicon { font-size:1.1rem; margin-bottom:.35rem; }
 .vtit { font-weight:500; font-size:.87rem; color:var(--forest); margin-bottom:2px; }
 .vdesc { font-size:.77rem; color:var(--text-muted); font-weight:300; line-height:1.5; }
-
-/* ══════════════════════════════════════════════════════════
-   SERVICIOS
-══════════════════════════════════════════════════════════ */
 #v-servicios { background: var(--forest); position:relative; }
 .srbg { position:absolute; inset:0; background-size:cover; background-position:center; opacity:.1; }
 .srinner { position:relative; z-index:2; }
@@ -299,10 +206,6 @@ nav {
 .srdesc { font-size:.83rem; color:rgba(245,240,232,.58); font-weight:300; line-height:1.7; }
 .srcta { margin-top:2.8rem; display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
 .srcta p { color:rgba(245,240,232,.52); font-size:.88rem; font-weight:300; }
-
-/* ══════════════════════════════════════════════════════════
-   CONTACTO
-══════════════════════════════════════════════════════════ */
 #v-contacto { background: var(--cream); }
 .cgrid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; margin-top:2.5rem; }
 .citems { display:flex; flex-direction:column; gap:.9rem; }
@@ -320,10 +223,6 @@ nav {
 .pfeat::before { content:'✓'; color:var(--sage); font-weight:700; flex-shrink:0; }
 .bportal { display:block; width:100%; padding:1rem; background:var(--leaf); color:var(--white); border:none; border-radius:8px; font-family:inherit; font-size:.9rem; font-weight:500; cursor:pointer; text-align:center; text-decoration:none; transition:background .2s; }
 .bportal:hover { background:var(--forest-mid); }
-
-/* ══════════════════════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════════════════════ */
 footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem 2rem; }
 .footer-inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.6fr 1fr 1fr; gap:3rem; padding-bottom:2.5rem; border-bottom:1px solid rgba(255,255,255,.08); }
 .footer-brand .logo-f { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:300; letter-spacing:.08em; color:var(--white); margin-bottom:.9rem; display:block; }
@@ -339,10 +238,6 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
 .fsoc { width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; color:rgba(245,240,232,.6); text-decoration:none; transition:background .2s, color .2s; }
 .fsoc:hover { background:rgba(138,176,154,.2); color:var(--white); }
 .fsoc svg { width:15px; height:15px; fill:currentColor; }
-
-/* ══════════════════════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════════════════════ */
 @media (max-width:860px) {
   nav { padding:0 1.2rem; }
   .nav-links { display:none; position:absolute; top:var(--nav-h); left:0; right:0; background:rgba(27,58,45,.98); flex-direction:column; padding:1rem; gap:.3rem; }
@@ -361,13 +256,10 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
   .ggallery .pgallery-slide { height:230px; }
   .gbtns { flex-direction:column; }
 }
-@media (max-width:480px) {
-  .nvals { grid-template-columns:1fr; }
-}
+@media (max-width:480px) { .nvals { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
-
 <nav>
   <button class="logo" onclick="ir('inicio')">Hagrids<span>·</span></button>
   <div class="nav-links" id="nl">
@@ -380,10 +272,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
   </div>
   <button class="ham" id="ham"><span></span><span></span><span></span></button>
 </nav>
-
 <div id="host">
-
-  <!-- INICIO: hero + propiedades con calendario -->
   <div class="vista on" id="v-inicio">
     <div class="hero-screen">
       <div class="slides" id="slides"></div>
@@ -402,8 +291,6 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--sage)"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
-
-    <!-- Propiedades con calendario -->
     <div class="inicio-props" id="inicio-props">
       <div class="inicio-props-inner">
         <p class="slbl anim">Nuestras propiedades</p>
@@ -415,28 +302,9 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
       </div>
       <footer style="margin-top:4rem">
         <div class="footer-inner">
-          <div class="footer-brand">
-            <span class="logo-f">Hagrids<span>·</span></span>
-            <p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p>
-          </div>
-          <div class="footer-col">
-            <h5>Navegación</h5>
-            <ul>
-              <li><button onclick="ir('inicio')">Inicio</button></li>
-              <li><button onclick="ir('propiedades')">Propiedades</button></li>
-              <li><button onclick="ir('nosotros')">Nosotros</button></li>
-              <li><button onclick="ir('servicios')">Para propietarios</button></li>
-              <li><button onclick="ir('contacto')">Contacto</button></li>
-            </ul>
-          </div>
-          <div class="footer-col">
-            <h5>Contacto</h5>
-            <ul>
-              <li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li>
-              <li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li>
-              <li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li>
-            </ul>
-          </div>
+          <div class="footer-brand"><span class="logo-f">Hagrids<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div>
+          <div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Para propietarios</button></li><li><button onclick="ir('contacto')">Contacto</button></li></ul></div>
+          <div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div>
         </div>
         <div class="footer-bottom">
           <p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p>
@@ -448,8 +316,6 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
       </footer>
     </div>
   </div>
-
-  <!-- PROPIEDADES: galería + más detalles -->
   <div class="vista" id="v-propiedades">
     <div class="inner">
       <p class="slbl anim">Nuestras propiedades</p>
@@ -461,48 +327,17 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
     </div>
     <footer>
       <div class="footer-inner">
-        <div class="footer-brand">
-          <span class="logo-f">Hagrids<span>·</span></span>
-          <p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p>
-        </div>
-        <div class="footer-col">
-          <h5>Navegación</h5>
-          <ul>
-            <li><button onclick="ir('inicio')">Inicio</button></li>
-            <li><button onclick="ir('propiedades')">Propiedades</button></li>
-            <li><button onclick="ir('nosotros')">Nosotros</button></li>
-            <li><button onclick="ir('servicios')">Para propietarios</button></li>
-            <li><button onclick="ir('contacto')">Contacto</button></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5>Contacto</h5>
-          <ul>
-            <li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li>
-            <li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li>
-            <li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li>
-          </ul>
-        </div>
+        <div class="footer-brand"><span class="logo-f">Hagrids<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div>
+        <div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Para propietarios</button></li><li><button onclick="ir('contacto')">Contacto</button></li></ul></div>
+        <div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p>
-        <div class="footer-social">
-          <a class="fsoc" href="https://www.instagram.com/somoshagrids/" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-          <a class="fsoc" href="https://wa.me/5492944717718" target="_blank" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-        </div>
-      </div>
+      <div class="footer-bottom"><p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p><div class="footer-social"><a class="fsoc" href="https://www.instagram.com/somoshagrids/" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a><a class="fsoc" href="https://wa.me/5492944717718" target="_blank" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a></div></div>
     </footer>
   </div>
-
-  <!-- NOSOTROS -->
   <div class="vista" id="v-nosotros">
     <div class="inner">
       <div class="ngrid">
         <div class="nimgw anim">
-          <!--
-            FOTO NOSOTROS: reemplazá este bloque .nimgph por:
-            <img class="nimgreal" src="URL_DE_TU_FOTO" alt="Equipo Hagrids">
-          -->
           <div class="nimgph">
             <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="32" r="18" fill="rgba(138,176,154,0.2)"/><path d="M18 68C18 55 28 46 40 46S62 55 62 68" stroke="rgba(138,176,154,0.25)" stroke-width="2" fill="none"/></svg>
             <span class="nimgph-label">Foto del equipo próximamente</span>
@@ -526,8 +361,6 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
     </div>
     <footer><div class="footer-inner"><div class="footer-brand"><span class="logo-f">Hagrids<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Para propietarios</button></li><li><button onclick="ir('contacto')">Contacto</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
   </div>
-
-  <!-- SERVICIOS -->
   <div class="vista" id="v-servicios">
     <div class="srbg" style="background-image:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80')"></div>
     <div class="inner srinner">
@@ -549,8 +382,6 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
     </div>
     <footer style="position:relative;z-index:2;"><div class="footer-inner"><div class="footer-brand"><span class="logo-f">Hagrids<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Para propietarios</button></li><li><button onclick="ir('contacto')">Contacto</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
   </div>
-
-  <!-- CONTACTO -->
   <div class="vista" id="v-contacto">
     <div class="inner">
       <p class="slbl anim">Contacto</p>
@@ -577,12 +408,11 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
     </div>
     <footer><div class="footer-inner"><div class="footer-brand"><span class="logo-f">Hagrids<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Para propietarios</button></li><li><button onclick="ir('contacto')">Contacto</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
   </div>
-
 </div><!-- /host -->
 
 <script type="module">
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getFirestore, collection, query, where, getDocs, orderBy } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import { getFirestore, collection, query, where, getDocs, orderBy, doc, getDoc } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 const db = getFirestore(initializeApp({
   apiKey:"AIzaSyCl0sGzLLRFB__vU5HUdy4trsRBoHWFJwU",
   authDomain:"fangpmshagrids.firebaseapp.com",
@@ -592,7 +422,6 @@ const db = getFirestore(initializeApp({
   appId:"1:244923261273:web:8febd821a565ca42daac48"
 }));
 
-// ── INTERSECTION OBSERVER ─────────────────────────────────
 const animObs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); animObs.unobserve(e.target); } });
 }, { threshold: 0.1 });
@@ -601,9 +430,7 @@ function observeAnims(root) {
 }
 observeAnims();
 
-// ── NAVEGACIÓN ────────────────────────────────────────────
 let cur = 'inicio';
-
 window.ir = function(pag) {
   if (pag === cur) { cerrarMenu(); return; }
   document.getElementById('v-' + cur).classList.remove('on');
@@ -617,7 +444,6 @@ window.ir = function(pag) {
   });
   cerrarMenu();
 };
-
 function cerrarMenu() {
   document.getElementById('nl').classList.remove('open');
   document.getElementById('ham').classList.remove('open');
@@ -627,7 +453,6 @@ document.getElementById('ham').addEventListener('click', () => {
   document.getElementById('ham').classList.toggle('open');
 });
 
-// ── SLIDESHOW ─────────────────────────────────────────────
 const FOTOS_FALLBACK = [
   'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=80',
   'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80',
@@ -661,14 +486,13 @@ function goSlide(idx) {
   si = idx;
   allSlides[si].classList.add('on'); allDots[si].classList.add('on');
 }
-// Cargar fotos hero desde Firestore, fallback a Unsplash
-getDocs(query(collection(db,'sitioWeb_config'))).then(snap => {
-  const general = snap.docs.find(d => d.id === 'general');
-  const fotos = general?.data()?.fotosHero;
+
+// ── FIX: leer directamente el documento 'general' en vez de listar la colección
+getDoc(doc(db,'sitioWeb_config','general')).then(snap => {
+  const fotos = snap.exists() ? snap.data()?.fotosHero : null;
   initSlides(fotos?.length ? fotos : FOTOS_FALLBACK);
 }).catch(() => initSlides(FOTOS_FALLBACK));
 
-// ── CALENDARIOS (solo para cards de Inicio) ───────────────
 const MES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 const DIA = ['Lu','Ma','Mi','Ju','Vi','Sa','Do'];
 const CS = {};
@@ -729,7 +553,6 @@ function uw(id){
   const n=Math.round((s.b-s.a)/86400000);
   const guests = s.guests||2;
   box.innerHTML=`<span class="datelbl">Fechas elegidas</span>📅 <strong>${fd(s.a)}</strong> → <strong>${fd(s.b)}</strong> · ${n} noche${n!==1?'s':''}<button class="dateclr" onclick="cclear('${id}')">Borrar</button>`;
-  // Cotizador
   const propData = window._propDataCache?.[id];
   const tarifas = propData?.tarifas;
   const moneda = propData?.moneda||'USD';
@@ -766,7 +589,6 @@ function uw(id){
   }
 }
 
-// ── GALERÍA ───────────────────────────────────────────────
 const GAL = {};
 window.galNav = (id, dir) => {
   const g=GAL[id]; if(!g||g.total<=1) return;
@@ -791,51 +613,31 @@ function buildGalleryHTML(p, prefix, big) {
   const fotos = Array.isArray(p.fotos)&&p.fotos.length ? p.fotos : p.fotoUrl ? [p.fotoUrl] : [];
   const id = prefix + p.id;
   GAL[id] = { idx:0, total:fotos.length };
-
   const wrapClass = big ? 'ggallery' : 'pgallery';
   const h = big ? 300 : 210;
-
   if (!fotos.length) {
-    return `<div class="${wrapClass}">
-      <div class="pgallery-track" id="gt-${id}">
-        <div class="pgallery-slide ph" style="height:${h}px">
-          <svg width="52" height="52" viewBox="0 0 60 60" fill="none"><path d="M10 40L30 15L50 40H10Z" fill="rgba(255,255,255,0.15)"/><rect x="22" y="30" width="16" height="10" rx="2" fill="rgba(255,255,255,0.15)"/></svg>
-        </div>
-      </div>
-    </div>`;
+    return `<div class="${wrapClass}"><div class="pgallery-track" id="gt-${id}"><div class="pgallery-slide ph" style="height:${h}px"><svg width="52" height="52" viewBox="0 0 60 60" fill="none"><path d="M10 40L30 15L50 40H10Z" fill="rgba(255,255,255,0.15)"/><rect x="22" y="30" width="16" height="10" rx="2" fill="rgba(255,255,255,0.15)"/></svg></div></div></div>`;
   }
-
   const slides = fotos.map((url,i) =>
     `<div class="pgallery-slide" style="height:${h}px"><img src="${url}" alt="${p.nombre}" loading="${i===0?'eager':'lazy'}"></div>`
   ).join('');
-
   const dots = fotos.length>1
     ? `<div class="gal-dots" id="gdots-${id}">${fotos.map((_,i)=>`<button class="gal-dot${i===0?' on':''}" onclick="galGoto('${id}',${i})"></button>`).join('')}</div>`
     : '';
-
   const btns = fotos.length>1
-    ? `<button class="gal-btn gal-prev" onclick="galNav('${id}',-1)">‹</button>
-       <button class="gal-btn gal-next" onclick="galNav('${id}',1)">›</button>`
+    ? `<button class="gal-btn gal-prev" onclick="galNav('${id}',-1)">‹</button><button class="gal-btn gal-next" onclick="galNav('${id}',1)">›</button>`
     : '';
-
   const counter = big && fotos.length>1
     ? `<div class="gal-counter" id="gctr-${id}">1 / ${fotos.length}</div>`
     : '';
-
-  return `<div class="${wrapClass}">
-    <div class="pgallery-track" id="gt-${id}">${slides}</div>
-    ${btns}${dots}${counter}
-  </div>`;
+  return `<div class="${wrapClass}"><div class="pgallery-track" id="gt-${id}">${slides}</div>${btns}${dots}${counter}</div>`;
 }
 
-// Card de reserva (Inicio) — compacta con calendario
 function buildCardBooking(p){
   const hoy=new Date();
   CS[p.id]={y:hoy.getFullYear(),m:hoy.getMonth(),occ:new Set(),a:null,b:null,guests:2,bebes:0};
-  // Cache prop data for cotizador
   if (!window._propDataCache) window._propDataCache = {};
   window._propDataCache[p.id] = p;
-  // Store max guests in CS
   CS[p.id].maxGuests = Number(p.capacidad) || 99;
   const card=document.createElement('div');
   card.className='pcard anim'; card.id='pc-'+p.id;
@@ -886,7 +688,6 @@ function buildCardBooking(p){
   return card;
 }
 
-// Card de galería (Propiedades) — grande con más detalle
 function buildCardGallery(p){
   const card=document.createElement('div');
   card.className='gcard anim'; card.id='gc-'+p.id;
@@ -909,7 +710,6 @@ function buildCardGallery(p){
   return card;
 }
 
-// ── COTIZADOR ─────────────────────────────────────────────
 function getTempForDate(tarifas, date) {
   if (!tarifas?.length) return null;
   const mm = String(date.getMonth()+1).padStart(2,'0');
@@ -919,12 +719,8 @@ function getTempForDate(tarifas, date) {
     for (const r of (t.rangos||[])) {
       if (!r.desde || !r.hasta) continue;
       const desde = r.desde, hasta = r.hasta;
-      // Rango cruzando año (ej: 12-15 → 02-28)
-      if (desde > hasta) {
-        if (key >= desde || key <= hasta) return t;
-      } else {
-        if (key >= desde && key <= hasta) return t;
-      }
+      if (desde > hasta) { if (key >= desde || key <= hasta) return t; }
+      else { if (key >= desde && key <= hasta) return t; }
     }
   }
   return null;
@@ -933,7 +729,7 @@ function getTempForDate(tarifas, date) {
 function calcularPrecio(tarifas, moneda, desde, hasta, guests) {
   if (!desde || !hasta || !tarifas?.length) return null;
   const result = { lineas:[], total:0, moneda: moneda||'USD', warn:null };
-  const grupos = {}; // temp.nombre → {temp, noches}
+  const grupos = {};
   const cur = new Date(desde);
   while (cur < hasta) {
     const t = getTempForDate(tarifas, cur);
@@ -944,14 +740,12 @@ function calcularPrecio(tarifas, moneda, desde, hasta, guests) {
     cur.setDate(cur.getDate()+1);
   }
   if (!Object.keys(grupos).length) return null;
-  // Verificar mínimo de noches (por la temporada con más noches)
   const tempPrincipal = Object.values(grupos).sort((a,b)=>b.noches-a.noches)[0];
   const minimo = Number(tempPrincipal.temp.minimoNoches) || 0;
   const totalNoches = Object.values(grupos).reduce((s,g)=>s+g.noches,0);
   if (minimo > 0 && totalNoches < minimo) {
     result.warn = `Mínimo ${minimo} noches en ${tempPrincipal.temp.nombre.toLowerCase()}. Podés consultar igual si necesitás una excepción.`;
   }
-  // Calcular precio
   for (const g of Object.values(grupos)) {
     const base = Number(g.temp.precioBase) || 0;
     const incl = Number(g.temp.huespedes) || 0;
@@ -959,19 +753,12 @@ function calcularPrecio(tarifas, moneda, desde, hasta, guests) {
     const extras = Math.max(0, guests - incl) * extra;
     const subtotal = (base + extras) * g.noches;
     result.total += subtotal;
-    result.lineas.push({
-      nombre: g.temp.nombre,
-      noches: g.noches,
-      base, incl, extras: extras > 0 ? extras : 0,
-      subtotal,
-    });
+    result.lineas.push({ nombre: g.temp.nombre, noches: g.noches, base, incl, extras: extras > 0 ? extras : 0, subtotal });
   }
   return result;
 }
 
-function fmtPrecio(n, moneda) {
-  return (moneda||'USD')+' '+n.toLocaleString('es-AR');
-}
+function fmtPrecio(n, moneda) { return (moneda||'USD')+' '+n.toLocaleString('es-AR'); }
 
 window.changeGuests = (id, delta) => {
   const s = CS[id]; if (!s) return;
@@ -979,10 +766,7 @@ window.changeGuests = (id, delta) => {
   s.guests = Math.min(max, Math.max(1, (s.guests||2) + delta));
   document.getElementById('gc-'+id).textContent = s.guests;
   const btn = document.getElementById('gc-'+id)?.parentElement;
-  if (btn) {
-    const btns = btn.querySelectorAll('button');
-    if (btns[1]) btns[1].style.opacity = s.guests >= max ? '0.35' : '1';
-  }
+  if (btn) { const btns = btn.querySelectorAll('button'); if (btns[1]) btns[1].style.opacity = s.guests >= max ? '0.35' : '1'; }
   uw(id);
 };
 
@@ -993,7 +777,6 @@ window.changeBebes = (id, delta) => {
   uw(id);
 };
 
-// ── CARGA DE PROPIEDADES ──────────────────────────────────
 async function cargarReservas(p){
   try{
     const q=query(collection(db,'reservas'),where('pid','==',p.id));
@@ -1025,12 +808,10 @@ async function cargarProps(){
     gridI.innerHTML=''; gridG.innerHTML='';
     snap.docs.forEach(doc=>{
       const p={id:doc.id,...doc.data()};
-      // Card de reserva → Inicio
       const cBook=buildCardBooking(p);
       gridI.appendChild(cBook);
       animObs.observe(cBook);
       cargarReservas(p);
-      // Card de galería → Propiedades
       const cGal=buildCardGallery(p);
       gridG.appendChild(cGal);
       animObs.observe(cGal);
@@ -1042,7 +823,6 @@ async function cargarProps(){
   }
 }
 
-// Carga al inicio, sin esperar a que el usuario navegue
 cargarProps();
 </script>
 </body>
