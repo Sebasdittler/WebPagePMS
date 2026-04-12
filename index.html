@@ -198,6 +198,7 @@ nav {
 .pricebox .pb-total { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:300; line-height:1; }
 .pricebox .pb-detail { font-size:.72rem; color:rgba(245,240,232,.6); margin-top:4px; line-height:1.5; }
 .pricebox .pb-warn { font-size:.72rem; color:#e09f3e; margin-top:6px; font-weight:500; }
+.pricebox .pb-disclaimer { font-size:.7rem; color:rgba(245,240,232,.45); margin-top:8px; line-height:1.5; font-style:italic; border-top:1px solid rgba(255,255,255,.08); padding-top:7px; }
 .bwa { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; padding:.82rem; background:#25D366; color:#fff; border:none; border-radius:8px; font-family:inherit; font-size:.86rem; font-weight:500; cursor:pointer; text-decoration:none; transition:background .2s, transform .15s; margin-top:auto; }
 .bwa:hover { background:#1da851; transform:translateY(-1px); }
 .bwa.off { background:var(--cream-dark) !important; color:var(--text-muted) !important; cursor:default !important; transform:none !important; }
@@ -739,21 +740,27 @@ function uw(id){
       pb.style.display='block';
       const warn = precio.warn ? `<div class="pb-warn">⚠ ${precio.warn}</div>` : '';
       const detalle = precio.lineas.map(l=>`${l.noches} noche${l.noches!==1?'s':''} en ${l.nombre.toLowerCase()}`).join(' + ');
-      pb.innerHTML=`<div class="pb-total">${fmtPrecio(precio.total,moneda)}</div><div class="pb-detail">Total estadía · ${guests} huésped${guests!==1?'es':''}<br>${detalle}</div>${warn}`;
+      pb.innerHTML=`<div class="pb-total">${fmtPrecio(precio.total,moneda)}</div><div class="pb-detail">Total estadía · ${guests} huésped${guests!==1?'es':''}<br>${detalle}</div>${warn}<div class="pb-disclaimer">Precio estimado. El valor final suele ser menor — escribinos y te confirmamos la tarifa exacta para tu estadía.</div>`;
       const resumen = precio.lineas.map(l=>`${l.noches} noche${l.noches!==1?'s':''} en ${l.nombre.toLowerCase()}: ${fmtPrecio(l.subtotal,moneda)}`).join('\n');
       const warnTxt = precio.warn ? `\n⚠️ ${precio.warn}` : '';
-      const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}\n\n💰 Precio estimado:\n${resumen}\n*Total: ${fmtPrecio(precio.total,moneda)}*${warnTxt}\n\n¡Muchas gracias!`);
+      const bebes = s.bebes||0;
+      const bebesTxt = bebes > 0 ? `\n👶 Bebés (menores de 2 años, sin cargo): ${bebes}` : '';
+      const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt}\n\n💰 Precio estimado:\n${resumen}\n*Total: ${fmtPrecio(precio.total,moneda)}*${warnTxt}\n\n¡Muchas gracias!`);
       btn.className='bwa';btn.href=`https://wa.me/5492944717718?text=${msg}`;btn.target='_blank';btn.onclick=null;
       btn.innerHTML=wasvg()+' Consultar por WhatsApp';
     } else {
       pb.style.display='block';
       pb.innerHTML=`<div class="pb-detail" style="color:rgba(245,240,232,0.7);font-style:italic">El precio se confirma al consultar por WhatsApp.</div>`;
-      const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}\n\n¡Muchas gracias!`);
+      const bebes2 = s.bebes||0;
+      const bebesTxt2 = bebes2 > 0 ? `\n👶 Bebés (menores de 2 años, sin cargo): ${bebes2}` : '';
+      const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt2}\n\n¡Muchas gracias!`);
       btn.className='bwa';btn.href=`https://wa.me/5492944717718?text=${msg}`;btn.target='_blank';btn.onclick=null;
       btn.innerHTML=wasvg()+' Consultar por WhatsApp';
     }
   } else {
-    const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}\n\n¡Muchas gracias!`);
+    const bebes3 = s.bebes||0;
+    const bebesTxt3 = bebes3 > 0 ? `\n👶 Bebés (menores de 2 años, sin cargo): ${bebes3}` : '';
+    const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt3}\n\n¡Muchas gracias!`);
     btn.className='bwa';btn.href=`https://wa.me/5492944717718?text=${msg}`;btn.target='_blank';btn.onclick=null;
     btn.innerHTML=wasvg()+' Consultar por WhatsApp';
   }
@@ -824,7 +831,7 @@ function buildGalleryHTML(p, prefix, big) {
 // Card de reserva (Inicio) — compacta con calendario
 function buildCardBooking(p){
   const hoy=new Date();
-  CS[p.id]={y:hoy.getFullYear(),m:hoy.getMonth(),occ:new Set(),a:null,b:null,guests:2};
+  CS[p.id]={y:hoy.getFullYear(),m:hoy.getMonth(),occ:new Set(),a:null,b:null,guests:2,bebes:0};
   // Cache prop data for cotizador
   if (!window._propDataCache) window._propDataCache = {};
   window._propDataCache[p.id] = p;
@@ -859,6 +866,17 @@ function buildCardBooking(p){
           <button onclick="changeGuests('${p.id}',-1)">−</button>
           <span id="gc-${p.id}">2</span>
           <button onclick="changeGuests('${p.id}',1)">+</button>
+        </div>
+      </div>
+      <div class="guestbox">
+        <div>
+          <label>Bebés</label>
+          <div style="font-size:.62rem;color:var(--text-muted);margin-top:1px">Menores de 2 años · no pagan</div>
+        </div>
+        <div class="gctrls">
+          <button onclick="changeBebes('${p.id}',-1)">−</button>
+          <span id="gb-${p.id}">0</span>
+          <button onclick="changeBebes('${p.id}',1)">+</button>
         </div>
       </div>
       <div class="datebox" id="db-${p.id}"><span class="datelbl">Fechas de estadía</span>Hacé clic en el calendario para elegir una fecha de entrada.</div>
@@ -965,6 +983,13 @@ window.changeGuests = (id, delta) => {
     const btns = btn.querySelectorAll('button');
     if (btns[1]) btns[1].style.opacity = s.guests >= max ? '0.35' : '1';
   }
+  uw(id);
+};
+
+window.changeBebes = (id, delta) => {
+  const s = CS[id]; if (!s) return;
+  s.bebes = Math.max(0, (s.bebes||0) + delta);
+  document.getElementById('gb-'+id).textContent = s.bebes;
   uw(id);
 };
 
