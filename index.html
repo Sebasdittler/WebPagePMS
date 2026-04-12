@@ -726,10 +726,37 @@ function uw(id){
   if(!s.a){box.innerHTML=`<span class="datelbl">Fechas de estadía</span>Hacé clic en el calendario para elegir una fecha de entrada.`;btn.className='bwa off';btn.href='#';btn.onclick=()=>false;btn.innerHTML=wasvg()+' Seleccioná fechas para consultar';return;}
   if(!s.b){box.innerHTML=`<span class="datelbl">Fechas de estadía</span>Entrada: <strong>${fd(s.a)}</strong>. Ahora elegí la salida.`;btn.className='bwa off';btn.href='#';btn.onclick=()=>false;btn.innerHTML=wasvg()+' Seleccioná fechas para consultar';return;}
   const n=Math.round((s.b-s.a)/86400000);
+  const guests = s.guests||2;
   box.innerHTML=`<span class="datelbl">Fechas elegidas</span>📅 <strong>${fd(s.a)}</strong> → <strong>${fd(s.b)}</strong> · ${n} noche${n!==1?'s':''}<button class="dateclr" onclick="cclear('${id}')">Borrar</button>`;
-  const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n\n¡Muchas gracias!`);
-  btn.className='bwa';btn.href=`https://wa.me/5492944717718?text=${msg}`;btn.target='_blank';btn.onclick=null;
-  btn.innerHTML=wasvg()+' Consultar por WhatsApp';
+  // Cotizador
+  const propData = window._propDataCache?.[id];
+  const tarifas = propData?.tarifas;
+  const moneda = propData?.moneda||'USD';
+  const precio = calcularPrecio(tarifas, moneda, s.a, s.b, guests);
+  const pb = document.getElementById('pb-'+id);
+  if(pb){
+    if(precio){
+      pb.style.display='block';
+      const warn = precio.warn ? `<div class="pb-warn">⚠ ${precio.warn}</div>` : '';
+      const detalle = precio.lineas.map(l=>`${l.noches} noche${l.noches!==1?'s':''} en ${l.nombre.toLowerCase()}`).join(' + ');
+      pb.innerHTML=`<div class="pb-total">${fmtPrecio(precio.total,moneda)}</div><div class="pb-detail">Total estadía · ${guests} huésped${guests!==1?'es':''}<br>${detalle}</div>${warn}`;
+      const resumen = precio.lineas.map(l=>`${l.noches} noche${l.noches!==1?'s':''} en ${l.nombre.toLowerCase()}: ${fmtPrecio(l.subtotal,moneda)}`).join('\n');
+      const warnTxt = precio.warn ? `\n⚠️ ${precio.warn}` : '';
+      const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}\n\n💰 Precio estimado:\n${resumen}\n*Total: ${fmtPrecio(precio.total,moneda)}*${warnTxt}\n\n¡Muchas gracias!`);
+      btn.className='bwa';btn.href=`https://wa.me/5492944717718?text=${msg}`;btn.target='_blank';btn.onclick=null;
+      btn.innerHTML=wasvg()+' Consultar por WhatsApp';
+    } else {
+      pb.style.display='block';
+      pb.innerHTML=`<div class="pb-detail" style="color:rgba(245,240,232,0.7);font-style:italic">El precio se confirma al consultar por WhatsApp.</div>`;
+      const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}\n\n¡Muchas gracias!`);
+      btn.className='bwa';btn.href=`https://wa.me/5492944717718?text=${msg}`;btn.target='_blank';btn.onclick=null;
+      btn.innerHTML=wasvg()+' Consultar por WhatsApp';
+    }
+  } else {
+    const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}\n\n¡Muchas gracias!`);
+    btn.className='bwa';btn.href=`https://wa.me/5492944717718?text=${msg}`;btn.target='_blank';btn.onclick=null;
+    btn.innerHTML=wasvg()+' Consultar por WhatsApp';
+  }
 }
 
 // ── GALERÍA ───────────────────────────────────────────────
