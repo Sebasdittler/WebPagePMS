@@ -627,33 +627,45 @@ document.getElementById('ham').addEventListener('click', () => {
 });
 
 // ── SLIDESHOW ─────────────────────────────────────────────
-const FOTOS = [
+const FOTOS_FALLBACK = [
   'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=80',
   'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80',
-  'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1600&q=80',
-  'https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=1600&q=80',
   'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80',
 ];
-let si = 0;
+let si = 0, slidesInterval = null;
 const slidesEl = document.getElementById('slides'), dotsEl = document.getElementById('dots');
-FOTOS.forEach((src, i) => {
-  const s = document.createElement('div');
-  s.className = 'slide' + (i===0?' on':'');
-  s.style.backgroundImage = `url('${src}')`;
-  slidesEl.appendChild(s);
-  const d = document.createElement('button');
-  d.className = 'dot' + (i===0?' on':'');
-  d.onclick = () => goSlide(i);
-  dotsEl.appendChild(d);
-});
-function goSlide(idx) {
-  document.querySelectorAll('.slide')[si].classList.remove('on');
-  document.querySelectorAll('.dot')[si].classList.remove('on');
-  si = idx;
-  document.querySelectorAll('.slide')[si].classList.add('on');
-  document.querySelectorAll('.dot')[si].classList.add('on');
+
+function initSlides(fotos) {
+  slidesEl.innerHTML = ''; dotsEl.innerHTML = '';
+  if (!fotos?.length) fotos = FOTOS_FALLBACK;
+  fotos.forEach((src, i) => {
+    const s = document.createElement('div');
+    s.className = 'slide' + (i===0?' on':'');
+    s.style.backgroundImage = `url('${src}')`;
+    slidesEl.appendChild(s);
+    const d = document.createElement('button');
+    d.className = 'dot' + (i===0?' on':'');
+    d.onclick = () => goSlide(i);
+    dotsEl.appendChild(d);
+  });
+  si = 0;
+  if (slidesInterval) clearInterval(slidesInterval);
+  slidesInterval = setInterval(() => goSlide((si+1) % fotos.length), 5000);
 }
-setInterval(() => goSlide((si+1) % FOTOS.length), 5000);
+function goSlide(idx) {
+  const allSlides = document.querySelectorAll('.slide');
+  const allDots = document.querySelectorAll('.dot');
+  if (!allSlides.length) return;
+  allSlides[si].classList.remove('on'); allDots[si].classList.remove('on');
+  si = idx;
+  allSlides[si].classList.add('on'); allDots[si].classList.add('on');
+}
+// Cargar fotos hero desde Firestore, fallback a Unsplash
+getDocs(query(collection(db,'sitioWeb_config'))).then(snap => {
+  const general = snap.docs.find(d => d.id === 'general');
+  const fotos = general?.data()?.fotosHero;
+  initSlides(fotos?.length ? fotos : FOTOS_FALLBACK);
+}).catch(() => initSlides(FOTOS_FALLBACK));
 
 // ── CALENDARIOS (solo para cards de Inicio) ───────────────
 const MES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
@@ -789,6 +801,8 @@ function buildCardBooking(p){
   // Cache prop data for cotizador
   if (!window._propDataCache) window._propDataCache = {};
   window._propDataCache[p.id] = p;
+  // Store max guests in CS
+  CS[p.id].maxGuests = Number(p.capacidad) || 99;
   const card=document.createElement('div');
   card.className='pcard anim'; card.id='pc-'+p.id;
   const am=(p.amenities||[]).slice(0,5).map(a=>`<span class="pill">${a}</span>`).join('');
@@ -916,8 +930,14 @@ function fmtPrecio(n, moneda) {
 
 window.changeGuests = (id, delta) => {
   const s = CS[id]; if (!s) return;
-  s.guests = Math.max(1, (s.guests||2) + delta);
+  const max = s.maxGuests || 99;
+  s.guests = Math.min(max, Math.max(1, (s.guests||2) + delta));
   document.getElementById('gc-'+id).textContent = s.guests;
+  const btn = document.getElementById('gc-'+id)?.parentElement;
+  if (btn) {
+    const btns = btn.querySelectorAll('button');
+    if (btns[1]) btns[1].style.opacity = s.guests >= max ? '0.35' : '1';
+  }
   uw(id);
 };
 
