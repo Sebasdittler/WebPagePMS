@@ -832,12 +832,12 @@ function buildCardGallery(p){
 // ── CARGA DE PROPIEDADES ──────────────────────────────────
 async function cargarReservas(p){
   try{
-    const q=query(collection(db,'reservas'),where('propiedad','==',p.nombreFang||p.nombre));
+    const q=query(collection(db,'reservas'),where('pid','==',p.id));
     const snap=await getDocs(q); const occ=new Set();
     snap.forEach(doc=>{
       const r=doc.data();
-      const entrada=toDate(r.fechaEntrada||r.entrada||r.ci);
-      const salida=toDate(r.fechaSalida||r.salida||r.co);
+      const entrada=toDate(r.ci||r.fechaEntrada||r.entrada);
+      const salida=toDate(r.co||r.fechaSalida||r.salida);
       if(!entrada||!salida) return;
       if((r.estado||'').toLowerCase().startsWith('cancel')) return;
       const c=new Date(entrada);
