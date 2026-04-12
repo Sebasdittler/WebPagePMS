@@ -855,4 +855,31 @@ async function cargarProps(){
     const q=query(collection(db,'sitioWeb_propiedades'),where('mostrarEnWeb','==',true),orderBy('orden','asc'));
     const snap=await getDocs(q);
     if(snap.empty){
-      const msg='<p style="color:var(--text-muted);text-align:center;padding:3rem;font-style:
+      const msg='<p style="color:var(--text-muted);text-align:center;padding:3rem;font-style:italic;grid-column:1/-1">Próximamente nuevas propiedades.</p>';
+      gridI.innerHTML=msg; gridG.innerHTML=msg; return;
+    }
+    gridI.innerHTML=''; gridG.innerHTML='';
+    snap.docs.forEach(doc=>{
+      const p={id:doc.id,...doc.data()};
+      // Card de reserva → Inicio
+      const cBook=buildCardBooking(p);
+      gridI.appendChild(cBook);
+      animObs.observe(cBook);
+      cargarReservas(p);
+      // Card de galería → Propiedades
+      const cGal=buildCardGallery(p);
+      gridG.appendChild(cGal);
+      animObs.observe(cGal);
+    });
+  }catch(e){
+    console.error(e);
+    const err='<p style="color:var(--text-muted);text-align:center;padding:3rem;font-style:italic;grid-column:1/-1">Error al cargar propiedades. Intentá recargar la página.</p>';
+    gridI.innerHTML=err; gridG.innerHTML=err;
+  }
+}
+
+// Carga al inicio, sin esperar a que el usuario navegue
+cargarProps();
+</script>
+</body>
+</html>
