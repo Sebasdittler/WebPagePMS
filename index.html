@@ -188,6 +188,16 @@ nav {
 .datebox { background:var(--cream); border-radius:8px; padding:.75rem 1rem; margin-bottom:.8rem; font-size:.78rem; color:var(--text-muted); min-height:50px; }
 .datelbl { font-size:.65rem; font-weight:500; text-transform:uppercase; letter-spacing:.06em; color:var(--forest); display:block; margin-bottom:3px; }
 .dateclr { background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:.68rem; text-decoration:underline; float:right; font-family:inherit; }
+.guestbox { background:var(--cream); border-radius:8px; padding:.75rem 1rem; margin-bottom:.8rem; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.guestbox label { font-size:.67rem; font-weight:500; text-transform:uppercase; letter-spacing:.06em; color:var(--forest); }
+.guestbox .gctrls { display:flex; align-items:center; gap:8px; }
+.guestbox .gctrls button { width:26px; height:26px; border-radius:50%; border:1.5px solid var(--cream-dark); background:var(--white); color:var(--forest); cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; transition:background .15s; }
+.guestbox .gctrls button:hover { background:var(--cream-dark); }
+.guestbox .gctrls span { font-size:.95rem; font-weight:500; color:var(--forest); min-width:22px; text-align:center; }
+.pricebox { background:var(--forest); border-radius:8px; padding:.85rem 1rem; margin-bottom:.8rem; color:var(--white); }
+.pricebox .pb-total { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:300; line-height:1; }
+.pricebox .pb-detail { font-size:.72rem; color:rgba(245,240,232,.6); margin-top:4px; line-height:1.5; }
+.pricebox .pb-warn { font-size:.72rem; color:#e09f3e; margin-top:6px; font-weight:500; }
 .bwa { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; padding:.82rem; background:#25D366; color:#fff; border:none; border-radius:8px; font-family:inherit; font-size:.86rem; font-weight:500; cursor:pointer; text-decoration:none; transition:background .2s, transform .15s; margin-top:auto; }
 .bwa:hover { background:#1da851; transform:translateY(-1px); }
 .bwa.off { background:var(--cream-dark) !important; color:var(--text-muted) !important; cursor:default !important; transform:none !important; }
@@ -775,7 +785,10 @@ function buildGalleryHTML(p, prefix, big) {
 // Card de reserva (Inicio) — compacta con calendario
 function buildCardBooking(p){
   const hoy=new Date();
-  CS[p.id]={y:hoy.getFullYear(),m:hoy.getMonth(),occ:new Set(),a:null,b:null};
+  CS[p.id]={y:hoy.getFullYear(),m:hoy.getMonth(),occ:new Set(),a:null,b:null,guests:2};
+  // Cache prop data for cotizador
+  if (!window._propDataCache) window._propDataCache = {};
+  window._propDataCache[p.id] = p;
   const card=document.createElement('div');
   card.className='pcard anim'; card.id='pc-'+p.id;
   const am=(p.amenities||[]).slice(0,5).map(a=>`<span class="pill">${a}</span>`).join('');
@@ -799,8 +812,16 @@ function buildCardBooking(p){
           <div class="li"><div class="ld" style="background:#f5b8b8"></div>Ocupado</div>
         </div>
       </div>
+      <div class="guestbox">
+        <label>Huéspedes</label>
+        <div class="gctrls">
+          <button onclick="changeGuests('${p.id}',-1)">−</button>
+          <span id="gc-${p.id}">2</span>
+          <button onclick="changeGuests('${p.id}',1)">+</button>
+        </div>
+      </div>
       <div class="datebox" id="db-${p.id}"><span class="datelbl">Fechas de estadía</span>Hacé clic en el calendario para elegir una fecha de entrada.</div>
-      ${p.precio?`<div class="pprice"><span class="pv">${p.moneda||'USD'} ${p.precio}</span><span class="pl">/ noche</span></div>`:''}
+      <div id="pb-${p.id}" style="display:none" class="pricebox"></div>
       <a class="bwa off" id="bw-${p.id}" href="#" onclick="return false;">${wasvg()} Seleccioná fechas para consultar</a>
     </div>`;
   return card;
@@ -828,6 +849,77 @@ function buildCardGallery(p){
     </div>`;
   return card;
 }
+
+// ── COTIZADOR ─────────────────────────────────────────────
+function getTempForDate(tarifas, date) {
+  if (!tarifas?.length) return null;
+  const mm = String(date.getMonth()+1).padStart(2,'0');
+  const dd = String(date.getDate()).padStart(2,'0');
+  const key = mm+'-'+dd;
+  for (const t of tarifas) {
+    for (const r of (t.rangos||[])) {
+      if (!r.desde || !r.hasta) continue;
+      const desde = r.desde, hasta = r.hasta;
+      // Rango cruzando año (ej: 12-15 → 02-28)
+      if (desde > hasta) {
+        if (key >= desde || key <= hasta) return t;
+      } else {
+        if (key >= desde && key <= hasta) return t;
+      }
+    }
+  }
+  return null;
+}
+
+function calcularPrecio(tarifas, moneda, desde, hasta, guests) {
+  if (!desde || !hasta || !tarifas?.length) return null;
+  const result = { lineas:[], total:0, moneda: moneda||'USD', warn:null };
+  const grupos = {}; // temp.nombre → {temp, noches}
+  const cur = new Date(desde);
+  while (cur < hasta) {
+    const t = getTempForDate(tarifas, cur);
+    if (t) {
+      if (!grupos[t.nombre]) grupos[t.nombre] = {temp:t, noches:0};
+      grupos[t.nombre].noches++;
+    }
+    cur.setDate(cur.getDate()+1);
+  }
+  if (!Object.keys(grupos).length) return null;
+  // Verificar mínimo de noches (por la temporada con más noches)
+  const tempPrincipal = Object.values(grupos).sort((a,b)=>b.noches-a.noches)[0];
+  const minimo = Number(tempPrincipal.temp.minimoNoches) || 0;
+  const totalNoches = Object.values(grupos).reduce((s,g)=>s+g.noches,0);
+  if (minimo > 0 && totalNoches < minimo) {
+    result.warn = `Mínimo ${minimo} noches en ${tempPrincipal.temp.nombre.toLowerCase()}. Podés consultar igual si necesitás una excepción.`;
+  }
+  // Calcular precio
+  for (const g of Object.values(grupos)) {
+    const base = Number(g.temp.precioBase) || 0;
+    const incl = Number(g.temp.huespedes) || 0;
+    const extra = Number(g.temp.extraPorHuesped) || 0;
+    const extras = Math.max(0, guests - incl) * extra;
+    const subtotal = (base + extras) * g.noches;
+    result.total += subtotal;
+    result.lineas.push({
+      nombre: g.temp.nombre,
+      noches: g.noches,
+      base, incl, extras: extras > 0 ? extras : 0,
+      subtotal,
+    });
+  }
+  return result;
+}
+
+function fmtPrecio(n, moneda) {
+  return (moneda||'USD')+' '+n.toLocaleString('es-AR');
+}
+
+window.changeGuests = (id, delta) => {
+  const s = CS[id]; if (!s) return;
+  s.guests = Math.max(1, (s.guests||2) + delta);
+  document.getElementById('gc-'+id).textContent = s.guests;
+  uw(id);
+};
 
 // ── CARGA DE PROPIEDADES ──────────────────────────────────
 async function cargarReservas(p){
