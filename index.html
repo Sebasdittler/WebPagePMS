@@ -148,6 +148,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 .bwa { display:flex; align-items:center; justify-content:center; gap:9px; width:100%; padding:.82rem; background:#25D366; color:#fff; border:none; border-radius:8px; font-family:inherit; font-size:.86rem; font-weight:500; cursor:pointer; text-decoration:none; transition:background .2s, transform .15s; margin-top:auto; }
 .bwa:hover { background:#1da851; transform:translateY(-1px); }
 .bwa.off { background:var(--cream-dark) !important; color:var(--text-muted) !important; cursor:default !important; transform:none !important; }
+/* ── Panel de reserva (aparece al elegir fechas) ────────── */
+.booking-panel { animation: bpReveal .32s ease both; }
+@keyframes bpReveal { from { opacity:0; transform:translateY(-6px); } to { opacity:1; transform:translateY(0); } }
+.cal-hint { text-align:center; padding:.55rem .5rem; font-size:.74rem; color:var(--text-muted); font-style:italic; }
 .pprice { display:flex; align-items:baseline; gap:6px; border-top:1px solid var(--cream-dark); padding-top:.85rem; margin:.75rem 0; }
 .pv { font-family:'Cormorant Garamond',serif; font-size:1.35rem; color:var(--forest); }
 .pl { font-size:.72rem; color:var(--text-muted); }
@@ -178,6 +182,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 .gbcal:hover { background:var(--cream-dark); border-color:var(--sage); }
 .gbinfo { display:flex; align-items:center; justify-content:center; gap:7px; padding:.9rem 1.1rem; background:transparent; color:var(--forest); border:1.5px solid var(--cream-dark); border-radius:8px; font-family:inherit; font-size:.82rem; font-weight:500; text-decoration:none; white-space:nowrap; transition:background .2s, border-color .2s; }
 .gbinfo:hover { background:var(--cream); border-color:var(--forest-mid); }
+/* ── BOTÓN FLOTANTE WHATSAPP ─────────────────────────────── */
+.wa-float { position:fixed; bottom:2rem; right:2rem; z-index:500; width:56px; height:56px; border-radius:50%; background:#25D366; box-shadow:0 4px 20px rgba(37,211,102,.45); display:flex; align-items:center; justify-content:center; text-decoration:none; transition:transform .2s, box-shadow .2s; }
+.wa-float:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(37,211,102,.6); }
+.wa-float svg { width:30px; height:30px; fill:#fff; }
 #v-nosotros { background: var(--white); }
 .ngrid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
 .nimgw { position:relative; }
@@ -249,6 +257,16 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
   .ngrid, .cgrid { grid-template-columns:1fr; gap:2.5rem; }
   .nbadge { right:1rem; }
   .props-grid, .srgrid { grid-template-columns:1fr; }
+  /* Cards de reserva: scroll horizontal en mobile */
+  #pgrid-inicio {
+    display:flex; flex-direction:row;
+    overflow-x:auto; scroll-snap-type:x mandatory;
+    gap:1rem; margin:0 -1.5rem; padding:0 1.5rem 1rem;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none;
+  }
+  #pgrid-inicio::-webkit-scrollbar { display:none; }
+  #pgrid-inicio .pcard { flex:0 0 84vw; max-width:340px; scroll-snap-align:start; }
+  #pgrid-inicio .pdesc { display:none; }
   .nvals { grid-template-columns:1fr 1fr; }
   .hero-arrow { display:none; }
   .footer-inner { grid-template-columns:1fr; gap:2rem; }
@@ -541,20 +559,39 @@ window.cc=(id,key)=>{
 };
 window.cprev=(id)=>{const s=CS[id];s.m--;if(s.m<0){s.m=11;s.y--;}renderCal(id);};
 window.cnext=(id)=>{const s=CS[id];s.m++;if(s.m>11){s.m=0;s.y++;}renderCal(id);};
-window.cclear=(id)=>{const s=CS[id];s.a=null;s.b=null;renderCal(id);uw(id);};
+window.cclear=(id)=>{const s=CS[id];s.a=null;s.b=null;const hint=document.getElementById('ch-'+id);if(hint){hint.style.display='';hint.textContent='Elegí tu fecha de entrada';}renderCal(id);uw(id);};
 
 const wasvg=()=>`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
 
 function uw(id){
   const s=CS[id];
   const box=document.getElementById('db-'+id), btn=document.getElementById('bw-'+id);
+  const bp=document.getElementById('bp-'+id), hint=document.getElementById('ch-'+id);
   const nm=document.getElementById('pn-'+id)?.textContent||'la propiedad';
-  if(!box||!btn)return;
-  if(!s.a){box.innerHTML=`<span class="datelbl">Fechas de estadía</span>Hacé clic en el calendario para elegir una fecha de entrada.`;btn.className='bwa off';btn.href='#';btn.onclick=()=>false;btn.innerHTML=wasvg()+' Seleccioná fechas para consultar';return;}
-  if(!s.b){box.innerHTML=`<span class="datelbl">Fechas de estadía</span>Entrada: <strong>${fd(s.a)}</strong>. Ahora elegí la salida.`;btn.className='bwa off';btn.href='#';btn.onclick=()=>false;btn.innerHTML=wasvg()+' Seleccioná fechas para consultar';return;}
+  if(!btn)return;
+
+  // Sin fechas: ocultar panel, mostrar hint
+  if(!s.a){
+    if(bp&&bp.style.display!=='none'){ bp.style.display='none'; }
+    if(hint) hint.textContent='Elegí tu fecha de entrada';
+    btn.className='bwa off';btn.href='#';btn.onclick=()=>false;btn.innerHTML=wasvg()+' Seleccioná fechas para consultar';
+    return;
+  }
+  // Solo entrada: ocultar panel, actualizar hint
+  if(!s.b){
+    if(bp&&bp.style.display!=='none'){ bp.style.display='none'; }
+    if(hint) hint.textContent='Ahora elegí la fecha de salida';
+    btn.className='bwa off';btn.href='#';btn.onclick=()=>false;btn.innerHTML=wasvg()+' Seleccioná fechas para consultar';
+    return;
+  }
+
+  // Ambas fechas: mostrar panel
+  if(bp){ bp.style.display='block'; bp.classList.remove('booking-panel'); void bp.offsetWidth; bp.classList.add('booking-panel'); }
+  if(hint) hint.style.display='none';
+
   const n=Math.round((s.b-s.a)/86400000);
   const guests = s.guests||2;
-  box.innerHTML=`<span class="datelbl">Fechas elegidas</span>📅 <strong>${fd(s.a)}</strong> → <strong>${fd(s.b)}</strong> · ${n} noche${n!==1?'s':''}<button class="dateclr" onclick="cclear('${id}')">Borrar</button>`;
+  if(box) box.innerHTML=`<span class="datelbl">Fechas elegidas</span>📅 <strong>${fd(s.a)}</strong> → <strong>${fd(s.b)}</strong> · ${n} noche${n!==1?'s':''}<button class="dateclr" onclick="cclear('${id}')">Borrar</button>`;
   const propData = window._propDataCache?.[id];
   const tarifas = propData?.tarifas;
   const moneda = propData?.moneda||'USD';
@@ -664,28 +701,31 @@ function buildCardBooking(p){
           <div class="li"><div class="ld" style="background:#f5b8b8"></div>Ocupado</div>
         </div>
       </div>
-      <div class="guestbox">
-        <label>Huéspedes</label>
-        <div class="gctrls">
-          <button onclick="changeGuests('${p.id}',-1)">−</button>
-          <span id="gc-${p.id}">2</span>
-          <button onclick="changeGuests('${p.id}',1)">+</button>
+      <div class="cal-hint" id="ch-${p.id}">Elegí tu fecha de entrada</div>
+      <div class="booking-panel" id="bp-${p.id}" style="display:none">
+        <div class="datebox" id="db-${p.id}"></div>
+        <div class="guestbox">
+          <label>Huéspedes</label>
+          <div class="gctrls">
+            <button onclick="changeGuests('${p.id}',-1)">−</button>
+            <span id="gc-${p.id}">2</span>
+            <button onclick="changeGuests('${p.id}',1)">+</button>
+          </div>
         </div>
+        <div class="guestbox">
+          <div>
+            <label>Bebés</label>
+            <div style="font-size:.62rem;color:var(--text-muted);margin-top:1px">Menores de 2 años · no pagan</div>
+          </div>
+          <div class="gctrls">
+            <button onclick="changeBebes('${p.id}',-1)">−</button>
+            <span id="gb-${p.id}">0</span>
+            <button onclick="changeBebes('${p.id}',1)">+</button>
+          </div>
+        </div>
+        <div id="pb-${p.id}" style="display:none" class="pricebox"></div>
+        <a class="bwa off" id="bw-${p.id}" href="#" onclick="return false;">${wasvg()} Seleccioná fechas para consultar</a>
       </div>
-      <div class="guestbox">
-        <div>
-          <label>Bebés</label>
-          <div style="font-size:.62rem;color:var(--text-muted);margin-top:1px">Menores de 2 años · no pagan</div>
-        </div>
-        <div class="gctrls">
-          <button onclick="changeBebes('${p.id}',-1)">−</button>
-          <span id="gb-${p.id}">0</span>
-          <button onclick="changeBebes('${p.id}',1)">+</button>
-        </div>
-      </div>
-      <div class="datebox" id="db-${p.id}"><span class="datelbl">Fechas de estadía</span>Hacé clic en el calendario para elegir una fecha de entrada.</div>
-      <div id="pb-${p.id}" style="display:none" class="pricebox"></div>
-      <a class="bwa off" id="bw-${p.id}" href="#" onclick="return false;">${wasvg()} Seleccioná fechas para consultar</a>
     </div>`;
   return card;
 }
@@ -839,5 +879,9 @@ async function cargarProps(){
 
 cargarProps();
 </script>
+<!-- Botón flotante WhatsApp -->
+<a class="wa-float" href="https://wa.me/5492944717718" target="_blank" title="Escribinos por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 </body>
 </html>
