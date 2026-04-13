@@ -710,6 +710,17 @@ function buildCardGallery(p){
   return card;
 }
 
+function normalizeMmDd(s) {
+  if (!s) return '';
+  s = String(s).trim();
+  if (/^\d{2}-\d{2}$/.test(s)) return s; // ya está bien: MM-DD
+  if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s.slice(5); // yyyy-mm-dd → mm-dd
+  const parts = s.split(/[-\/]/);
+  if (parts.length === 3 && parts[2].length === 4) // dd/mm/yyyy o dd-mm-yyyy
+    return parts[1].padStart(2,'0') + '-' + parts[0].padStart(2,'0');
+  return s;
+}
+
 function getTempForDate(tarifas, date) {
   if (!tarifas?.length) return null;
   const mm = String(date.getMonth()+1).padStart(2,'0');
@@ -718,7 +729,7 @@ function getTempForDate(tarifas, date) {
   for (const t of tarifas) {
     for (const r of (t.rangos||[])) {
       if (!r.desde || !r.hasta) continue;
-      const desde = r.desde, hasta = r.hasta;
+      const desde = normalizeMmDd(r.desde), hasta = normalizeMmDd(r.hasta);
       if (desde > hasta) { if (key >= desde || key <= hasta) return t; }
       else { if (key >= desde && key <= hasta) return t; }
     }
