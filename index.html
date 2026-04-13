@@ -718,7 +718,7 @@ function normalizeMmDd(s) {
   const parts = s.split(/[-\/]/);
   if (parts.length === 3 && parts[2].length === 4) // dd/mm/yyyy o dd-mm-yyyy
     return parts[1].padStart(2,'0') + '-' + parts[0].padStart(2,'0');
-  return s;
+  return ''; // valor parcial o inválido — ignorar
 }
 
 function getTempForDate(tarifas, date) {
