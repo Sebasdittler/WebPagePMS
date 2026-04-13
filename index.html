@@ -743,7 +743,7 @@ function buildCardGallery(p){
       <h3 class="gname">${p.nombre}</h3>
       ${p.descripcion?`<p class="gdesc">${p.descripcion}</p>`:''}
       ${am?`<div class="gam">${am}</div>`:''}
-      ${p.precio?`<div class="gprice"><span class="gpv">${p.moneda||'USD'} ${p.precio}</span><span class="gpl">/ noche</span></div>`:''}
+
       <div class="gbtns">
         <a class="gbwa" href="https://wa.me/5492944717718?text=${msg}" target="_blank">${wasvg()} Consultar por WhatsApp</a>
         <button class="gbcal" onclick="ir('inicio');setTimeout(()=>document.getElementById('inicio-props').scrollIntoView({behavior:'smooth'}),320)">📅 Ver disponibilidad</button>
