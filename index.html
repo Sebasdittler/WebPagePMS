@@ -4,6 +4,112 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hagrids · Alquileres Turísticos · Villa La Angostura</title>
+
+<!-- SEO básico -->
+<meta name="description" content="Hagrids gestiona alquileres turísticos en Villa La Angostura, Patagonia. Cabañas y casas únicas con atención profesional y alma local. Consultá disponibilidad por WhatsApp.">
+<meta name="keywords" content="alquiler turístico Villa La Angostura, cabañas Patagonia, casas alquiler Angostura, turismo Neuquén, alquiler temporario lagos sur">
+<meta name="author" content="Hagrids">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://web-page-pms.vercel.app/">
+
+<!-- Open Graph (WhatsApp, Facebook, iMessage) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://web-page-pms.vercel.app/">
+<meta property="og:title" content="Hagrids · Alquileres Turísticos · Villa La Angostura">
+<meta property="og:description" content="Cabañas y casas únicas en uno de los paisajes más extraordinarios del mundo. Gestión profesional, experiencias auténticas.">
+<meta property="og:locale" content="es_AR">
+
+<!-- Schema.org: organización -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "Hagrids",
+  "description": "Gestión profesional de alquileres turísticos en Villa La Angostura, Patagonia Argentina. Cabañas y casas únicas con atención personalizada.",
+  "url": "https://web-page-pms.vercel.app/",
+  "telephone": "+5492944717718",
+  "email": "hagridsvla@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Villa La Angostura",
+    "addressRegion": "Neuquén",
+    "addressCountry": "AR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": -40.7637,
+    "longitude": -71.6481
+  },
+  "sameAs": [
+    "https://www.instagram.com/somoshagrids/",
+    "https://wa.me/5492944717718"
+  ],
+  "areaServed": {
+    "@type": "City",
+    "name": "Villa La Angostura",
+    "containedInPlace": {
+      "@type": "State",
+      "name": "Neuquén",
+      "containedInPlace": {
+        "@type": "Country",
+        "name": "Argentina"
+      }
+    }
+  },
+  "priceRange": "$$",
+  "currenciesAccepted": "USD, ARS",
+  "paymentAccepted": "Transferencia bancaria",
+  "amenityFeature": [
+    {"@type": "LocationFeatureSpecification", "name": "Vista lago", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Chimenea", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true},
+    {"@type": "LocationFeatureSpecification", "name": "Estacionamiento", "value": true}
+  ]
+}
+</script>
+
+<!-- Schema.org: FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Cómo reservo una propiedad en Hagrids?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Elegís las fechas en el calendario de disponibilidad y consultás directamente por WhatsApp. Te confirmamos la disponibilidad y el precio final en minutos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Dónde están ubicadas las propiedades?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Todas nuestras propiedades están en Villa La Angostura, Neuquén, Patagonia Argentina, a orillas del Lago Nahuel Huapi y el Lago Correntoso."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo mínimo se puede alquilar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El mínimo varía según la propiedad y la temporada. En temporada alta generalmente son 3 noches mínimo. Consultanos por WhatsApp para tu caso específico."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Los precios están en dólares o pesos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nuestras tarifas se publican en dólares estadounidenses (USD). El pago puede acordarse en la modalidad más conveniente para el huésped."
+      }
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://www.gstatic.com">
@@ -182,7 +288,14 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 .gbcal:hover { background:var(--cream-dark); border-color:var(--sage); }
 .gbinfo { display:flex; align-items:center; justify-content:center; gap:7px; padding:.9rem 1.1rem; background:transparent; color:var(--forest); border:1.5px solid var(--cream-dark); border-radius:8px; font-family:inherit; font-size:.82rem; font-weight:500; text-decoration:none; white-space:nowrap; transition:background .2s, border-color .2s; }
 .gbinfo:hover { background:var(--cream); border-color:var(--forest-mid); }
-/* ── BOTÓN FLOTANTE WHATSAPP ─────────────────────────────── */
+/* ── FAQ ─────────────────────────────────────────────────── */
+.faq-item { background:var(--white); border:1px solid var(--cream-dark); border-radius:10px; overflow:hidden; transition:box-shadow .2s; }
+.faq-item:hover { box-shadow:0 4px 16px rgba(27,58,45,.08); }
+.faq-item summary { padding:1.1rem 1.3rem; font-size:.92rem; font-weight:500; color:var(--forest); cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; }
+.faq-item summary::-webkit-details-marker { display:none; }
+.faq-item summary::after { content:'＋'; font-size:1.1rem; color:var(--leaf); transition:transform .2s; flex-shrink:0; }
+.faq-item[open] summary::after { transform:rotate(45deg); }
+.faq-item p { padding:.1rem 1.3rem 1.1rem; font-size:.88rem; color:var(--text-muted); font-weight:300; line-height:1.75; }
 .wa-float { position:fixed; bottom:2rem; right:2rem; z-index:500; width:56px; height:56px; border-radius:50%; background:#25D366; box-shadow:0 4px 20px rgba(37,211,102,.45); display:flex; align-items:center; justify-content:center; text-decoration:none; transition:transform .2s, box-shadow .2s; }
 .wa-float:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(37,211,102,.6); }
 .wa-float svg { width:30px; height:30px; fill:#fff; }
@@ -377,6 +490,53 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         </div>
       </div>
     </div>
+    <!-- Entorno y actividades -->
+    <div class="inner" style="background:var(--cream); padding-top:3.5rem; padding-bottom:3.5rem">
+      <p class="slbl anim">La Angostura te espera</p>
+      <h2 class="stit anim anim-d1">Un destino para<br>cada estación</h2>
+      <p class="ssub anim anim-d2" style="margin-bottom:2.5rem">A dos horas de Bariloche, Villa La Angostura combina naturaleza, tranquilidad y belleza patagónica durante todo el año.</p>
+      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem">
+        <div class="vitem anim anim-d3"><div class="vicon">🌲</div><div class="vtit">Bosque de Arrayanes</div><div class="vdesc">El único bosque de arrayanes del mundo, a orillas del Lago Nahuel Huapi. Patrimonio natural único.</div></div>
+        <div class="vitem anim anim-d3"><div class="vicon">🏔️</div><div class="vtit">Cerro Bayo</div><div class="vdesc">Centro de ski en invierno y senderos de trekking y mountain bike en verano con vistas espectaculares.</div></div>
+        <div class="vitem anim anim-d4"><div class="vicon">🚴</div><div class="vtit">Circuito del Bosque</div><div class="vdesc">40 km de senderos para bici y trekking que rodean el pueblo con vistas al lago y la cordillera.</div></div>
+        <div class="vitem anim anim-d4"><div class="vicon">🎣</div><div class="vtit">Pesca con mosca</div><div class="vdesc">El Lago Correntoso y el Río Correntoso son referentes mundiales de la pesca con mosca de truchas.</div></div>
+        <div class="vitem anim anim-d5"><div class="vicon">🛶</div><div class="vtit">Lagos y playas</div><div class="vdesc">Nahuel Huapi, Correntoso, Espejo y Villarino: kayak, natación y atardeceres incomparables.</div></div>
+        <div class="vitem anim anim-d5"><div class="vicon">🍫</div><div class="vtit">Gastronomía y chocolates</div><div class="vdesc">Restaurantes con cocina patagónica, chocolaterías artesanales y cervecerías de autor en el centro del pueblo.</div></div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="inner" style="padding-top:3.5rem; padding-bottom:3rem">
+      <p class="slbl anim">Preguntas frecuentes</p>
+      <h2 class="stit anim anim-d1">Todo lo que<br>necesitás saber</h2>
+      <div style="display:flex; flex-direction:column; gap:.75rem; margin-top:2rem; max-width:720px">
+        <details class="faq-item anim anim-d2">
+          <summary>¿Cómo reservo una propiedad?</summary>
+          <p>Elegís las fechas en el calendario de disponibilidad y consultás directamente por WhatsApp. Te confirmamos disponibilidad y precio final en minutos.</p>
+        </details>
+        <details class="faq-item anim anim-d3">
+          <summary>¿Cuánto tiempo mínimo se puede alquilar?</summary>
+          <p>El mínimo varía según la propiedad y la temporada. En temporada alta generalmente son 3 noches. Consultanos para tu caso específico y buscamos la mejor opción.</p>
+        </details>
+        <details class="faq-item anim anim-d3">
+          <summary>¿Los precios están en dólares o pesos?</summary>
+          <p>Nuestras tarifas se publican en dólares (USD). El precio que ves en el cotizador es orientativo — el valor final suele ser igual o menor. Consultanos y te confirmamos la tarifa exacta.</p>
+        </details>
+        <details class="faq-item anim anim-d4">
+          <summary>¿Qué incluye la estadía?</summary>
+          <p>Cada propiedad es diferente, pero en general incluyen ropa de cama, toallas, cocina equipada, Wi-Fi y calefacción. Los detalles específicos te los informamos al confirmar la reserva.</p>
+        </details>
+        <details class="faq-item anim anim-d4">
+          <summary>¿Cómo funciona el check-in?</summary>
+          <p>Coordinamos el horario de llegada con vos directamente. Hacemos un recibimiento personalizado para entregarte las llaves y mostrarte la propiedad.</p>
+        </details>
+        <details class="faq-item anim anim-d5">
+          <summary>¿Se aceptan mascotas?</summary>
+          <p>Depende de cada propiedad. Consultanos indicando tipo y tamaño de mascota y te decimos cuáles están disponibles para vos.</p>
+        </details>
+      </div>
+    </div>
+
     <!-- Contacto integrado en Nosotros -->
     <div class="inner" style="border-top:1px solid var(--cream-dark); padding-top:3rem">
       <p class="slbl anim">Contacto</p>
