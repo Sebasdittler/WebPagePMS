@@ -496,21 +496,21 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
     <div class="inner">
       <div class="ngrid">
         <div class="nimgw anim">
-          <div class="nimgph">
+          <div class="nimgph" id="nosotros-imgw">
             <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="32" r="18" fill="rgba(138,176,154,0.2)"/><path d="M18 68C18 55 28 46 40 46S62 55 62 68" stroke="rgba(138,176,154,0.25)" stroke-width="2" fill="none"/></svg>
             <span class="nimgph-label">Foto del equipo próximamente</span>
           </div>
-          <div class="nbadge"><span class="bnum">+10</span><span class="blbl">años en Angostura</span></div>
+          <div class="nbadge"><span class="bnum">2019</span><span class="blbl">en Villa La Angostura</span></div>
         </div>
         <div class="ntext">
           <p class="slbl anim anim-d1">Quiénes somos</p>
           <h2 class="stit anim anim-d2">Gestión profesional<br>con alma local</h2>
-          <p class="anim anim-d3">Somos Hagrids, una empresa de gestión de alquileres turísticos con base en Villa La Angostura. Nacimos de la convicción de que los propietarios merecen tranquilidad y los huéspedes merecen experiencias extraordinarias.</p>
-          <p class="anim anim-d3">Administramos cada propiedad como si fuera nuestra, con reportes claros, comunicación directa y atención personalizada a cada huésped.</p>
+          <p class="anim anim-d3" id="nosotros-p1">Somos Hagrids, una empresa de gestión de alquileres turísticos con base en Villa La Angostura. Nacimos de la convicción de que los propietarios merecen tranquilidad y los huéspedes merecen experiencias extraordinarias.</p>
+          <p class="anim anim-d3" id="nosotros-p2">Administramos cada propiedad como si fuera nuestra, con reportes claros, comunicación directa y atención personalizada a cada huésped.</p>
           <div class="nvals">
             <div class="vitem anim anim-d4"><div class="vicon">🤝</div><div class="vtit">Transparencia</div><div class="vdesc">Reportes detallados. Sin sorpresas, sin letra chica.</div></div>
             <div class="vitem anim anim-d4"><div class="vicon">📍</div><div class="vtit">Locales</div><div class="vdesc">Vivimos acá. Conocemos cada rincón de la Angostura.</div></div>
-            <div class="vitem anim anim-d5"><div class="vicon">⭐</div><div class="vtit">Experiencia</div><div class="vdesc">Más de 10 años gestionando propiedades en la región.</div></div>
+            <div class="vitem anim anim-d5"><div class="vicon">⭐</div><div class="vtit">Experiencia</div><div class="vdesc">Gestionando propiedades en la región desde 2019.</div></div>
             <div class="vitem anim anim-d5"><div class="vicon">🔔</div><div class="vtit">Disponibilidad</div><div class="vdesc">Atención real, en tiempo real, todo el año.</div></div>
           </div>
           <button class="btn anim anim-d6" onclick="ir('servicios')">Sumate como propietario →</button>
@@ -1087,7 +1087,24 @@ async function cargarProps(){
 
 cargarProps();
 
-// ── Partners ──────────────────────────────────────────────
+// ── Nosotros ──────────────────────────────────────────────
+getDoc(doc(db,'sitioWeb_config','nosotros')).then(snap => {
+  if (!snap.exists()) return;
+  const data = snap.data();
+  if (data.parrafo1) { const el = document.getElementById('nosotros-p1'); if(el) el.textContent = data.parrafo1; }
+  if (data.parrafo2) { const el = document.getElementById('nosotros-p2'); if(el) el.textContent = data.parrafo2; }
+  if (data.foto) {
+    const w = document.getElementById('nosotros-imgw');
+    if (w) {
+      const img = document.createElement('img');
+      img.src = data.foto;
+      img.alt = 'Equipo Hagrids';
+      img.className = 'nimgreal';
+      w.innerHTML = '';
+      w.appendChild(img);
+    }
+  }
+}).catch(() => {});
 getDoc(doc(db,'sitioWeb_config','partners')).then(snap => {
   if (!snap.exists()) return;
   const lista = snap.data()?.lista || [];
