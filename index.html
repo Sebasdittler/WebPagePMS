@@ -360,6 +360,31 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
 .fsoc { width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; color:rgba(245,240,232,.6); text-decoration:none; transition:background .2s, color .2s; }
 .fsoc:hover { background:rgba(138,176,154,.2); color:var(--white); }
 .fsoc svg { width:15px; height:15px; fill:currentColor; }
+/* ── ACTIVIDADES ────────────────────────────────────────── */
+.act-section { background:var(--cream-dark); padding:4rem 3rem; }
+.act-inner { max-width:1200px; margin:0 auto; }
+.act-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.5rem; margin-top:2.5rem; }
+.act-card { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .3s cubic-bezier(.22,.68,0,1.2), box-shadow .3s; }
+.act-card:hover { transform:translateY(-5px); box-shadow:0 16px 48px rgba(27,58,45,.18); }
+.act-gallery { position:relative; width:100%; height:200px; overflow:hidden; background:linear-gradient(135deg,var(--forest-mid),var(--leaf)); }
+.act-gallery .pgallery-track { height:100%; }
+.act-gallery .pgallery-slide { height:200px; }
+.act-gallery .pgallery-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+.act-gallery .gal-btn { width:28px; height:28px; font-size:.9rem; opacity:0; }
+.act-gallery:hover .gal-btn { opacity:1; }
+.act-gallery .gal-dots { bottom:7px; }
+.act-body { padding:1.1rem 1.3rem; }
+.act-icon { font-size:1.4rem; margin-bottom:.4rem; }
+.act-title { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:400; color:var(--forest); margin-bottom:.3rem; }
+.act-desc { font-size:.83rem; color:var(--text-muted); font-weight:300; line-height:1.7; }
+.act-ph { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:2.5rem; }
+@media (max-width:860px) {
+  .act-section { padding:2.5rem 1.5rem; }
+  .act-grid { grid-template-columns:1fr 1fr; gap:1rem; }
+  .act-gallery { height:160px; }
+  .act-gallery .pgallery-slide { height:160px; }
+}
+@media (max-width:480px) { .act-grid { grid-template-columns:1fr; } }
 /* ── PARTNERS ───────────────────────────────────────────── */
 .partners-section { background:var(--forest); padding:3.5rem 3rem; }
 .partners-inner { max-width:1200px; margin:0 auto; }
@@ -450,6 +475,15 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
           <div class="loading"><div class="spinner"></div><p>Cargando propiedades…</p></div>
         </div>
       </div>
+      <!-- ── Actividades ── -->
+      <div class="act-section" id="act-section" style="display:none">
+        <div class="act-inner">
+          <p class="slbl anim">La Angostura te espera</p>
+          <h2 class="stit anim anim-d1">Un destino para<br>cada estación</h2>
+          <p class="ssub anim anim-d2">A dos horas de Bariloche, Villa La Angostura combina naturaleza, tranquilidad y belleza patagónica durante todo el año.</p>
+          <div class="act-grid" id="act-grid"></div>
+        </div>
+      </div>
       <!-- ── Partners ── -->
       <div class="partners-section" id="partners-section" style="display:none">
         <div class="partners-inner">
@@ -538,7 +572,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
             <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="32" r="18" fill="rgba(138,176,154,0.2)"/><path d="M18 68C18 55 28 46 40 46S62 55 62 68" stroke="rgba(138,176,154,0.25)" stroke-width="2" fill="none"/></svg>
             <span class="nimgph-label">Foto del equipo próximamente</span>
           </div>
-          <div class="nbadge"><span class="bnum">2019</span><span class="blbl">en Villa La Angostura</span></div>
+          <div class="nbadge"><span class="bnum" id="badge-anios">6</span><span class="blbl">años en Angostura</span></div>
         </div>
         <div class="ntext">
           <p class="slbl anim anim-d1">Quiénes somos</p>
@@ -555,21 +589,6 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         </div>
       </div>
     </div>
-    <!-- Entorno y actividades -->
-    <div class="inner" style="background:var(--cream); padding-top:3.5rem; padding-bottom:3.5rem">
-      <p class="slbl anim">La Angostura te espera</p>
-      <h2 class="stit anim anim-d1">Un destino para<br>cada estación</h2>
-      <p class="ssub anim anim-d2" style="margin-bottom:2.5rem">A dos horas de Bariloche, Villa La Angostura combina naturaleza, tranquilidad y belleza patagónica durante todo el año.</p>
-      <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:1rem">
-        <div class="vitem anim anim-d3"><div class="vicon">🌲</div><div class="vtit">Bosque de Arrayanes</div><div class="vdesc">El único bosque de arrayanes del mundo, a orillas del Lago Nahuel Huapi. Patrimonio natural único.</div></div>
-        <div class="vitem anim anim-d3"><div class="vicon">🏔️</div><div class="vtit">Cerro Bayo</div><div class="vdesc">Centro de ski en invierno y senderos de trekking y mountain bike en verano con vistas espectaculares.</div></div>
-        <div class="vitem anim anim-d4"><div class="vicon">🚴</div><div class="vtit">Circuito del Bosque</div><div class="vdesc">40 km de senderos para bici y trekking que rodean el pueblo con vistas al lago y la cordillera.</div></div>
-        <div class="vitem anim anim-d4"><div class="vicon">🎣</div><div class="vtit">Pesca con mosca</div><div class="vdesc">El Lago Correntoso y el Río Correntoso son referentes mundiales de la pesca con mosca de truchas.</div></div>
-        <div class="vitem anim anim-d5"><div class="vicon">🛶</div><div class="vtit">Lagos y playas</div><div class="vdesc">Nahuel Huapi, Correntoso, Espejo y Villarino: kayak, natación y atardeceres incomparables.</div></div>
-        <div class="vitem anim anim-d5"><div class="vicon">🍫</div><div class="vtit">Gastronomía y chocolates</div><div class="vdesc">Restaurantes con cocina patagónica, chocolaterías artesanales y cervecerías de autor en el centro del pueblo.</div></div>
-      </div>
-    </div>
-
     <!-- Contacto integrado en Nosotros -->
     <div class="inner" style="border-top:1px solid var(--cream-dark); padding-top:3rem">
       <p class="slbl anim">Contacto</p>
@@ -1092,6 +1111,55 @@ async function cargarProps(){
 }
 
 cargarProps();
+
+// ── Badge años automático ─────────────────────────────────
+const badgeAnios = document.getElementById('badge-anios');
+if (badgeAnios) badgeAnios.textContent = new Date().getFullYear() - 2019;
+
+// ── Actividades ───────────────────────────────────────────
+function cldOptimizar(url) {
+  // Inserta w_800,q_auto,f_auto en URLs de Cloudinary para optimizar peso
+  if (!url || !url.includes('cloudinary.com')) return url;
+  return url.replace('/upload/', '/upload/w_800,q_auto,f_auto/');
+}
+
+getDoc(doc(db,'sitioWeb_config','destinos')).then(snap => {
+  if (!snap.exists()) return;
+  const lista = snap.data()?.lista || [];
+  if (!lista.length) return;
+  const section = document.getElementById('act-section');
+  const grid = document.getElementById('act-grid');
+  if (!section || !grid) return;
+  lista.forEach((act, i) => {
+    const id = 'act-' + i;
+    const fotos = (act.fotos || []).map(cldOptimizar);
+    GAL[id] = { idx:0, total: fotos.length };
+    const card = document.createElement('div');
+    card.className = 'act-card anim';
+    const delay = ['','anim-d1','anim-d2','anim-d3','anim-d4','anim-d5'][i % 6];
+    if (delay) card.classList.add(delay);
+    let galHTML = '';
+    if (fotos.length) {
+      const slides = fotos.map((url, fi) =>
+        `<div class="pgallery-slide" style="height:200px"><img src="${url}" alt="${act.titulo||''}" loading="lazy"></div>`
+      ).join('');
+      const dots = fotos.length > 1
+        ? `<div class="gal-dots" id="gdots-${id}">${fotos.map((_,fi)=>`<button class="gal-dot${fi===0?' on':''}" onclick="galGoto('${id}',${fi})"></button>`).join('')}</div>`
+        : '';
+      const btns = fotos.length > 1
+        ? `<button class="gal-btn gal-prev" onclick="galNav('${id}',-1)">‹</button><button class="gal-btn gal-next" onclick="galNav('${id}',1)">›</button>`
+        : '';
+      galHTML = `<div class="act-gallery"><div class="pgallery-track" id="gt-${id}">${slides}</div>${btns}${dots}</div>`;
+    } else {
+      galHTML = `<div class="act-gallery"><div class="act-ph">${act.icono||'📍'}</div></div>`;
+    }
+    card.innerHTML = `${galHTML}<div class="act-body"><div class="act-icon">${act.icono||'📍'}</div><div class="act-title">${act.titulo||''}</div>${act.descripcion?`<div class="act-desc">${act.descripcion}</div>`:''}</div>`;
+    grid.appendChild(card);
+    animObs.observe(card);
+  });
+  section.style.display = '';
+  section.querySelectorAll('.anim').forEach(el => animObs.observe(el));
+}).catch(() => {});
 
 // ── Nosotros ──────────────────────────────────────────────
 getDoc(doc(db,'sitioWeb_config','nosotros')).then(snap => {
