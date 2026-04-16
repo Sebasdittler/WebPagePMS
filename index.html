@@ -638,6 +638,24 @@ const FOTOS_FALLBACK = [
 let si = 0, slidesInterval = null;
 const slidesEl = document.getElementById('slides'), dotsEl = document.getElementById('dots');
 
+function initVideo(src, poster) {
+  slidesEl.innerHTML = ''; dotsEl.innerHTML = '';
+  if (slidesInterval) clearInterval(slidesInterval);
+  const vid = document.createElement('video');
+  vid.autoplay = true; vid.muted = true; vid.loop = true; vid.playsInline = true;
+  vid.setAttribute('playsinline', '');
+  if (poster) vid.poster = poster;
+  vid.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+  const source = document.createElement('source');
+  source.src = src; source.type = 'video/mp4';
+  vid.appendChild(source);
+  slidesEl.appendChild(vid);
+  // Overlay (el ::after del CSS aplica sobre .slide, no sobre el video)
+  const overlay = document.createElement('div');
+  overlay.style.cssText = 'position:absolute;inset:0;background:linear-gradient(160deg,rgba(27,58,45,.78) 0%,rgba(27,58,45,.4) 55%,rgba(27,58,45,.72) 100%);pointer-events:none;';
+  slidesEl.appendChild(overlay);
+}
+
 function initSlides(fotos) {
   slidesEl.innerHTML = ''; dotsEl.innerHTML = '';
   if (!fotos?.length) fotos = FOTOS_FALLBACK;
@@ -666,8 +684,14 @@ function goSlide(idx) {
 
 // ── FIX: leer directamente el documento 'general' en vez de listar la colección
 getDoc(doc(db,'sitioWeb_config','general')).then(snap => {
-  const fotos = snap.exists() ? snap.data()?.fotosHero : null;
-  initSlides(fotos?.length ? fotos : FOTOS_FALLBACK);
+  const data = snap.exists() ? snap.data() : {};
+  const videoUrl = data?.videoHero?.trim();
+  const fotos = data?.fotosHero;
+  if (videoUrl) {
+    initVideo(videoUrl, fotos?.[0] || FOTOS_FALLBACK[0]);
+  } else {
+    initSlides(fotos?.length ? fotos : FOTOS_FALLBACK);
+  }
 }).catch(() => initSlides(FOTOS_FALLBACK));
 
 const MES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
