@@ -360,6 +360,24 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
 .fsoc { width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; color:rgba(245,240,232,.6); text-decoration:none; transition:background .2s, color .2s; }
 .fsoc:hover { background:rgba(138,176,154,.2); color:var(--white); }
 .fsoc svg { width:15px; height:15px; fill:currentColor; }
+/* ── PARTNERS ───────────────────────────────────────────── */
+.partners-section { background:var(--forest); padding:3.5rem 3rem; }
+.partners-inner { max-width:1200px; margin:0 auto; }
+.partners-section .slbl { color:var(--sage); }
+.partners-section .stit { color:var(--cream); font-size:clamp(1.6rem,3vw,2.4rem); }
+.partners-grid { display:flex; flex-wrap:wrap; gap:1.5rem; margin-top:2.2rem; justify-content:center; align-items:center; }
+.partner-item { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:1rem 1.4rem; display:flex; align-items:center; justify-content:center; min-width:120px; height:72px; transition:background .2s, transform .2s; }
+.partner-item:hover { background:rgba(255,255,255,0.13); transform:translateY(-2px); }
+.partner-item img { max-width:100px; max-height:44px; object-fit:contain; filter:brightness(0) invert(1); opacity:0.75; transition:opacity .2s; }
+.partner-item:hover img { opacity:1; }
+.partner-item.sin-logo { flex-direction:column; gap:4px; }
+.partner-item.sin-logo span { font-size:.78rem; color:rgba(245,240,232,.7); font-weight:500; text-align:center; }
+.partners-nota { text-align:center; margin-top:1.8rem; font-size:.83rem; color:rgba(245,240,232,.45); font-weight:300; font-style:italic; }
+@media (max-width:860px) {
+  .partners-section { padding:2.5rem 1.5rem; }
+  .partner-item { min-width:100px; height:62px; padding:.8rem 1rem; }
+  .partner-item img { max-width:84px; max-height:36px; }
+}
 @media (max-width:860px) {
   nav { padding:0 1.2rem; }
   .nav-links { display:none; position:absolute; top:var(--nav-h); left:0; right:0; background:rgba(27,58,45,.98); flex-direction:column; padding:1rem; gap:.3rem; }
@@ -429,6 +447,15 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         <p class="ssub anim anim-d2" style="margin-bottom:2.5rem">Elegí fechas en el calendario y consultá disponibilidad directo por WhatsApp.</p>
         <div class="props-grid" id="pgrid-inicio">
           <div class="loading"><div class="spinner"></div><p>Cargando propiedades…</p></div>
+        </div>
+      </div>
+      <!-- ── Partners ── -->
+      <div class="partners-section" id="partners-section" style="display:none">
+        <div class="partners-inner">
+          <p class="slbl anim">Beneficios exclusivos</p>
+          <h2 class="stit anim anim-d1">Nuestros huéspedes<br>acceden a descuentos locales</h2>
+          <div class="partners-grid" id="partners-grid"></div>
+          <p class="partners-nota anim">Al confirmar tu reserva te compartimos el detalle de cada beneficio.</p>
         </div>
       </div>
       <footer style="margin-top:4rem">
@@ -1059,6 +1086,31 @@ async function cargarProps(){
 }
 
 cargarProps();
+
+// ── Partners ──────────────────────────────────────────────
+getDoc(doc(db,'sitioWeb_config','partners')).then(snap => {
+  if (!snap.exists()) return;
+  const lista = snap.data()?.lista || [];
+  if (!lista.length) return;
+  const section = document.getElementById('partners-section');
+  const grid = document.getElementById('partners-grid');
+  if (!section || !grid) return;
+  lista.forEach(p => {
+    const item = document.createElement('div');
+    item.className = 'partner-item anim' + (p.logo ? '' : ' sin-logo');
+    if (p.logo) {
+      item.innerHTML = `<img src="${p.logo}" alt="${p.nombre}" title="${p.nombre}">`;
+    } else {
+      item.innerHTML = `<span>${p.nombre}</span>`;
+    }
+    grid.appendChild(item);
+    animObs.observe(item);
+  });
+  section.style.display = '';
+  animObs.observe(section.querySelector('.slbl'));
+  animObs.observe(section.querySelector('.stit'));
+  animObs.observe(section.querySelector('.partners-nota'));
+}).catch(() => {});
 </script>
 <!-- Botón flotante WhatsApp -->
 <a class="wa-float" href="https://wa.me/5492944717718" target="_blank" title="Escribinos por WhatsApp">
