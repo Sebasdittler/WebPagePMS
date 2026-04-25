@@ -765,17 +765,21 @@ function renderCal(id) {
   lbl.textContent=MES[s.m]+' '+s.y;
   const first=new Date(s.y,s.m,1).getDay(), total=new Date(s.y,s.m+1,0).getDate();
   const off=first===0?6:first-1;
-  let h=DIA.map(d=>`<div class="cdn">${d}</div>`).join('');
-  for(let i=0;i<off;i++) h+=`<div class="cd dE"></div>`;
+  grid.innerHTML='';
+  DIA.forEach(d=>{const el=document.createElement('div');el.className='cdn';el.textContent=d;grid.appendChild(el);});
+  for(let i=0;i<off;i++){const el=document.createElement('div');el.className='cd dE';grid.appendChild(el);}
   for(let d=1;d<=total;d++){
     const date=new Date(s.y,s.m,d), key=dk(date);
     const past=date<hoy, occ=s.occ.has(key), isHoy=key===dk(hoy);
     let c=occ?'dO':'dA'; if(past)c+=' dP'; if(isHoy)c+=' dT';
     if(s.a&&s.b){const ak=dk(s.a),bk=dk(s.b);if(key===ak||key===bk)c+=' dS';else if(key>ak&&key<bk)c+=' dR';}
     else if(s.a&&dk(s.a)===key) c+=' dS';
-    h+=`<div class="cd ${c}" ${!occ&&!past?`onclick="cc('${id}','${key}')"`:''}>${d}</div>`;
+    const el=document.createElement('div');
+    el.className='cd '+c;
+    el.textContent=d;
+    if(!occ&&!past) el.addEventListener('click',()=>cc(id,key));
+    grid.appendChild(el);
   }
-  grid.innerHTML=h;
 }
 window.cc=(id,key)=>{
   const s=CS[id]; const cl=new Date(key+'T12:00:00');
@@ -825,7 +829,20 @@ function uw(id){
 
   const n=Math.round((s.b-s.a)/86400000);
   const guests = s.guests||2;
-  if(box) box.innerHTML=`<span class="datelbl">Fechas elegidas</span>📅 <strong>${fd(s.a)}</strong> → <strong>${fd(s.b)}</strong> · ${n} noche${n!==1?'s':''}<button class="dateclr" onclick="cclear('${id}')">Borrar</button>`;
+  if(box){
+    const lbl=document.createElement('span');lbl.className='datelbl';lbl.textContent='Fechas elegidas';
+    const sa=document.createElement('strong');sa.textContent=fd(s.a);
+    const sb=document.createElement('strong');sb.textContent=fd(s.b);
+    const clr=document.createElement('button');clr.className='dateclr';clr.textContent='Borrar';clr.addEventListener('click',()=>cclear(id));
+    box.innerHTML='';
+    box.appendChild(lbl);
+    box.appendChild(document.createTextNode('📅 '));
+    box.appendChild(sa);
+    box.appendChild(document.createTextNode(' → '));
+    box.appendChild(sb);
+    box.appendChild(document.createTextNode(` · ${n} noche${n!==1?'s':''}`));
+    box.appendChild(clr);
+  }
   const propData = window._propDataCache?.[id];
   const tarifas = propData?.tarifas;
   const moneda = propData?.moneda||'USD';
