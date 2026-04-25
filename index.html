@@ -1067,14 +1067,13 @@ window.changeBebes = (id, delta) => {
 
 async function cargarReservas(p){
   try{
-    const q=query(collection(db,'reservas'),where('pid','==',p.id));
+    const q=query(collection(db,'sitioWeb_ocupados'),where('pid','==',p.id));
     const snap=await getDocs(q); const occ=new Set();
     snap.forEach(doc=>{
       const r=doc.data();
-      const entrada=toDate(r.ci||r.fechaEntrada||r.entrada);
-      const salida=toDate(r.co||r.fechaSalida||r.salida);
+      const entrada=toDate(r.ci);
+      const salida=toDate(r.co);
       if(!entrada||!salida) return;
-      if((r.estado||'').toLowerCase().startsWith('cancel')) return;
       const c=new Date(entrada);
       while(c<salida){occ.add(dk(c));c.setDate(c.getDate()+1);}
     });
