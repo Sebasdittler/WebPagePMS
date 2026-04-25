@@ -652,6 +652,17 @@ const db = getFirestore(initializeApp({
   appId:"1:244923261273:web:8febd821a565ca42daac48"
 }));
 
+const CONTACT = {
+  whatsapp: '5492944717718',
+  wa:       'https://wa.me/5492944717718',
+  email:    'hagridsvla@gmail.com',
+  instagram:'@somoshagrids',
+  ig:       'https://www.instagram.com/somoshagrids/',
+};
+document.querySelectorAll('a[href^="https://wa.me/5492944717718"]').forEach(a=>{a.href=a.href.replace('5492944717718',CONTACT.whatsapp);});
+document.querySelectorAll('a[href^="mailto:hagridsvla"]').forEach(a=>{a.href='mailto:'+CONTACT.email;if(a.textContent.includes('@'))a.textContent=CONTACT.email;});
+document.querySelectorAll('a[href="https://www.instagram.com/somoshagrids/"]').forEach(a=>{a.href=CONTACT.ig;});
+
 const animObs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); animObs.unobserve(e.target); } });
 }, { threshold: 0.1 });
@@ -859,7 +870,7 @@ function uw(id){
       const bebes = s.bebes||0;
       const bebesTxt = bebes > 0 ? `\n👶 Bebés (menores de 2 años, sin cargo): ${bebes}` : '';
       const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt}\n\n💰 Precio estimado:\n${resumen}\n*Total: ${fmtPrecio(precio.total,moneda)}*${warnTxt}\n\n¡Muchas gracias!`);
-      btn.className='bwa';btn.href=`https://wa.me/5492944717718?text=${msg}`;btn.target='_blank';btn.onclick=null;
+      btn.className='bwa';btn.href=`${CONTACT.wa}?text=${msg}`;btn.target='_blank';btn.onclick=null;
       btn.innerHTML=wasvg()+' Consultar por WhatsApp';
     } else {
       pb.style.display='block';
@@ -867,14 +878,14 @@ function uw(id){
       const bebes2 = s.bebes||0;
       const bebesTxt2 = bebes2 > 0 ? `\n👶 Bebés (menores de 2 años, sin cargo): ${bebes2}` : '';
       const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt2}\n\n¡Muchas gracias!`);
-      btn.className='bwa';btn.href=`https://wa.me/5492944717718?text=${msg}`;btn.target='_blank';btn.onclick=null;
+      btn.className='bwa';btn.href=`${CONTACT.wa}?text=${msg}`;btn.target='_blank';btn.onclick=null;
       btn.innerHTML=wasvg()+' Consultar por WhatsApp';
     }
   } else {
     const bebes3 = s.bebes||0;
     const bebesTxt3 = bebes3 > 0 ? `\n👶 Bebés (menores de 2 años, sin cargo): ${bebes3}` : '';
     const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt3}\n\n¡Muchas gracias!`);
-    btn.className='bwa';btn.href=`https://wa.me/5492944717718?text=${msg}`;btn.target='_blank';btn.onclick=null;
+    btn.className='bwa';btn.href=`${CONTACT.wa}?text=${msg}`;btn.target='_blank';btn.onclick=null;
     btn.innerHTML=wasvg()+' Consultar por WhatsApp';
   }
 }
@@ -996,7 +1007,7 @@ function buildCardGallery(p){
       ${am?`<div class="gam">${am}</div>`:''}
 
       <div class="gbtns">
-        <a class="gbwa" href="https://wa.me/5492944717718?text=${msg}" target="_blank">${wasvg()} Consultar por WhatsApp</a>
+        <a class="gbwa" href="${CONTACT.wa}?text=${msg}" target="_blank">${wasvg()} Consultar por WhatsApp</a>
         <button class="gbcal" onclick="ir('inicio');setTimeout(()=>document.getElementById('inicio-props').scrollIntoView({behavior:'smooth'}),320)">📅 Ver disponibilidad</button>
         ${p.sitioUrl?`<a class="gbinfo" href="${p.sitioUrl}" target="_blank">📋 Más información</a>`:''}
       </div>
