@@ -423,7 +423,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
   #pgrid-inicio .pcard { flex:0 0 84vw; max-width:340px; scroll-snap-align:start; }
   #pgrid-inicio .pdesc { display:none; }
   .nvals { grid-template-columns:1fr 1fr; }
-  .hero-arrow { display:none; }
+  .hero-arrow { opacity: 0.5; }
   .footer-inner { grid-template-columns:1fr; gap:2rem; }
   footer { padding:2.5rem 1.5rem 1.5rem; }
   .footer-bottom { flex-direction:column; align-items:flex-start; }
@@ -463,7 +463,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
       </div>
       <div class="hero-arrow" onclick="document.getElementById('inicio-props').scrollIntoView({behavior:'smooth'})">
         <span></span>
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--sage)"><polyline points="6 9 12 15 18 9"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" color="var(--sage)"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
     </div>
     <div class="inicio-props" id="inicio-props">
@@ -502,8 +502,8 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         <div class="footer-bottom">
           <p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p>
           <div class="footer-social">
-            <a class="fsoc" href="https://www.instagram.com/somoshagrids/" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
-            <a class="fsoc" href="https://wa.me/5492944717718" target="_blank" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+            <a class="fsoc" href="https://www.instagram.com/somoshagrids/" target="_blank" title="Instagram"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+            <a class="fsoc" href="https://wa.me/5492944717718" target="_blank" title="WhatsApp"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
           </div>
         </div>
       </footer>
@@ -524,7 +524,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         <div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div>
         <div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div>
       </div>
-      <div class="footer-bottom"><p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p><div class="footer-social"><a class="fsoc" href="https://www.instagram.com/somoshagrids/" target="_blank" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a><a class="fsoc" href="https://wa.me/5492944717718" target="_blank" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a></div></div>
+      <div class="footer-bottom"><p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p><div class="footer-social"><a class="fsoc" href="https://www.instagram.com/somoshagrids/" target="_blank" title="Instagram"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a><a class="fsoc" href="https://wa.me/5492944717718" target="_blank" title="WhatsApp"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a></div></div>
     </footer>
   </div>
   <div class="vista" id="v-preguntas">
@@ -569,7 +569,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
       <div class="ngrid">
         <div class="nimgw anim">
           <div class="nimgph" id="nosotros-imgw">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="32" r="18" fill="rgba(138,176,154,0.2)"/><path d="M18 68C18 55 28 46 40 46S62 55 62 68" stroke="rgba(138,176,154,0.25)" stroke-width="2" fill="none"/></svg>
+            <svg aria-hidden="true" width="80" height="80" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="32" r="18" fill="rgba(138,176,154,0.2)"/><path d="M18 68C18 55 28 46 40 46S62 55 62 68" stroke="rgba(138,176,154,0.25)" stroke-width="2" fill="none"/></svg>
             <span class="nimgph-label">Foto del equipo próximamente</span>
           </div>
           <div class="nbadge"><span class="bnum" id="badge-anios">6</span><span class="blbl">años en Angostura</span></div>
@@ -617,7 +617,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
     <footer><div class="footer-inner"><div class="footer-brand"><span class="logo-f">Hagrids<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
   </div>
   <div class="vista" id="v-servicios">
-    <div class="srbg" style="background-image:url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80')"></div>
+    <div class="srbg" style="background:linear-gradient(160deg,#1b3a2d 0%,#2d5a43 60%,#1b3a2d 100%)"></div>
     <div class="inner srinner">
       <p class="slbl anim">Nuestros servicios</p>
       <h2 class="stit anim anim-d1">Tu propiedad,<br>en buenas manos</h2>
@@ -659,6 +659,12 @@ const CONTACT = {
   instagram:'@somoshagrids',
   ig:       'https://www.instagram.com/somoshagrids/',
 };
+const TIMINGS = {
+  animDelay:        60,   // ms — delay para observeAnims tras cambio de vista
+  slideInterval:  5000,   // ms — intervalo del slideshow del hero
+  scrollDelay:     320,   // ms — delay antes del scroll suave en galería
+  firestoreTimeout:10000, // ms — timeout de carga de Firestore
+};
 document.querySelectorAll('a[href^="https://wa.me/5492944717718"]').forEach(a=>{a.href=a.href.replace('5492944717718',CONTACT.whatsapp);});
 document.querySelectorAll('a[href^="mailto:hagridsvla"]').forEach(a=>{a.href='mailto:'+CONTACT.email;if(a.textContent.includes('@'))a.textContent=CONTACT.email;});
 document.querySelectorAll('a[href="https://www.instagram.com/somoshagrids/"]').forEach(a=>{a.href=CONTACT.ig;});
@@ -681,7 +687,7 @@ window.ir = function(pag) {
     const vista = document.getElementById('v-' + cur);
     vista.classList.add('on');
     vista.scrollTo({ top: 0 });
-    setTimeout(() => observeAnims(vista), 60);
+    setTimeout(() => observeAnims(vista), TIMINGS.animDelay);
   });
   cerrarMenu();
 };
@@ -694,17 +700,14 @@ document.getElementById('ham').addEventListener('click', () => {
   document.getElementById('ham').classList.toggle('open');
 });
 
-const FOTOS_FALLBACK = [
-  'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=80',
-  'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80',
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80',
-];
+const FALLBACK_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect width='800' height='500' fill='%231b3a2d'/%3E%3Cpath d='M0 360L200 200L350 290L550 140L800 280V500H0Z' fill='%232d5a43'/%3E%3C/svg%3E";
+const FOTOS_FALLBACK = [FALLBACK_IMG];
 let si = 0, slidesInterval = null;
 const slidesEl = document.getElementById('slides'), dotsEl = document.getElementById('dots');
 
 function initVideo(src, poster) {
   slidesEl.innerHTML = ''; dotsEl.innerHTML = '';
-  if (slidesInterval) clearInterval(slidesInterval);
+  if (slidesInterval) { clearInterval(slidesInterval); slidesInterval = null; }
   const vid = document.createElement('video');
   vid.autoplay = true; vid.muted = true; vid.loop = true; vid.playsInline = true;
   vid.setAttribute('playsinline', '');
@@ -734,8 +737,8 @@ function initSlides(fotos) {
     dotsEl.appendChild(d);
   });
   si = 0;
-  if (slidesInterval) clearInterval(slidesInterval);
-  slidesInterval = setInterval(() => goSlide((si+1) % fotos.length), 5000);
+  if (slidesInterval) { clearInterval(slidesInterval); slidesInterval = null; }
+  slidesInterval = setInterval(() => goSlide((si+1) % fotos.length), TIMINGS.slideInterval);
 }
 function goSlide(idx) {
   const allSlides = document.querySelectorAll('.slide');
@@ -810,7 +813,7 @@ window.cprev=(id)=>{const s=CS[id];s.m--;if(s.m<0){s.m=11;s.y--;}renderCal(id);}
 window.cnext=(id)=>{const s=CS[id];s.m++;if(s.m>11){s.m=0;s.y++;}renderCal(id);};
 window.cclear=(id)=>{const s=CS[id];s.a=null;s.b=null;const hint=document.getElementById('ch-'+id);if(hint){hint.style.display='';hint.textContent='Elegí tu fecha de entrada';}renderCal(id);uw(id);};
 
-const wasvg=()=>`<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
+const wasvg=()=>`<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
 
 function uw(id){
   const s=CS[id];
@@ -862,9 +865,12 @@ function uw(id){
   if(pb){
     if(precio){
       pb.style.display='block';
-      const warn = precio.warn ? `<div class="pb-warn">⚠ ${precio.warn}</div>` : '';
       const detalle = precio.lineas.map(l=>`${l.noches} noche${l.noches!==1?'s':''} en ${l.nombre.toLowerCase()}`).join(' + ');
-      pb.innerHTML=`<div class="pb-total">${fmtPrecio(precio.total,moneda)}</div><div class="pb-detail">Total estadía · ${guests} huésped${guests!==1?'es':''}<br>${detalle}</div>${warn}<div class="pb-disclaimer">Precio estimado. El valor final suele ser menor — escribinos y te confirmamos la tarifa exacta para tu estadía.</div>`;
+      pb.innerHTML='';
+      const pbTotal=document.createElement('div');pbTotal.className='pb-total';pbTotal.textContent=fmtPrecio(precio.total,moneda);pb.appendChild(pbTotal);
+      const pbDetail=document.createElement('div');pbDetail.className='pb-detail';pbDetail.appendChild(document.createTextNode(`Total estadía · ${guests} huésped${guests!==1?'es':''}`));pbDetail.appendChild(document.createElement('br'));pbDetail.appendChild(document.createTextNode(detalle));pb.appendChild(pbDetail);
+      if(precio.warn){const pbWarn=document.createElement('div');pbWarn.className='pb-warn';pbWarn.textContent='⚠ '+precio.warn;pb.appendChild(pbWarn);}
+      const pbDisc=document.createElement('div');pbDisc.className='pb-disclaimer';pbDisc.textContent='Precio estimado. El valor final suele ser menor — escribinos y te confirmamos la tarifa exacta para tu estadía.';pb.appendChild(pbDisc);
       const resumen = precio.lineas.map(l=>`${l.noches} noche${l.noches!==1?'s':''} en ${l.nombre.toLowerCase()}: ${fmtPrecio(l.subtotal,moneda)}`).join('\n');
       const warnTxt = precio.warn ? `\n⚠️ ${precio.warn}` : '';
       const bebes = s.bebes||0;
@@ -910,28 +916,46 @@ window.galGoto = (id,idx) => {
   if(ctr) ctr.textContent=`${g.idx+1} / ${g.total}`;
 };
 
-function buildGalleryHTML(p, prefix, big) {
+function buildGalleryEl(p, prefix, big) {
   const fotos = Array.isArray(p.fotos)&&p.fotos.length ? p.fotos : p.fotoUrl ? [p.fotoUrl] : [];
   const id = prefix + p.id;
   GAL[id] = { idx:0, total:fotos.length };
   const wrapClass = big ? 'ggallery' : 'pgallery';
   const h = big ? 300 : 210;
+  const wrap = document.createElement('div'); wrap.className = wrapClass;
+  const track = document.createElement('div'); track.className = 'pgallery-track'; track.id = 'gt-' + id;
   if (!fotos.length) {
-    return `<div class="${wrapClass}"><div class="pgallery-track" id="gt-${id}"><div class="pgallery-slide ph" style="height:${h}px"><svg width="52" height="52" viewBox="0 0 60 60" fill="none"><path d="M10 40L30 15L50 40H10Z" fill="rgba(255,255,255,0.15)"/><rect x="22" y="30" width="16" height="10" rx="2" fill="rgba(255,255,255,0.15)"/></svg></div></div></div>`;
+    const slide = document.createElement('div'); slide.className = 'pgallery-slide ph'; slide.style.height = h + 'px';
+    slide.innerHTML = '<svg aria-hidden="true" width="52" height="52" viewBox="0 0 60 60" fill="none"><path d="M10 40L30 15L50 40H10Z" fill="rgba(255,255,255,0.15)"/><rect x="22" y="30" width="16" height="10" rx="2" fill="rgba(255,255,255,0.15)"/></svg>';
+    track.appendChild(slide); wrap.appendChild(track); return wrap;
   }
-  const slides = fotos.map((url,i) =>
-    `<div class="pgallery-slide" style="height:${h}px"><img src="${url}" alt="${p.nombre}" loading="${i===0?'eager':'lazy'}"></div>`
-  ).join('');
-  const dots = fotos.length>1
-    ? `<div class="gal-dots" id="gdots-${id}">${fotos.map((_,i)=>`<button class="gal-dot${i===0?' on':''}" onclick="galGoto('${id}',${i})"></button>`).join('')}</div>`
-    : '';
-  const btns = fotos.length>1
-    ? `<button class="gal-btn gal-prev" onclick="galNav('${id}',-1)">‹</button><button class="gal-btn gal-next" onclick="galNav('${id}',1)">›</button>`
-    : '';
-  const counter = big && fotos.length>1
-    ? `<div class="gal-counter" id="gctr-${id}">1 / ${fotos.length}</div>`
-    : '';
-  return `<div class="${wrapClass}"><div class="pgallery-track" id="gt-${id}">${slides}</div>${btns}${dots}${counter}</div>`;
+  fotos.forEach((url, i) => {
+    const slide = document.createElement('div'); slide.className = 'pgallery-slide'; slide.style.height = h + 'px';
+    const img = document.createElement('img');
+    img.setAttribute('src', url);
+    img.alt = p.nombre || '';
+    img.loading = i === 0 ? 'eager' : 'lazy';
+    img.onerror = () => { img.src = FALLBACK_IMG; img.onerror = null; };
+    slide.appendChild(img); track.appendChild(slide);
+  });
+  wrap.appendChild(track);
+  if (fotos.length > 1) {
+    const prev = document.createElement('button'); prev.className = 'gal-btn gal-prev'; prev.textContent = '‹';
+    prev.addEventListener('click', () => galNav(id, -1)); wrap.appendChild(prev);
+    const next = document.createElement('button'); next.className = 'gal-btn gal-next'; next.textContent = '›';
+    next.addEventListener('click', () => galNav(id, 1)); wrap.appendChild(next);
+    const dots = document.createElement('div'); dots.className = 'gal-dots'; dots.id = 'gdots-' + id;
+    fotos.forEach((_, i) => {
+      const btn = document.createElement('button'); btn.className = 'gal-dot' + (i === 0 ? ' on' : '');
+      btn.addEventListener('click', () => galGoto(id, i)); dots.appendChild(btn);
+    });
+    wrap.appendChild(dots);
+  }
+  if (big && fotos.length > 1) {
+    const counter = document.createElement('div'); counter.className = 'gal-counter'; counter.id = 'gctr-' + id;
+    counter.textContent = '1 / ' + fotos.length; wrap.appendChild(counter);
+  }
+  return wrap;
 }
 
 function buildCardBooking(p){
@@ -942,16 +966,19 @@ function buildCardBooking(p){
   CS[p.id].maxGuests = Number(p.capacidad) || 99;
   const card=document.createElement('div');
   card.className='pcard anim'; card.id='pc-'+p.id;
-  const am=(p.amenities||[]).slice(0,5).map(a=>`<span class="pill">${a}</span>`).join('');
+  card.appendChild(buildGalleryEl(p,'b',false));
+  const body=document.createElement('div'); body.className='pbody';
   const tipo=[p.tipo,p.capacidad?p.capacidad+' huéspedes':''].filter(Boolean).join(' · ');
-  card.innerHTML=`
-    ${buildGalleryHTML(p,'b',false)}
-    <div class="pbody">
-      <span class="ptag">${tipo}</span>
-      <h3 class="pname" id="pn-${p.id}">${p.nombre}</h3>
-      ${p.descripcion?`<p class="pdesc">${p.descripcion}</p>`:''}
-      ${am?`<div class="pam">${am}</div>`:''}
-      <div class="calwrap">
+  const tag=document.createElement('span'); tag.className='ptag'; tag.textContent=tipo; body.appendChild(tag);
+  const h3=document.createElement('h3'); h3.className='pname'; h3.id='pn-'+p.id; h3.textContent=p.nombre||''; body.appendChild(h3);
+  if(p.descripcion){const desc=document.createElement('p');desc.className='pdesc';desc.textContent=p.descripcion;body.appendChild(desc);}
+  if((p.amenities||[]).length){
+    const amDiv=document.createElement('div');amDiv.className='pam';
+    p.amenities.slice(0,5).forEach(a=>{const pill=document.createElement('span');pill.className='pill';pill.textContent=a;amDiv.appendChild(pill);});
+    body.appendChild(amDiv);
+  }
+  const cal=document.createElement('div');
+  cal.innerHTML=`<div class="calwrap">
         <div class="calhead">
           <button class="calnav" onclick="cprev('${p.id}')">‹</button>
           <span class="calmth" id="cm-${p.id}"></span>
@@ -987,31 +1014,38 @@ function buildCardBooking(p){
         </div>
         <div id="pb-${p.id}" style="display:none" class="pricebox"></div>
         <a class="bwa off" id="bw-${p.id}" href="#" onclick="return false;">${wasvg()} Seleccioná fechas para consultar</a>
-      </div>
-    </div>`;
+      </div>`;
+  while(cal.firstChild) body.appendChild(cal.firstChild);
+  card.appendChild(body);
   return card;
 }
 
 function buildCardGallery(p){
   const card=document.createElement('div');
   card.className='gcard anim'; card.id='gc-'+p.id;
-  const am=(p.amenities||[]).map(a=>`<span class="gpill">${a}</span>`).join('');
   const tipo=[p.tipo,p.capacidad?p.capacidad+' huéspedes':''].filter(Boolean).join(' · ');
   const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${p.nombre}*.\n\n¡Muchas gracias!`);
-  card.innerHTML=`
-    ${buildGalleryHTML(p,'g',true)}
-    <div class="gbody">
-      <span class="gtag">${tipo}</span>
-      <h3 class="gname">${p.nombre}</h3>
-      ${p.descripcion?`<p class="gdesc">${p.descripcion}</p>`:''}
-      ${am?`<div class="gam">${am}</div>`:''}
 
-      <div class="gbtns">
-        <a class="gbwa" href="${CONTACT.wa}?text=${msg}" target="_blank">${wasvg()} Consultar por WhatsApp</a>
-        <button class="gbcal" onclick="ir('inicio');setTimeout(()=>document.getElementById('inicio-props').scrollIntoView({behavior:'smooth'}),320)">📅 Ver disponibilidad</button>
-        ${p.sitioUrl?`<a class="gbinfo" href="${p.sitioUrl}" target="_blank">📋 Más información</a>`:''}
-      </div>
-    </div>`;
+  card.appendChild(buildGalleryEl(p,'g',true));
+
+  // Cuerpo: texto de Firestore via textContent, URLs via setAttribute
+  const body=document.createElement('div'); body.className='gbody';
+  const tag=document.createElement('span'); tag.className='gtag'; tag.textContent=tipo; body.appendChild(tag);
+  const h3=document.createElement('h3'); h3.className='gname'; h3.textContent=p.nombre; body.appendChild(h3);
+  if(p.descripcion){const desc=document.createElement('p');desc.className='gdesc';desc.textContent=p.descripcion;body.appendChild(desc);}
+  if(p.amenities?.length){
+    const amDiv=document.createElement('div'); amDiv.className='gam';
+    p.amenities.forEach(a=>{const pill=document.createElement('span');pill.className='gpill';pill.textContent=a;amDiv.appendChild(pill);});
+    body.appendChild(amDiv);
+  }
+  const btns=document.createElement('div'); btns.className='gbtns';
+  const waA=document.createElement('a'); waA.className='gbwa'; waA.href=`${CONTACT.wa}?text=${msg}`; waA.target='_blank'; waA.innerHTML=wasvg()+' Consultar por WhatsApp'; btns.appendChild(waA);
+  const calBtn=document.createElement('button'); calBtn.className='gbcal'; calBtn.textContent='📅 Ver disponibilidad';
+  calBtn.addEventListener('click',()=>{ir('inicio');setTimeout(()=>document.getElementById('inicio-props').scrollIntoView({behavior:'smooth'}),TIMINGS.scrollDelay);});
+  btns.appendChild(calBtn);
+  if(p.sitioUrl){const infoA=document.createElement('a');infoA.className='gbinfo';infoA.setAttribute('href',p.sitioUrl);infoA.target='_blank';infoA.textContent='📋 Más información';btns.appendChild(infoA);}
+  body.appendChild(btns);
+  card.appendChild(body);
   return card;
 }
 
@@ -1107,15 +1141,20 @@ async function cargarReservas(p){
     });
     if(CS[p.id]) CS[p.id].occ=occ;
     renderCal(p.id);
-  }catch(e){console.error(e);renderCal(p.id);}
+  }catch(e){
+    // TODO: logging en producción
+    console.warn('Error al cargar disponibilidad');
+    renderCal(p.id);
+  }
 }
 
 async function cargarProps(){
   const gridI = document.getElementById('pgrid-inicio');
   const gridG = document.getElementById('pgrid-gal');
+  const firestoreTimeout = new Promise((_,r)=>setTimeout(()=>r(new Error('timeout')),TIMINGS.firestoreTimeout));
   try{
     const q=query(collection(db,'sitioWeb_propiedades'),where('mostrarEnWeb','==',true),orderBy('orden','asc'));
-    const snap=await getDocs(q);
+    const snap=await Promise.race([getDocs(q),firestoreTimeout]);
     if(snap.empty){
       const msg='<p style="color:var(--text-muted);text-align:center;padding:3rem;font-style:italic;grid-column:1/-1">Próximamente nuevas propiedades.</p>';
       gridI.innerHTML=msg; gridG.innerHTML=msg; return;
@@ -1132,8 +1171,12 @@ async function cargarProps(){
       animObs.observe(cGal);
     });
   }catch(e){
-    console.error(e);
-    const err='<p style="color:var(--text-muted);text-align:center;padding:3rem;font-style:italic;grid-column:1/-1">Error al cargar propiedades. Intentá recargar la página.</p>';
+    // TODO: logging en producción
+    console.warn('Error al cargar propiedades');
+    const msg = e?.message === 'timeout'
+      ? 'La carga está tardando más de lo esperado. Verificá tu conexión e intentá recargar.'
+      : 'Error al cargar propiedades. Intentá recargar la página.';
+    const err=`<p style="color:var(--text-muted);text-align:center;padding:3rem;font-style:italic;grid-column:1/-1">${msg}</p>`;
     gridI.innerHTML=err; gridG.innerHTML=err;
   }
 }
@@ -1166,22 +1209,40 @@ getDoc(doc(db,'sitioWeb_config','destinos')).then(snap => {
     card.className = 'act-card anim';
     const delay = ['','anim-d1','anim-d2','anim-d3','anim-d4','anim-d5'][i % 6];
     if (delay) card.classList.add(delay);
-    let galHTML = '';
+    const galWrap = document.createElement('div'); galWrap.className = 'act-gallery';
     if (fotos.length) {
-      const slides = fotos.map((url, fi) =>
-        `<div class="pgallery-slide" style="height:200px"><img src="${url}" alt="${act.titulo||''}" loading="lazy"></div>`
-      ).join('');
-      const dots = fotos.length > 1
-        ? `<div class="gal-dots" id="gdots-${id}">${fotos.map((_,fi)=>`<button class="gal-dot${fi===0?' on':''}" onclick="galGoto('${id}',${fi})"></button>`).join('')}</div>`
-        : '';
-      const btns = fotos.length > 1
-        ? `<button class="gal-btn gal-prev" onclick="galNav('${id}',-1)">‹</button><button class="gal-btn gal-next" onclick="galNav('${id}',1)">›</button>`
-        : '';
-      galHTML = `<div class="act-gallery"><div class="pgallery-track" id="gt-${id}">${slides}</div>${btns}${dots}</div>`;
+      const track = document.createElement('div'); track.className = 'pgallery-track'; track.id = 'gt-' + id;
+      fotos.forEach((url, fi) => {
+        const slide = document.createElement('div'); slide.className = 'pgallery-slide'; slide.style.height = '200px';
+        const img = document.createElement('img');
+        img.setAttribute('src', url);
+        img.alt = act.titulo || '';
+        img.loading = 'lazy';
+        img.onerror = () => { img.src = FALLBACK_IMG; img.onerror = null; };
+        slide.appendChild(img); track.appendChild(slide);
+      });
+      galWrap.appendChild(track);
+      if (fotos.length > 1) {
+        const prev = document.createElement('button'); prev.className = 'gal-btn gal-prev'; prev.textContent = '‹';
+        prev.addEventListener('click', () => galNav(id, -1)); galWrap.appendChild(prev);
+        const next = document.createElement('button'); next.className = 'gal-btn gal-next'; next.textContent = '›';
+        next.addEventListener('click', () => galNav(id, 1)); galWrap.appendChild(next);
+        const dots = document.createElement('div'); dots.className = 'gal-dots'; dots.id = 'gdots-' + id;
+        fotos.forEach((_, fi) => {
+          const btn = document.createElement('button'); btn.className = 'gal-dot' + (fi === 0 ? ' on' : '');
+          btn.addEventListener('click', () => galGoto(id, fi)); dots.appendChild(btn);
+        });
+        galWrap.appendChild(dots);
+      }
     } else {
-      galHTML = `<div class="act-gallery"><div class="act-ph">${act.icono||'📍'}</div></div>`;
+      const ph = document.createElement('div'); ph.className = 'act-ph'; ph.textContent = act.icono || '📍'; galWrap.appendChild(ph);
     }
-    card.innerHTML = `${galHTML}<div class="act-body"><div class="act-icon">${act.icono||'📍'}</div><div class="act-title">${act.titulo||''}</div>${act.descripcion?`<div class="act-desc">${act.descripcion}</div>`:''}</div>`;
+    card.appendChild(galWrap);
+    const actBody = document.createElement('div'); actBody.className = 'act-body';
+    const iconEl = document.createElement('div'); iconEl.className = 'act-icon'; iconEl.textContent = act.icono || '📍'; actBody.appendChild(iconEl);
+    const titleEl = document.createElement('div'); titleEl.className = 'act-title'; titleEl.textContent = act.titulo || ''; actBody.appendChild(titleEl);
+    if (act.descripcion) { const descEl = document.createElement('div'); descEl.className = 'act-desc'; descEl.textContent = act.descripcion; actBody.appendChild(descEl); }
+    card.appendChild(actBody);
     grid.appendChild(card);
     animObs.observe(card);
   });
@@ -1218,9 +1279,13 @@ getDoc(doc(db,'sitioWeb_config','partners')).then(snap => {
     const item = document.createElement('div');
     item.className = 'partner-item anim' + (p.logo ? '' : ' sin-logo');
     if (p.logo) {
-      item.innerHTML = `<img src="${p.logo}" alt="${p.nombre}" title="${p.nombre}">`;
+      const img = document.createElement('img');
+      img.setAttribute('src', p.logo);
+      img.alt = p.nombre || '';
+      img.title = p.nombre || '';
+      item.appendChild(img);
     } else {
-      item.innerHTML = `<span>${p.nombre}</span>`;
+      const span = document.createElement('span'); span.textContent = p.nombre || ''; item.appendChild(span);
     }
     grid.appendChild(item);
     animObs.observe(item);
@@ -1233,7 +1298,7 @@ getDoc(doc(db,'sitioWeb_config','partners')).then(snap => {
 </script>
 <!-- Botón flotante WhatsApp -->
 <a class="wa-float" href="https://wa.me/5492944717718" target="_blank" title="Escribinos por WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 </body>
 </html>
