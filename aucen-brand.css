@@ -1,66 +1,59 @@
 /* AUCEN Brand Override — aucen-brand.css */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Montserrat:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600&display=swap');
 
 /* ── VARIABLES DE MARCA ────────────────────────────────── */
 :root {
-  --verde:      #4E5B46;
-  --crema:      #F4EFEA;
-  --dorado:     #D6C2A1;
-  --gris:       #6B6B6B;
+  --color-primary:        #7A8A77;
+  --color-cream:          #F4EFEA;
+  --color-accent:         #D6C2A1;
+  --color-text-secondary: #6D706A;
+  --font-main:            'Urbanist', sans-serif;
 
-  /* Remap variables del sitio original */
-  --forest:     #4E5B46;
-  --forest-mid: #3d4737;
-  --leaf:       #4E5B46;
+  /* Remap variables del sitio */
+  --forest:     #7A8A77;
+  --forest-mid: #637060;
+  --leaf:       #7A8A77;
   --sage:       #D6C2A1;
   --cream:      #F4EFEA;
-  --cream-dark: #E8DFD6;
+  --cream-dark: #E8E2D8;
   --white:      #FDFAF6;
-  --text-muted: #6B6B6B;
-  --shadow:     0 4px 32px rgba(78,91,70,0.14);
-
-  /* Tipografía */
-  --font-heading: 'Cinzel', serif;
-  --font-body:    'Montserrat', sans-serif;
+  --text-muted: #6D706A;
+  --shadow:     0 4px 24px rgba(122,138,119,0.10);
 }
 
 /* ── TIPOGRAFÍA — CUERPO ───────────────────────────────── */
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-main);
   font-weight: 400;
   letter-spacing: 0.02em;
+  line-height: 1.6;
 }
 
-p, span, li, td, th { font-family: var(--font-body); }
+p, span, li, td, th {
+  font-family: var(--font-main);
+  letter-spacing: 0.02em;
+}
+p { font-weight: 300; line-height: 1.7; }
 
 /* ── TIPOGRAFÍA — TÍTULOS ──────────────────────────────── */
 h1, h2, h3, h4,
-.stit,
-.pname, .gname, .act-title, .srtit,
-.calmth,
-.pricebox .pb-total,
-.gpv, .pv,
-.nbadge .bnum,
-.portal-card h3 {
-  font-family: var(--font-heading);
-  letter-spacing: 0.08em;
-  font-weight: 400;
+.stit, .pname, .gname,
+.act-title, .srtit, .calmth,
+.pricebox .pb-total, .gpv, .pv,
+.nbadge .bnum, .portal-card h3 {
+  font-family: var(--font-main);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
 }
 
-/* Jerarquía: h2 / títulos de sección → peso 500 */
-h2, .stit, .portal-card h3 { font-weight: 500; }
+h1, .hero-body h1 { font-weight: 600; }
+h2, .stit, .portal-card h3 { font-weight: 600; }
 
-/* Hero h1 — Cinzel */
-.hero-body h1 {
-  font-family: var(--font-heading);
-  font-weight: 400;
-  letter-spacing: 0.08em;
-}
-
-/* ── TIPOGRAFÍA — SUBTÍTULOS / LABELS ──────────────────── */
+/* ── TIPOGRAFÍA — LABELS / SUBTÍTULOS ──────────────────── */
 .slbl, .hero-eyebrow,
 .cbody h4, .footer-col h5 {
-  font-family: var(--font-body);
+  font-family: var(--font-main);
   font-weight: 500;
   letter-spacing: 0.05em;
 }
@@ -70,84 +63,84 @@ h2, .stit, .portal-card h3 { font-weight: 500; }
 .nbtn, .nbtn-portal,
 .bwa, .bportal,
 .gbwa, .gbcal, .gbinfo {
-  font-family: var(--font-body);
+  font-family: var(--font-main);
   font-weight: 500;
   letter-spacing: 0.05em;
 }
 
-/* ── NAV LOGO — Cinzel ─────────────────────────────────── */
+/* ── NAV ────────────────────────────────────────────────── */
+nav { background: rgba(122,138,119,0.97); }
+
 .logo {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-heading);
+  font-family: var(--font-main);
   font-size: 1.45rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.14em;
 }
-.logo span { color: var(--dorado); }
-
-/* ── FOOTER BRAND — Cinzel ─────────────────────────────── */
-.logo-f {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-family: var(--font-heading);
-  letter-spacing: 0.1em;
-}
-
-/* ── NAV ────────────────────────────────────────────────── */
-nav { background: rgba(78,91,70,0.97); }
+.logo span { color: var(--color-accent); }
 
 .logo-mark    { width: 52px; height: auto; flex-shrink: 0; display: block; background: none; border: none; border-radius: 0; }
 .logo-mark-sm { width: 52px; height: auto; flex-shrink: 0; display: block; background: none; border: none; border-radius: 0; }
 
-.nbtn.active { background: rgba(214,194,161,0.18); color: var(--dorado); }
-.nbtn-portal { background: var(--verde); }
-.nbtn-portal:hover { background: var(--dorado); color: var(--verde); }
+.nbtn.active { background: rgba(214,194,161,0.18); color: var(--color-accent); }
+.nbtn-portal { background: var(--color-primary); }
+.nbtn-portal:hover { background: var(--color-accent); color: var(--color-primary); }
 
 /* ── BOTONES — COLORES ─────────────────────────────────── */
-.btn { background: var(--verde); color: var(--crema); }
-.btn:hover { background: var(--dorado); color: var(--verde); }
+.btn { background: var(--color-primary); color: var(--color-cream); }
+.btn:hover { background: var(--color-accent); color: var(--color-primary); }
 
-.btn-ghost { border-color: rgba(244,239,234,0.5); }
-.btn-ghost:hover { border-color: var(--dorado); }
+.btn-ghost { border-color: rgba(255,255,255,0.42); }
+.btn-ghost:hover { border-color: var(--color-accent); }
 
-.bportal { background: var(--verde); color: var(--crema); }
-.bportal:hover { background: var(--dorado); color: var(--verde); }
+.bportal { background: var(--color-primary); color: var(--color-cream); }
+.bportal:hover { background: var(--color-accent); color: var(--color-primary); }
+
+/* ── FOOTER BRAND ──────────────────────────────────────── */
+.logo-f {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-main);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
 
 /* ── HERO OVERLAY ──────────────────────────────────────── */
 .slide::after {
   background: linear-gradient(
     160deg,
-    rgba(78,91,70,.78) 0%,
-    rgba(78,91,70,.40) 55%,
-    rgba(78,91,70,.72) 100%
+    rgba(122,138,119,.75) 0%,
+    rgba(122,138,119,.38) 55%,
+    rgba(122,138,119,.68) 100%
   );
 }
 
 /* ── BADGES / LABELS ───────────────────────────────────── */
-.nbadge { background: var(--verde); }
-.slbl   { color: var(--verde); }
+.nbadge { background: var(--color-primary); }
+.slbl   { color: var(--color-primary); }
 
 .srinner .slbl,
-.partners-section .slbl { color: var(--dorado); }
+.partners-section .slbl { color: var(--color-accent); }
 
 /* ── CARDS ─────────────────────────────────────────────── */
-.ptag, .gtag { color: var(--verde); font-family: var(--font-body); font-weight: 500; }
-.pcard:hover { box-shadow: 0 20px 56px rgba(78,91,70,0.2); }
-.gcard:hover { box-shadow: 0 20px 56px rgba(78,91,70,0.18); }
+.ptag, .gtag { color: var(--color-primary); font-family: var(--font-main); font-weight: 500; }
+.pcard:hover { box-shadow: 0 16px 48px rgba(122,138,119,0.15); }
+.gcard:hover { box-shadow: 0 16px 48px rgba(122,138,119,0.13); }
 
 /* ── SECCIÓN SERVICIOS ─────────────────────────────────── */
 .srbg {
   background: linear-gradient(
     160deg,
-    #4E5B46 0%,
-    #3d4737 60%,
-    #4E5B46 100%
+    #7A8A77 0%,
+    #637060 60%,
+    #7A8A77 100%
   ) !important;
 }
 
 /* ── FAQ ───────────────────────────────────────────────── */
-.faq-item summary { font-family: var(--font-body); font-weight: 500; }
-.faq-item summary::after { color: var(--verde); }
+.faq-item summary { font-family: var(--font-main); font-weight: 500; }
+.faq-item summary::after { color: var(--color-primary); }
