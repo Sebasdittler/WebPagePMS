@@ -43,7 +43,7 @@ nav { background: rgba(78,91,70,0.97); }
   font-size: 1.45rem;
   letter-spacing: 0.12em;
 }
-.logo-mark { width: 22px; height: 28px; flex-shrink: 0; color: var(--dorado); }
+.logo-mark { height: 38px; width: auto; flex-shrink: 0; display: block; }
 .logo span { color: var(--dorado); }
 
 .nbtn.active { background: rgba(214,194,161,0.18); color: var(--dorado); }
@@ -77,10 +77,10 @@ nav { background: rgba(78,91,70,0.97); }
   margin-bottom: 1.4rem;
   animation: fadeIn 1s ease both;
 }
-.hero-logo-mark svg {
-  width: 54px;
-  height: 62px;
-  color: var(--dorado);
+.hero-logo-mark img {
+  height: 110px;
+  width: auto;
+  border-radius: 12px;
 }
 
 /* ── LOGO MARK EN FOOTER ────────────────────────────────── */
@@ -89,7 +89,7 @@ nav { background: rgba(78,91,70,0.97); }
   align-items: center;
   gap: 0.45rem;
 }
-.logo-mark-sm { width: 16px; height: 20px; flex-shrink: 0; }
+.logo-mark-sm { height: 28px; width: auto; flex-shrink: 0; display: block; }
 
 /* ── BADGES / DETALLES ──────────────────────────────────── */
 .nbadge { background: var(--verde); }
