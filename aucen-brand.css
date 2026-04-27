@@ -78,9 +78,11 @@ nav { background: rgba(78,91,70,0.97); }
   animation: fadeIn 1s ease both;
 }
 .hero-logo-mark img {
-  height: 110px;
-  width: auto;
-  border-radius: 12px;
+  width: 52px;
+  height: auto;
+  background: none;
+  border: none;
+  border-radius: 0;
 }
 
 /* ── LOGO MARK EN FOOTER ────────────────────────────────── */
@@ -89,7 +91,7 @@ nav { background: rgba(78,91,70,0.97); }
   align-items: center;
   gap: 0.45rem;
 }
-.logo-mark-sm { height: 28px; width: auto; flex-shrink: 0; display: block; }
+.logo-mark-sm { width: 52px; height: auto; flex-shrink: 0; display: block; background: none; border: none; border-radius: 0; }
 
 /* ── BADGES / DETALLES ──────────────────────────────────── */
 .nbadge { background: var(--verde); }
