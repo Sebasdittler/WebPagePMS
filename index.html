@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hagrids · Alquileres Turísticos · Villa La Angostura</title>
+<title>AUCEN · Alquileres Exclusivos · Villa La Angostura</title>
 
 <!-- SEO básico -->
-<meta name="description" content="Hagrids gestiona alquileres turísticos en Villa La Angostura, Patagonia. Cabañas y casas únicas con atención profesional y alma local. Consultá disponibilidad por WhatsApp.">
+<meta name="description" content="AUCEN gestiona alquileres exclusivos en Villa La Angostura, Patagonia. Cabañas y casas únicas con atención profesional y alma local. Consultá disponibilidad por WhatsApp.">
 <meta name="keywords" content="alquiler turístico Villa La Angostura, cabañas Patagonia, casas alquiler Angostura, turismo Neuquén, alquiler temporario lagos sur">
-<meta name="author" content="Hagrids">
+<meta name="author" content="AUCEN">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://web-page-pms.vercel.app/">
 
 <!-- Open Graph (WhatsApp, Facebook, iMessage) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://web-page-pms.vercel.app/">
-<meta property="og:title" content="Hagrids · Alquileres Turísticos · Villa La Angostura">
+<meta property="og:title" content="AUCEN · Alquileres Exclusivos · Villa La Angostura">
 <meta property="og:description" content="Cabañas y casas únicas en uno de los paisajes más extraordinarios del mundo. Gestión profesional, experiencias auténticas.">
 <meta property="og:locale" content="es_AR">
 
@@ -24,7 +24,7 @@
 {
   "@context": "https://schema.org",
   "@type": "LodgingBusiness",
-  "name": "Hagrids",
+  "name": "AUCEN",
   "description": "Gestión profesional de alquileres turísticos en Villa La Angostura, Patagonia Argentina. Cabañas y casas únicas con atención personalizada.",
   "url": "https://web-page-pms.vercel.app/",
   "telephone": "+5492944717718",
@@ -76,7 +76,7 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "¿Cómo reservo una propiedad en Hagrids?",
+      "name": "¿Cómo reservo una propiedad en AUCEN?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Elegís las fechas en el calendario de disponibilidad y consultás directamente por WhatsApp. Te confirmamos la disponibilidad y el precio final en minutos."
@@ -433,10 +433,14 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
 }
 @media (max-width:480px) { .nvals { grid-template-columns:1fr; } }
 </style>
+<link rel="stylesheet" href="aucen-brand.css">
 </head>
 <body>
 <nav>
-  <button class="logo" onclick="ir('inicio')">Hagrids<span>·</span></button>
+  <button class="logo" onclick="ir('inicio')">
+    <svg class="logo-mark" viewBox="0 0 56 64" fill="none" aria-hidden="true"><path d="M28 5 L52 59 H4 L28 5Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="miter"/><path d="M28 19 C35 29 35 45 28 57 C21 45 21 29 28 19Z" fill="currentColor"/></svg>
+    AUCEN<span>·</span>
+  </button>
   <div class="nav-links" id="nl">
     <button class="nbtn active" data-p="inicio"       onclick="ir('inicio')">Inicio</button>
     <button class="nbtn"        data-p="propiedades"  onclick="ir('propiedades')">Propiedades</button>
@@ -452,6 +456,9 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
     <div class="hero-screen">
       <div class="slides" id="slides"></div>
       <div class="hero-body">
+        <div class="hero-logo-mark">
+          <svg viewBox="0 0 56 64" fill="none" aria-hidden="true"><path d="M28 5 L52 59 H4 L28 5Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="miter"/><path d="M28 19 C35 29 35 45 28 57 C21 45 21 29 28 19Z" fill="currentColor"/></svg>
+        </div>
         <p class="hero-eyebrow">Villa La Angostura · Patagonia Argentina</p>
         <h1>Tu refugio<br><em>patagónico</em><br>te espera.</h1>
         <p class="hero-sub">Cabañas y casas únicas en uno de los paisajes más extraordinarios del mundo. Gestión profesional, experiencias auténticas.</p>
@@ -495,12 +502,12 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
       </div>
       <footer style="margin-top:4rem">
         <div class="footer-inner">
-          <div class="footer-brand"><span class="logo-f">Hagrids<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div>
+          <div class="footer-brand"><span class="logo-f"><svg class="logo-mark-sm" viewBox="0 0 56 64" fill="none" aria-hidden="true"><path d="M28 5 L52 59 H4 L28 5Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="miter"/><path d="M28 19 C35 29 35 45 28 57 C21 45 21 29 28 19Z" fill="currentColor"/></svg>AUCEN<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div>
           <div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div>
           <div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div>
         </div>
         <div class="footer-bottom">
-          <p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p>
+          <p>© 2025 AUCEN · Villa La Angostura, Neuquén, Patagonia Argentina</p>
           <div class="footer-social">
             <a class="fsoc" href="https://www.instagram.com/somoshagrids/" target="_blank" title="Instagram"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
             <a class="fsoc" href="https://wa.me/5492944717718" target="_blank" title="WhatsApp"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
@@ -520,11 +527,11 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
     </div>
     <footer>
       <div class="footer-inner">
-        <div class="footer-brand"><span class="logo-f">Hagrids<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div>
+        <div class="footer-brand"><span class="logo-f"><svg class="logo-mark-sm" viewBox="0 0 56 64" fill="none" aria-hidden="true"><path d="M28 5 L52 59 H4 L28 5Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="miter"/><path d="M28 19 C35 29 35 45 28 57 C21 45 21 29 28 19Z" fill="currentColor"/></svg>AUCEN<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div>
         <div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div>
         <div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div>
       </div>
-      <div class="footer-bottom"><p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p><div class="footer-social"><a class="fsoc" href="https://www.instagram.com/somoshagrids/" target="_blank" title="Instagram"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a><a class="fsoc" href="https://wa.me/5492944717718" target="_blank" title="WhatsApp"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a></div></div>
+      <div class="footer-bottom"><p>© 2025 AUCEN · Villa La Angostura, Neuquén, Patagonia Argentina</p><div class="footer-social"><a class="fsoc" href="https://www.instagram.com/somoshagrids/" target="_blank" title="Instagram"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a><a class="fsoc" href="https://wa.me/5492944717718" target="_blank" title="WhatsApp"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a></div></div>
     </footer>
   </div>
   <div class="vista" id="v-preguntas">
@@ -562,7 +569,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         <a href="https://wa.me/5492944717718" target="_blank" class="btn">¿Otra pregunta? Escribinos →</a>
       </div>
     </div>
-    <footer><div class="footer-inner"><div class="footer-brand"><span class="logo-f">Hagrids<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
+    <footer><div class="footer-inner"><div class="footer-brand"><span class="logo-f"><svg class="logo-mark-sm" viewBox="0 0 56 64" fill="none" aria-hidden="true"><path d="M28 5 L52 59 H4 L28 5Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="miter"/><path d="M28 19 C35 29 35 45 28 57 C21 45 21 29 28 19Z" fill="currentColor"/></svg>AUCEN<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 AUCEN · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
   </div>
   <div class="vista" id="v-nosotros">
     <div class="inner">
@@ -577,7 +584,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         <div class="ntext">
           <p class="slbl anim anim-d1">Quiénes somos</p>
           <h2 class="stit anim anim-d2">Gestión profesional<br>con alma local</h2>
-          <p class="anim anim-d3" id="nosotros-p1">Somos Hagrids, una empresa de gestión de alquileres turísticos con base en Villa La Angostura. Nacimos de la convicción de que los propietarios merecen tranquilidad y los huéspedes merecen experiencias extraordinarias.</p>
+          <p class="anim anim-d3" id="nosotros-p1">Somos AUCEN, una empresa de gestión de alquileres exclusivos con base en Villa La Angostura. Nacimos de la convicción de que los propietarios merecen tranquilidad y los huéspedes merecen experiencias extraordinarias.</p>
           <p class="anim anim-d3" id="nosotros-p2">Administramos cada propiedad como si fuera nuestra, con reportes claros, comunicación directa y atención personalizada a cada huésped.</p>
           <div class="nvals">
             <div class="vitem anim anim-d4"><div class="vicon">🤝</div><div class="vtit">Transparencia</div><div class="vdesc">Reportes detallados. Sin sorpresas, sin letra chica.</div></div>
@@ -603,7 +610,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         </div>
         <div class="portal-card anim anim-d3">
           <h3>Portal de propietarios</h3>
-          <p>Si ya sos parte de Hagrids, accedé a tu panel personal. Tus reservas, reportes y liquidaciones en tiempo real.</p>
+          <p>Si ya sos parte de AUCEN, accedé a tu panel personal. Tus reservas, reportes y liquidaciones en tiempo real.</p>
           <div class="pfeats">
             <div class="pfeat">Calendario de reservas en tiempo real</div>
             <div class="pfeat">Reportes mensuales y anuales</div>
@@ -614,7 +621,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         </div>
       </div>
     </div>
-    <footer><div class="footer-inner"><div class="footer-brand"><span class="logo-f">Hagrids<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
+    <footer><div class="footer-inner"><div class="footer-brand"><span class="logo-f"><svg class="logo-mark-sm" viewBox="0 0 56 64" fill="none" aria-hidden="true"><path d="M28 5 L52 59 H4 L28 5Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="miter"/><path d="M28 19 C35 29 35 45 28 57 C21 45 21 29 28 19Z" fill="currentColor"/></svg>AUCEN<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 AUCEN · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
   </div>
   <div class="vista" id="v-servicios">
     <div class="srbg" style="background:linear-gradient(160deg,#1b3a2d 0%,#2d5a43 60%,#1b3a2d 100%)"></div>
@@ -633,10 +640,10 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
       <div class="srcta anim">
         <p>¿Tenés una propiedad en Villa La Angostura y querés sumarla?</p>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScE0BlsLxeCSm2UmqBDoVksKxirpfZ1F4Gg4dyFHtcqHM4UAQ/viewform?usp=header" target="_blank" class="btn">Sumate como propietario →</a>
-        <a href="https://wa.me/5492944717718?text=Hola%20Hagrids!%20Me%20interesa%20saber%20m%C3%A1s%20sobre%20la%20gesti%C3%B3n%20de%20mi%20propiedad." target="_blank" class="btn-ghost">Hablemos por WhatsApp</a>
+        <a href="https://wa.me/5492944717718?text=Hola%20AUCEN!%20Me%20interesa%20saber%20m%C3%A1s%20sobre%20la%20gesti%C3%B3n%20de%20mi%20propiedad." target="_blank" class="btn-ghost">Hablemos por WhatsApp</a>
       </div>
     </div>
-    <footer style="position:relative;z-index:2;"><div class="footer-inner"><div class="footer-brand"><span class="logo-f">Hagrids<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 Hagrids · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
+    <footer style="position:relative;z-index:2;"><div class="footer-inner"><div class="footer-brand"><span class="logo-f"><svg class="logo-mark-sm" viewBox="0 0 56 64" fill="none" aria-hidden="true"><path d="M28 5 L52 59 H4 L28 5Z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="miter"/><path d="M28 19 C35 29 35 45 28 57 C21 45 21 29 28 19Z" fill="currentColor"/></svg>AUCEN<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 AUCEN · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
   </div>
 </div><!-- /host -->
 
@@ -875,7 +882,7 @@ function uw(id){
       const warnTxt = precio.warn ? `\n⚠️ ${precio.warn}` : '';
       const bebes = s.bebes||0;
       const bebesTxt = bebes > 0 ? `\n👶 Bebés (menores de 2 años, sin cargo): ${bebes}` : '';
-      const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt}\n\n💰 Precio estimado:\n${resumen}\n*Total: ${fmtPrecio(precio.total,moneda)}*${warnTxt}\n\n¡Muchas gracias!`);
+      const msg=encodeURIComponent(`¡Hola AUCEN! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt}\n\n💰 Precio estimado:\n${resumen}\n*Total: ${fmtPrecio(precio.total,moneda)}*${warnTxt}\n\n¡Muchas gracias!`);
       btn.className='bwa';btn.href=`${CONTACT.wa}?text=${msg}`;btn.target='_blank';btn.onclick=null;
       btn.innerHTML=wasvg()+' Consultar por WhatsApp';
     } else {
@@ -883,14 +890,14 @@ function uw(id){
       pb.innerHTML=`<div class="pb-detail" style="color:rgba(245,240,232,0.7);font-style:italic">El precio se confirma al consultar por WhatsApp.</div>`;
       const bebes2 = s.bebes||0;
       const bebesTxt2 = bebes2 > 0 ? `\n👶 Bebés (menores de 2 años, sin cargo): ${bebes2}` : '';
-      const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt2}\n\n¡Muchas gracias!`);
+      const msg=encodeURIComponent(`¡Hola AUCEN! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt2}\n\n¡Muchas gracias!`);
       btn.className='bwa';btn.href=`${CONTACT.wa}?text=${msg}`;btn.target='_blank';btn.onclick=null;
       btn.innerHTML=wasvg()+' Consultar por WhatsApp';
     }
   } else {
     const bebes3 = s.bebes||0;
     const bebesTxt3 = bebes3 > 0 ? `\n👶 Bebés (menores de 2 años, sin cargo): ${bebes3}` : '';
-    const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt3}\n\n¡Muchas gracias!`);
+    const msg=encodeURIComponent(`¡Hola AUCEN! Quisiera consultar disponibilidad para *${nm}*.\n\n📅 Entrada: ${fd(s.a)}\n📅 Salida: ${fd(s.b)}\n🌙 Noches: ${n}\n👥 Huéspedes: ${guests}${bebesTxt3}\n\n¡Muchas gracias!`);
     btn.className='bwa';btn.href=`${CONTACT.wa}?text=${msg}`;btn.target='_blank';btn.onclick=null;
     btn.innerHTML=wasvg()+' Consultar por WhatsApp';
   }
@@ -1024,7 +1031,7 @@ function buildCardGallery(p){
   const card=document.createElement('div');
   card.className='gcard anim'; card.id='gc-'+p.id;
   const tipo=[p.tipo,p.capacidad?p.capacidad+' huéspedes':''].filter(Boolean).join(' · ');
-  const msg=encodeURIComponent(`¡Hola Hagrids! Quisiera consultar disponibilidad para *${p.nombre}*.\n\n¡Muchas gracias!`);
+  const msg=encodeURIComponent(`¡Hola AUCEN! Quisiera consultar disponibilidad para *${p.nombre}*.\n\n¡Muchas gracias!`);
 
   card.appendChild(buildGalleryEl(p,'g',true));
 
@@ -1261,7 +1268,7 @@ getDoc(doc(db,'sitioWeb_config','nosotros')).then(snap => {
     if (w) {
       const img = document.createElement('img');
       img.src = data.foto;
-      img.alt = 'Equipo Hagrids';
+      img.alt = 'Equipo AUCEN';
       img.className = 'nimgreal';
       w.innerHTML = '';
       w.appendChild(img);

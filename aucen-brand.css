@@ -1,0 +1,118 @@
+/* AUCEN Brand Override — aucen-brand.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+/* ── VARIABLES DE MARCA ────────────────────────────────── */
+:root {
+  --verde:      #4E5B46;
+  --crema:      #F4EFEA;
+  --dorado:     #D6C2A1;
+  --gris:       #6B6B6B;
+
+  /* Remap variables del sitio original */
+  --forest:     #4E5B46;
+  --forest-mid: #3d4737;
+  --leaf:       #4E5B46;
+  --sage:       #D6C2A1;
+  --cream:      #F4EFEA;
+  --cream-dark: #E8DFD6;
+  --white:      #FDFAF6;
+  --text-muted: #6B6B6B;
+  --shadow:     0 4px 32px rgba(78,91,70,0.14);
+}
+
+/* ── TIPOGRAFÍA ────────────────────────────────────────── */
+body { font-family: 'Montserrat', sans-serif; }
+
+h1, h2, h3,
+.stit, .pname, .gname, .act-title, .srtit,
+.calmth, .logo, .pricebox .pb-total,
+.gpv, .pv, .nbadge .bnum,
+.portal-card h3, .logo-f { font-family: 'Playfair Display', serif; }
+
+.nbtn, .nbtn-portal, .btn, .btn-ghost,
+.bwa, .bportal, .gbwa, .gbcal, .gbinfo,
+.slbl, .ptag, .gtag { font-family: 'Montserrat', sans-serif; }
+
+/* ── NAV ────────────────────────────────────────────────── */
+nav { background: rgba(78,91,70,0.97); }
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.45rem;
+  letter-spacing: 0.12em;
+}
+.logo-mark { width: 22px; height: 28px; flex-shrink: 0; color: var(--dorado); }
+.logo span { color: var(--dorado); }
+
+.nbtn.active { background: rgba(214,194,161,0.18); color: var(--dorado); }
+.nbtn-portal { background: var(--verde); }
+.nbtn-portal:hover { background: var(--dorado); color: var(--verde); }
+
+/* ── BOTONES ────────────────────────────────────────────── */
+.btn { background: var(--verde); color: var(--crema); }
+.btn:hover { background: var(--dorado); color: var(--verde); }
+
+.btn-ghost { border-color: rgba(244,239,234,0.5); }
+.btn-ghost:hover { border-color: var(--dorado); }
+
+.bportal { background: var(--verde); color: var(--crema); }
+.bportal:hover { background: var(--dorado); color: var(--verde); }
+
+/* ── HERO OVERLAY (colores hardcodeados en JS/CSS) ─────── */
+.slide::after {
+  background: linear-gradient(
+    160deg,
+    rgba(78,91,70,.78) 0%,
+    rgba(78,91,70,.40) 55%,
+    rgba(78,91,70,.72) 100%
+  );
+}
+
+/* ── LOGO MARK EN HERO ──────────────────────────────────── */
+.hero-logo-mark {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.4rem;
+  animation: fadeIn 1s ease both;
+}
+.hero-logo-mark svg {
+  width: 54px;
+  height: 62px;
+  color: var(--dorado);
+}
+
+/* ── LOGO MARK EN FOOTER ────────────────────────────────── */
+.logo-f {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.logo-mark-sm { width: 16px; height: 20px; flex-shrink: 0; }
+
+/* ── BADGES / DETALLES ──────────────────────────────────── */
+.nbadge { background: var(--verde); }
+.slbl   { color: var(--verde); }
+
+/* servicios: slbl en fondo oscuro se ve dorado */
+.srinner .slbl,
+.partners-section .slbl { color: var(--dorado); }
+
+/* ── CARDS ──────────────────────────────────────────────── */
+.ptag, .gtag { color: var(--verde); }
+.pcard:hover { box-shadow: 0 20px 56px rgba(78,91,70,0.2); }
+.gcard:hover { box-shadow: 0 20px 56px rgba(78,91,70,0.18); }
+
+/* ── SECCIÓN SERVICIOS (fondo hardcodeado) ──────────────── */
+.srbg {
+  background: linear-gradient(
+    160deg,
+    #4E5B46 0%,
+    #3d4737 60%,
+    #4E5B46 100%
+  ) !important;
+}
+
+/* ── FAQ ─────────────────────────────────────────────────── */
+.faq-item summary::after { color: var(--verde); }
