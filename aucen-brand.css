@@ -43,7 +43,7 @@ nav { background: rgba(78,91,70,0.97); }
   font-size: 1.45rem;
   letter-spacing: 0.12em;
 }
-.logo-mark { height: 38px; width: auto; flex-shrink: 0; display: block; }
+.logo-mark { width: 52px; height: auto; flex-shrink: 0; display: block; background: none; border: none; border-radius: 0; }
 .logo span { color: var(--dorado); }
 
 .nbtn.active { background: rgba(214,194,161,0.18); color: var(--dorado); }
