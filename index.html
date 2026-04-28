@@ -183,7 +183,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 .hero-body h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.55rem,6vw,4.95rem); font-weight:300; line-height:1.06; letter-spacing:0.02em; color:var(--white); margin-bottom:1.5rem; animation:fadeInUp 1s ease .2s both; }
 .hero-body h1 em { font-style:normal; color:var(--sage); }
 .hero-sub { font-size:1.05rem; color:rgba(255,255,255,.8); font-weight:300; max-width:520px; margin:0 0 2.8rem; line-height:1.8; animation:fadeInUp 1s ease .4s both; }
-.hero-cta { display:flex; gap:1rem; justify-content:flex-start; flex-wrap:wrap; animation:fadeInUp 1s ease .6s both; }
 .dots { display:flex; gap:8px; margin-top:2.5rem; animation:fadeIn 1s ease .8s both; }
 .dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.32); border:none; cursor:pointer; padding:0; transition:all .3s; }
 .dot.on { background:var(--sage); transform:scale(1.3); }
@@ -463,10 +462,6 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         <p class="hero-eyebrow">Villa La Angostura · Patagonia Argentina</p>
         <h1>Tu refugio<br><em>patagónico</em><br>te espera.</h1>
         <p class="hero-sub">Cabañas y casas únicas en uno de los paisajes más extraordinarios del mundo. Gestión profesional, experiencias auténticas.</p>
-        <div class="hero-cta">
-          <button class="btn" onclick="document.getElementById('inicio-props').scrollIntoView({behavior:'smooth'})">Ver propiedades</button>
-          <button class="btn-ghost" onclick="ir('nosotros')">Consultanos</button>
-        </div>
         <div class="dots" id="dots"></div>
       </div>
       <div class="hero-arrow" onclick="document.getElementById('inicio-props').scrollIntoView({behavior:'smooth'})">
