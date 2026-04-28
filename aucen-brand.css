@@ -1,22 +1,35 @@
 /* AUCEN Brand Override — aucen-brand.css */
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600&display=swap');
+
+/* ── FUENTES ────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Elms Sans';
+  src: url('ElmsSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
 
 /* ── VARIABLES DE MARCA ────────────────────────────────── */
 :root {
   --color-primary:        #7A8A77;
-  --color-cream:          #F4EFEA;
+  --color-cream:          #F5F2EC;
   --color-accent:         #D6C2A1;
+  --color-text:           #2C2C2C;
   --color-text-secondary: #6D706A;
-  --font-main:            'Urbanist', sans-serif;
+  --font-brand:           'Elms Sans', sans-serif;
+  --font-main:            'Montserrat', sans-serif;
 
   /* Remap variables del sitio */
   --forest:     #7A8A77;
   --forest-mid: #637060;
   --leaf:       #7A8A77;
   --sage:       #D6C2A1;
-  --cream:      #F4EFEA;
+  --cream:      #F5F2EC;
   --cream-dark: #E8E2D8;
   --white:      #FDFAF6;
+  --text:       #2C2C2C;
   --text-muted: #6D706A;
   --shadow:     0 4px 24px rgba(122,138,119,0.10);
 }
@@ -25,38 +38,44 @@
 body {
   font-family: var(--font-main);
   font-weight: 400;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   line-height: 1.6;
+  color: var(--color-text);
 }
 
-p, span, li, td, th {
+p, span, li, td, th, div,
+.nbtn, .btn, .btn-ghost,
+.nbtn-portal, .bportal,
+.gbwa, .gbcal, .gbinfo,
+.pdesc, .ssub, .pill, .slbl,
+.datebox, .caltxt, .calleg,
+input, select, textarea {
   font-family: var(--font-main);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
-p { font-weight: 300; line-height: 1.7; }
 
-/* ── TIPOGRAFÍA — TÍTULOS ──────────────────────────────── */
+p      { font-weight: 300; line-height: 1.75; }
+.ssub  { font-weight: 300; line-height: 1.75; }
+.pdesc { font-weight: 300; }
+
+/* ── TIPOGRAFÍA — TÍTULOS / MARCA ──────────────────────── */
 h1, h2, h3, h4,
 .stit, .pname, .gname,
 .act-title, .srtit, .calmth,
 .pricebox .pb-total, .gpv, .pv,
-.nbadge .bnum, .portal-card h3 {
-  font-family: var(--font-main);
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  line-height: 1.2;
+.nbadge .bnum, .portal-card h3,
+.logo, .logo-f, .hero-body h1 {
+  font-family: var(--font-brand);
+  font-weight: 200;
+  letter-spacing: 0.07em;
+  line-height: 1.15;
 }
 
-h1, .hero-body h1 { font-weight: 600; }
-h2, .stit, .portal-card h3 { font-weight: 600; }
-
-/* ── TIPOGRAFÍA — LABELS / SUBTÍTULOS ──────────────────── */
+/* Pesos específicos por jerarquía */
+h2, .stit, .portal-card h3 { font-weight: 200; }
+h3, h4                       { font-weight: 300; }
 .slbl, .hero-eyebrow,
-.cbody h4, .footer-col h5 {
-  font-family: var(--font-main);
-  font-weight: 500;
-  letter-spacing: 0.05em;
-}
+.cbody h4, .footer-col h5    { font-family: var(--font-main); font-weight: 500; letter-spacing: 0.06em; }
 
 /* ── TIPOGRAFÍA — BOTONES ──────────────────────────────── */
 .btn, .btn-ghost,
@@ -65,7 +84,7 @@ h2, .stit, .portal-card h3 { font-weight: 600; }
 .gbwa, .gbcal, .gbinfo {
   font-family: var(--font-main);
   font-weight: 500;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
 
 /* ── NAV ────────────────────────────────────────────────── */
@@ -75,18 +94,19 @@ nav { background: rgba(122,138,119,0.97); }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-main);
+  font-family: var(--font-brand);
   font-size: 1.45rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
+  font-weight: 200;
+  letter-spacing: 0.18em;
 }
 .logo span { color: var(--color-accent); }
 
 .logo-mark    { width: 52px; height: auto; flex-shrink: 0; display: block; background: none; border: none; border-radius: 0; }
 .logo-mark-sm { width: 52px; height: auto; flex-shrink: 0; display: block; background: none; border: none; border-radius: 0; }
 
+.nbtn        { font-family: var(--font-main); }
 .nbtn.active { background: rgba(214,194,161,0.18); color: var(--color-accent); }
-.nbtn-portal { background: var(--color-primary); }
+.nbtn-portal { background: var(--color-primary); font-family: var(--font-main); }
 .nbtn-portal:hover { background: var(--color-accent); color: var(--color-primary); }
 
 /* ── BOTONES — COLORES ─────────────────────────────────── */
@@ -104,9 +124,9 @@ nav { background: rgba(122,138,119,0.97); }
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  font-family: var(--font-main);
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-family: var(--font-brand);
+  font-weight: 200;
+  letter-spacing: 0.14em;
 }
 
 /* ── HERO OVERLAY ──────────────────────────────────────── */
@@ -142,5 +162,5 @@ nav { background: rgba(122,138,119,0.97); }
 }
 
 /* ── FAQ ───────────────────────────────────────────────── */
-.faq-item summary { font-family: var(--font-main); font-weight: 500; }
+.faq-item summary { font-family: var(--font-brand); font-weight: 200; letter-spacing: 0.05em; }
 .faq-item summary::after { color: var(--color-primary); }
