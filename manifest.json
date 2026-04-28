@@ -1,0 +1,24 @@
+{
+  "name": "AUCEN · Alquileres Exclusivos",
+  "short_name": "AUCEN",
+  "description": "Alquileres exclusivos en Villa La Angostura, Patagonia Argentina.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F2EC",
+  "theme_color": "#7A8A77",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
