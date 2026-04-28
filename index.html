@@ -178,12 +178,12 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 .slide { position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1.4s ease-in-out; }
 .slide.on { opacity:1; }
 .slide::after { content:''; position:absolute; inset:0; background:linear-gradient(160deg,rgba(27,58,45,.78) 0%,rgba(27,58,45,.4) 55%,rgba(27,58,45,.72) 100%); }
-.hero-body { position:relative; z-index:2; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:2rem; min-height: calc(100vh - var(--nav-h)); }
+.hero-body { position:relative; z-index:2; flex:1; display:flex; flex-direction:column; align-items:flex-start; justify-content:center; text-align:left; padding:2rem 3rem 2rem max(3rem,6%); min-height: calc(100vh - var(--nav-h)); }
 .hero-eyebrow { font-size:.72rem; font-weight:500; letter-spacing:.28em; text-transform:uppercase; color:var(--sage); margin-bottom:1.4rem; animation:fadeIn 1.2s ease both; }
-.hero-body h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,7vw,5.8rem); font-weight:300; line-height:1.04; color:var(--white); margin-bottom:1.5rem; animation:fadeInUp 1s ease .2s both; }
-.hero-body h1 em { font-style:italic; color:var(--sage); }
-.hero-sub { font-size:1.05rem; color:rgba(255,255,255,.8); font-weight:300; max-width:520px; margin:0 auto 2.8rem; line-height:1.8; animation:fadeInUp 1s ease .4s both; }
-.hero-cta { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; animation:fadeInUp 1s ease .6s both; }
+.hero-body h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.55rem,6vw,4.95rem); font-weight:300; line-height:1.06; letter-spacing:0.02em; color:var(--white); margin-bottom:1.5rem; animation:fadeInUp 1s ease .2s both; }
+.hero-body h1 em { font-style:normal; color:var(--sage); }
+.hero-sub { font-size:1.05rem; color:rgba(255,255,255,.8); font-weight:300; max-width:520px; margin:0 0 2.8rem; line-height:1.8; animation:fadeInUp 1s ease .4s both; }
+.hero-cta { display:flex; gap:1rem; justify-content:flex-start; flex-wrap:wrap; animation:fadeInUp 1s ease .6s both; }
 .dots { display:flex; gap:8px; margin-top:2.5rem; animation:fadeIn 1s ease .8s both; }
 .dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.32); border:none; cursor:pointer; padding:0; transition:all .3s; }
 .dot.on { background:var(--sage); transform:scale(1.3); }
