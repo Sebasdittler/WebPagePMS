@@ -320,14 +320,29 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 .srinner .slbl { color:var(--sage); }
 .srinner .stit { color:var(--cream); }
 .srinner .ssub { color:rgba(245,240,232,.6); }
-.srgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:1.2rem; margin-top:2.8rem; }
-.srcard { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); border-radius:var(--radius); padding:1.5rem; transition:background .2s, transform .25s cubic-bezier(.22,.68,0,1.2), border-color .2s; }
-.srcard:hover { background:rgba(255,255,255,.1); transform:translateY(-4px); border-color:rgba(138,176,154,.3); }
-.sricon { font-size:1.6rem; margin-bottom:.8rem; }
-.srtit { font-family:'Cormorant Garamond',serif; font-size:1.18rem; color:var(--cream); margin-bottom:.5rem; }
-.srdesc { font-size:.83rem; color:rgba(245,240,232,.58); font-weight:300; line-height:1.7; }
-.srcta { margin-top:2.8rem; display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
-.srcta p { color:rgba(245,240,232,.52); font-size:.88rem; font-weight:300; }
+.sr-stats { display:flex; flex-wrap:wrap; gap:0; margin:2.4rem 0 2.8rem; border:1px solid rgba(255,255,255,0.09); border-radius:14px; overflow:hidden; }
+.sr-stat { flex:1; min-width:130px; padding:1.3rem 1rem; text-align:center; border-right:1px solid rgba(255,255,255,0.09); }
+.sr-stat:last-child { border-right:none; }
+.sr-stat-num { display:block; font-size:2rem; font-weight:200; color:var(--sage); letter-spacing:0.01em; line-height:1; margin-bottom:.3rem; }
+.sr-stat-lbl { display:block; font-size:.62rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:rgba(245,240,232,.42); }
+.srgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.1rem; }
+.srcard { background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:1.5rem; position:relative; transition:background .2s, transform .25s cubic-bezier(.22,.68,0,1.2), border-color .2s; }
+.srcard::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--sage); border-radius:var(--radius) var(--radius) 0 0; opacity:0; transition:opacity .25s; }
+.srcard:hover { background:rgba(255,255,255,.09); transform:translateY(-4px); border-color:rgba(214,194,161,0.3); }
+.srcard:hover::before { opacity:0.7; }
+.sricon { font-size:1.5rem; margin-bottom:.75rem; }
+.srtit { font-size:1.05rem; color:var(--cream); margin-bottom:.45rem; }
+.srdesc { font-size:.82rem; color:rgba(245,240,232,.55); font-weight:300; line-height:1.72; }
+.srcta { margin-top:3rem; padding-top:2.4rem; border-top:1px solid rgba(255,255,255,0.08); }
+.srcta-lead { color:rgba(245,240,232,.82); font-size:1rem; font-weight:300; line-height:1.7; margin-bottom:1.5rem; max-width:560px; }
+.srcta-lead strong { color:var(--cream); font-weight:500; }
+.srcta-btns { display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+@media (max-width:600px) {
+  .sr-stat { min-width:50%; border-bottom:1px solid rgba(255,255,255,0.09); }
+  .sr-stat:nth-child(2) { border-right:none; }
+  .sr-stat:nth-child(3) { border-right:1px solid rgba(255,255,255,0.09); }
+  .sr-stat:nth-child(3),.sr-stat:nth-child(4) { border-bottom:none; }
+}
 .cgrid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; margin-top:2.5rem; }
 .citems { display:flex; flex-direction:column; gap:.9rem; }
 .citem { display:flex; align-items:flex-start; gap:1rem; background:var(--white); border-radius:10px; padding:1.1rem 1.3rem; box-shadow:0 2px 12px rgba(27,58,45,.06); transition:transform .2s, box-shadow .2s; }
@@ -624,23 +639,37 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
     <footer><div class="footer-inner"><div class="footer-brand"><span class="logo-f"><img class="logo-mark-sm" src="aucen-logo-transparent.png" alt="">AUCEN<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 AUCEN · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
   </div>
   <div class="vista" id="v-servicios">
-    <div class="srbg" style="background:linear-gradient(160deg,#1b3a2d 0%,#2d5a43 60%,#1b3a2d 100%)"></div>
+    <div class="srbg"></div>
     <div class="inner srinner">
       <p class="slbl anim">Nuestros servicios</p>
       <h2 class="stit anim anim-d1">Tu propiedad,<br>en buenas manos</h2>
       <p class="ssub anim anim-d2">Nos encargamos de todo para que vos solo recibas la liquidación a fin de mes.</p>
-      <div class="srgrid">
-        <div class="srcard anim anim-d1"><div class="sricon">📅</div><div class="srtit">Gestión de reservas</div><div class="srdesc">Administramos tu calendario en Airbnb, Booking y canales directos. Coordinamos cada check-in.</div></div>
-        <div class="srcard anim anim-d2"><div class="sricon">🧹</div><div class="srtit">Limpieza y mantenimiento</div><div class="srdesc">Coordinamos limpieza entre reservas y control de estado para que tu propiedad siempre esté impecable.</div></div>
-        <div class="srcard anim anim-d3"><div class="sricon">📊</div><div class="srtit">Reportes transparentes</div><div class="srdesc">Cada mes recibís un reporte detallado con ingresos, gastos, comisiones y liquidación neta.</div></div>
-        <div class="srcard anim anim-d4"><div class="sricon">🌐</div><div class="srtit">Portal del propietario</div><div class="srdesc">Acceso 24/7 a tu panel personal con calendario de reservas en tiempo real e historial completo.</div></div>
-        <div class="srcard anim anim-d5"><div class="sricon">💬</div><div class="srtit">Atención a huéspedes</div><div class="srdesc">Respondemos consultas y estamos disponibles durante toda la estadía para cualquier necesidad.</div></div>
-        <div class="srcard anim anim-d6"><div class="sricon">💰</div><div class="srtit">Optimización de tarifas</div><div class="srdesc">Ajustamos precios según temporada y demanda para maximizar tu rentabilidad sin sacrificar ocupación.</div></div>
+
+      <div class="sr-stats anim">
+        <div class="sr-stat"><span class="sr-stat-num">24/7</span><span class="sr-stat-lbl">Disponibles</span></div>
+        <div class="sr-stat"><span class="sr-stat-num">365</span><span class="sr-stat-lbl">Días al año</span></div>
+        <div class="sr-stat"><span class="sr-stat-num">100%</span><span class="sr-stat-lbl">Transparente</span></div>
+        <div class="sr-stat"><span class="sr-stat-num">$0</span><span class="sr-stat-lbl">Costos ocultos</span></div>
       </div>
+
+      <div class="srgrid">
+        <div class="srcard anim anim-d1"><div class="sricon">📅</div><div class="srtit">Gestión de reservas</div><div class="srdesc">Administramos tu calendario en Airbnb, Booking y canales directos. Coordinamos cada check-in y check-out.</div></div>
+        <div class="srcard anim anim-d2"><div class="sricon">🧹</div><div class="srtit">Limpieza profesional</div><div class="srdesc">Equipo de limpieza entre cada reserva para que tu propiedad siempre esté impecable y lista para recibir.</div></div>
+        <div class="srcard anim anim-d3"><div class="sricon">🔧</div><div class="srtit">Equipo de mantenimiento</div><div class="srdesc">Contamos con equipo propio para plomería, electricidad y reparaciones. Sin intermediarios, respuesta inmediata.</div></div>
+        <div class="srcard anim anim-d4"><div class="sricon">📊</div><div class="srtit">Reportes transparentes</div><div class="srdesc">Cada mes recibís un reporte detallado con ingresos, gastos, comisiones y tu liquidación neta.</div></div>
+        <div class="srcard anim anim-d5"><div class="sricon">📱</div><div class="srtit">Reservas en tiempo real</div><div class="srdesc">Acceso a tu portal personal 24/7: calendario actualizado, historial completo e informes desde el celular.</div></div>
+        <div class="srcard anim anim-d6"><div class="sricon">💬</div><div class="srtit">Atención 24/7</div><div class="srdesc">Estamos disponibles todos los días del año para responder cualquier consulta de huéspedes y propietarios.</div></div>
+        <div class="srcard anim anim-d1"><div class="sricon">💰</div><div class="srtit">Optimización de tarifas</div><div class="srdesc">Ajustamos precios según temporada y demanda para maximizar tu rentabilidad sin sacrificar ocupación.</div></div>
+        <div class="srcard anim anim-d2"><div class="sricon">🤝</div><div class="srtit">Beneficios con partners</div><div class="srdesc">Tus huéspedes acceden a descuentos y beneficios exclusivos con nuestros prestadores locales de confianza.</div></div>
+        <div class="srcard anim anim-d3"><div class="sricon">📸</div><div class="srtit">Fotografía profesional</div><div class="srdesc">Sesión fotográfica incluida para propiedades nuevas. Imágenes que destacan y convierten visitas en reservas.</div></div>
+      </div>
+
       <div class="srcta anim">
-        <p>¿Tenés una propiedad en Villa La Angostura y querés sumarla?</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScE0BlsLxeCSm2UmqBDoVksKxirpfZ1F4Gg4dyFHtcqHM4UAQ/viewform?usp=header" target="_blank" class="btn">Sumate como propietario →</a>
-        <a href="https://wa.me/5492944717718?text=Hola%20AUCEN!%20Me%20interesa%20saber%20m%C3%A1s%20sobre%20la%20gesti%C3%B3n%20de%20mi%20propiedad." target="_blank" class="btn-ghost">Hablemos por WhatsApp</a>
+        <p class="srcta-lead">¿Tenés una propiedad en Villa La Angostura? <strong>Sumala a nuestra red</strong> y empezá a generar ingresos sin preocuparte por nada.</p>
+        <div class="srcta-btns">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScE0BlsLxeCSm2UmqBDoVksKxirpfZ1F4Gg4dyFHtcqHM4UAQ/viewform?usp=header" target="_blank" class="btn">Sumate como propietario →</a>
+          <a href="https://wa.me/5492944717718?text=Hola%20AUCEN!%20Me%20interesa%20saber%20m%C3%A1s%20sobre%20la%20gesti%C3%B3n%20de%20mi%20propiedad." target="_blank" class="btn-ghost">Hablemos por WhatsApp</a>
+        </div>
       </div>
     </div>
     <footer style="position:relative;z-index:2;"><div class="footer-inner"><div class="footer-brand"><span class="logo-f"><img class="logo-mark-sm" src="aucen-logo-transparent.png" alt="">AUCEN<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hagridsvla@gmail.com">hagridsvla@gmail.com</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 AUCEN · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
