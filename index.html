@@ -479,26 +479,33 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
 }
 @media (max-width:480px) { .nvals { grid-template-columns:1fr; } }
 /* ── BUSCADOR HERO ──────────────────────────────────────── */
-.hero-search { display:flex; gap:0; background:rgba(253,250,246,.13); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,.22); border-radius:14px; overflow:hidden; margin-top:2.4rem; animation:fadeInUp 1s ease .6s both; width:fit-content; max-width:100%; }
-@supports not (backdrop-filter:blur(1px)) { .hero-search { background:rgba(27,58,45,.8); } }
-.hero-sf { flex:1; min-width:118px; display:flex; flex-direction:column; gap:3px; padding:.82rem 1.15rem; border-right:1px solid rgba(255,255,255,.15); }
-.hero-sf-guests { flex:0 0 auto; min-width:0; }
-.hero-sl { font-size:.59rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.68); }
-.hero-sf input[type="date"] { background:transparent; border:none; color:var(--white); font-family:inherit; font-size:.9rem; font-weight:400; outline:none; width:100%; cursor:pointer; padding:0; min-width:100px; }
-.hero-sf input[type="date"]::-webkit-calendar-picker-indicator { filter:invert(1) opacity(.55); cursor:pointer; }
+.hero-search { display:flex; flex-direction:column; background:var(--white); border-radius:16px; box-shadow:0 10px 44px rgba(0,0,0,.28); overflow:hidden; margin-top:2.4rem; animation:fadeInUp 1s ease .6s both; max-width:640px; width:100%; }
+.hero-search-row { display:flex; }
+.hero-sf { flex:1; min-width:100px; display:flex; flex-direction:column; gap:3px; padding:.82rem 1.1rem; border-right:1px solid var(--cream-dark); }
+.hero-sf-guests { flex:0 0 auto; border-right:1px solid var(--cream-dark); }
+.hero-sl { font-size:.58rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--leaf); }
+.hero-sf input[type="date"] { background:transparent; border:none; color:var(--text); font-family:inherit; font-size:.88rem; font-weight:400; outline:none; width:100%; cursor:pointer; padding:0; min-width:90px; }
+.hero-sf input[type="date"]::-webkit-calendar-picker-indicator { opacity:.45; cursor:pointer; }
 .hero-sg { display:flex; align-items:center; gap:9px; }
-.hero-sg button { width:22px; height:22px; border-radius:50%; border:1.5px solid rgba(255,255,255,.42); background:transparent; color:var(--white); cursor:pointer; font-size:.95rem; display:flex; align-items:center; justify-content:center; line-height:1; transition:background .15s; padding:0; }
-.hero-sg button:hover { background:rgba(255,255,255,.15); }
-.hero-sg span { color:var(--white); font-size:.9rem; min-width:20px; text-align:center; font-weight:500; }
-.hero-sbtn { flex:0 0 auto; background:var(--leaf); color:var(--white); border:none; padding:0 1.5rem; font-family:inherit; font-size:.88rem; font-weight:500; cursor:pointer; display:flex; align-items:center; gap:8px; transition:background .2s; white-space:nowrap; }
+.hero-sg button { width:22px; height:22px; border-radius:50%; border:1.5px solid var(--cream-dark); background:var(--cream); color:var(--forest); cursor:pointer; font-size:.95rem; display:flex; align-items:center; justify-content:center; line-height:1; transition:background .15s; padding:0; }
+.hero-sg button:hover { background:var(--cream-dark); }
+.hero-sg span { color:var(--forest); font-size:.9rem; min-width:20px; text-align:center; font-weight:600; }
+.hero-sbtn { flex:0 0 auto; background:var(--leaf); color:var(--white); border:none; padding:0 1.4rem; font-family:inherit; font-size:.88rem; font-weight:500; cursor:pointer; display:flex; align-items:center; gap:7px; transition:background .2s; white-space:nowrap; }
 .hero-sbtn:hover { background:var(--forest-mid); }
-.hero-search.hs-err { border-color:rgba(245,150,150,.55); animation:hsShake .4s ease; }
-.hero-search.hs-err input[type="date"]:invalid, .hero-search.hs-err input[type="date"][value=""] { color:rgba(245,180,180,.85); }
+.hero-opts { display:flex; gap:.5rem; flex-wrap:wrap; padding:.6rem 1rem; border-top:1px solid var(--cream-dark); background:var(--cream); }
+.hero-opt { background:var(--white); border:1.5px solid var(--cream-dark); border-radius:20px; color:var(--text-muted); font-family:inherit; font-size:.75rem; padding:.26rem .82rem; cursor:pointer; transition:all .2s; display:flex; align-items:center; gap:4px; }
+.hero-opt.active { background:var(--forest); border-color:var(--forest); color:var(--white); font-weight:500; }
+.hero-opt:hover:not(.active) { border-color:var(--sage); color:var(--forest); }
+.hero-search.hs-err { box-shadow:0 10px 44px rgba(200,50,50,.22); animation:hsShake .4s ease; }
 @keyframes hsShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+/* Badges de disponibilidad en tarjetas */
+.avail-yes { display:inline-block; background:#d4f5e0; color:#1a6a35; border-radius:4px; padding:2px 9px; font-size:.67rem; font-weight:600; margin-bottom:.6rem; }
+.avail-flex { display:inline-block; background:#fff3cd; color:#7a5000; border-radius:4px; padding:2px 9px; font-size:.67rem; font-weight:600; margin-bottom:.6rem; }
 @media (max-width:860px) {
-  .hero-search { flex-direction:column; border-radius:12px; width:min(100%,360px); }
-  .hero-sf { border-right:none; border-bottom:1px solid rgba(255,255,255,.14); min-width:0; }
-  .hero-sf-guests { border-bottom:1px solid rgba(255,255,255,.14); }
+  .hero-search { max-width:100%; }
+  .hero-search-row { flex-direction:column; }
+  .hero-sf { border-right:none; border-bottom:1px solid var(--cream-dark); min-width:0; }
+  .hero-sf-guests { border-right:none; border-bottom:1px solid var(--cream-dark); }
   .hero-sbtn { padding:1rem; justify-content:center; }
 }
 /* ── BANNER RESULTADO BÚSQUEDA ──────────────────────────── */
@@ -564,26 +571,32 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         <h1>Tu refugio<br><em>patagónico</em><br>te espera.</h1>
         <p class="hero-sub">Cabañas y casas únicas en uno de los paisajes más extraordinarios del mundo. Gestión profesional, experiencias auténticas.</p>
         <div class="hero-search" id="hero-search">
-          <div class="hero-sf">
-            <span class="hero-sl">Entrada</span>
-            <input type="date" id="hs-ci" aria-label="Fecha de entrada">
-          </div>
-          <div class="hero-sf">
-            <span class="hero-sl">Salida</span>
-            <input type="date" id="hs-co" aria-label="Fecha de salida">
-          </div>
-          <div class="hero-sf hero-sf-guests">
-            <span class="hero-sl">Huéspedes</span>
-            <div class="hero-sg">
-              <button onclick="hsGuests(-1)" aria-label="Menos huéspedes">−</button>
-              <span id="hs-guests">2</span>
-              <button onclick="hsGuests(1)" aria-label="Más huéspedes">+</button>
+          <div class="hero-search-row">
+            <div class="hero-sf">
+              <span class="hero-sl">Entrada</span>
+              <input type="date" id="hs-ci" aria-label="Fecha de entrada">
             </div>
+            <div class="hero-sf">
+              <span class="hero-sl">Salida</span>
+              <input type="date" id="hs-co" aria-label="Fecha de salida">
+            </div>
+            <div class="hero-sf hero-sf-guests">
+              <span class="hero-sl">Huéspedes</span>
+              <div class="hero-sg">
+                <button onclick="hsGuests(-1)" aria-label="Menos huéspedes">−</button>
+                <span id="hs-guests">2</span>
+                <button onclick="hsGuests(1)" aria-label="Más huéspedes">+</button>
+              </div>
+            </div>
+            <button class="hero-sbtn" onclick="buscarDisponibilidad()">
+              <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+              Buscar
+            </button>
           </div>
-          <button class="hero-sbtn" onclick="buscarDisponibilidad()">
-            <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-            Buscar
-          </button>
+          <div class="hero-opts">
+            <button class="hero-opt" id="hs-flex" onclick="toggleHsOpt('flex')">📅 Fechas flexibles ±1 sem</button>
+            <button class="hero-opt" id="hs-pets" onclick="toggleHsOpt('pets')">🐾 Pet friendly</button>
+          </div>
         </div>
         <div class="dots" id="dots"></div>
       </div>
@@ -652,6 +665,10 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
           <option value="">Sin ordenar</option>
           <option value="asc">Precio: menor a mayor</option>
           <option value="desc">Precio: mayor a menor</option>
+        </select>
+        <select id="filter-pets" onchange="filterProps()" aria-label="Mascotas">
+          <option value="">Con y sin mascotas</option>
+          <option value="1">🐾 Solo pet friendly</option>
         </select>
       </div>
       <div class="props-grid" id="pgrid-gal">
@@ -1316,11 +1333,20 @@ async function cargarReservas(p){
 }
 
 // ── Buscador de disponibilidad por fechas ──────────────────
-let _hsGuests = 2;
+let _hsGuests = 2, _hsFlexible = false, _hsPets = false;
 window.hsGuests = (d) => {
   _hsGuests = Math.max(1, Math.min(20, _hsGuests + d));
   const el = document.getElementById('hs-guests');
   if (el) el.textContent = _hsGuests;
+};
+window.toggleHsOpt = (key) => {
+  if (key === 'flex') {
+    _hsFlexible = !_hsFlexible;
+    document.getElementById('hs-flex')?.classList.toggle('active', _hsFlexible);
+  } else if (key === 'pets') {
+    _hsPets = !_hsPets;
+    document.getElementById('hs-pets')?.classList.toggle('active', _hsPets);
+  }
 };
 (function() {
   const todayStr = new Date().toISOString().split('T')[0];
@@ -1333,11 +1359,13 @@ window.hsGuests = (d) => {
     if (co.value && co.value <= ci.value) co.value = '';
   });
 })();
+const _isPetFriendly = p => p.mascotas === true || (p.amenities || []).some(a => /mascota|pet/i.test(a));
 window.buscarDisponibilidad = async function() {
   const ciVal = document.getElementById('hs-ci').value;
   const coVal = document.getElementById('hs-co').value;
   const g = _hsGuests;
-  if (!ciVal || !coVal || coVal <= ciVal) {
+  const hasDates = ciVal && coVal && coVal > ciVal;
+  if (!_hsFlexible && !hasDates) {
     const hs = document.getElementById('hero-search');
     if (hs) { hs.classList.add('hs-err'); setTimeout(() => hs.classList.remove('hs-err'), 1400); }
     return;
@@ -1348,39 +1376,73 @@ window.buscarDisponibilidad = async function() {
   if (!gridG) return;
   gridG.innerHTML = '<div class="loading" style="grid-column:1/-1"><div class="spinner"></div><p>Buscando disponibilidad…</p></div>';
   try {
-    const occSnap = await getDocs(collection(db, 'sitioWeb_ocupados'));
     const ocu = new Map();
-    occSnap.forEach(occDoc => {
-      const r = occDoc.data();
-      const k = String(r.pid);
-      if (!ocu.has(k)) ocu.set(k, []);
-      ocu.get(k).push({ ci: r.ci, co: r.co });
-    });
-    const filtered = (window._allProps || []).filter(p => {
+    if (hasDates) {
+      const occSnap = await getDocs(collection(db, 'sitioWeb_ocupados'));
+      occSnap.forEach(occDoc => {
+        const r = occDoc.data();
+        const k = String(r.pid);
+        if (!ocu.has(k)) ocu.set(k, []);
+        ocu.get(k).push({ ci: r.ci, co: r.co });
+      });
+    }
+    const pool = (window._allProps || []).filter(p => {
       const cap = Number(p.capacidad);
       if (cap > 0 && cap < g) return false;
-      return !(ocu.get(String(p.id)) || []).some(r => r.ci < coVal && r.co > ciVal);
+      if (_hsPets && !_isPetFriendly(p)) return false;
+      return true;
     });
+    let showProps, showBadges = false;
+    if (!hasDates || _hsFlexible) {
+      showProps = pool;
+      showBadges = hasDates;
+    } else {
+      showProps = pool.filter(p => !(ocu.get(String(p.id)) || []).some(r => r.ci < coVal && r.co > ciVal));
+    }
     gridG.innerHTML = '';
-    const fmtD = s => { const [,m,d2] = s.split('-'); return d2+'/'+m; };
+    const fmtD = s => { const [,m,d2] = s.split('-'); return `${d2}/${m}`; };
     const banner = document.createElement('div');
     banner.className = 'search-banner';
     const info = document.createElement('span');
     info.className = 'search-banner-info';
-    info.textContent = `${filtered.length} propiedad${filtered.length!==1?'es':''} disponible${filtered.length!==1?'s':''} · ${fmtD(ciVal)} → ${fmtD(coVal)} · ${g} huésped${g!==1?'es':''}`;
+    let infoTxt = '';
+    if (!hasDates) {
+      infoTxt = `${showProps.length} propiedad${showProps.length!==1?'es':''} · ${g} huésped${g!==1?'es':''}`;
+    } else if (_hsFlexible) {
+      infoTxt = `${showProps.length} propiedad${showProps.length!==1?'es':''} · ${fmtD(ciVal)} → ${fmtD(coVal)} ± 1 sem · ${g} huésped${g!==1?'es':''}`;
+    } else {
+      infoTxt = `${showProps.length} disponible${showProps.length!==1?'s':''} · ${fmtD(ciVal)} → ${fmtD(coVal)} · ${g} huésped${g!==1?'es':''}`;
+    }
+    info.textContent = infoTxt;
     const clearBtn = document.createElement('button');
     clearBtn.className = 'search-banner-clear';
     clearBtn.textContent = '✕ Borrar búsqueda';
     clearBtn.addEventListener('click', () => filterProps());
     banner.appendChild(info); banner.appendChild(clearBtn);
     gridG.appendChild(banner);
-    if (!filtered.length) {
+    if (!showProps.length) {
       const noRes = document.createElement('p');
       noRes.style.cssText = 'color:var(--text-muted);text-align:center;padding:2rem;font-style:italic;grid-column:1/-1';
-      noRes.textContent = 'No encontramos propiedades disponibles para esas fechas. Escribinos por WhatsApp y buscamos opciones.';
+      noRes.textContent = _hsPets
+        ? 'No encontramos propiedades pet friendly para esos requisitos. Escribínos por WhatsApp.'
+        : 'No encontramos propiedades para esas fechas. Escribínos por WhatsApp y buscamos opciones.';
       gridG.appendChild(noRes);
     } else {
-      filtered.forEach(p => { const c = buildCardGallery(p); gridG.appendChild(c); animObs.observe(c); });
+      showProps.forEach(p => {
+        const c = buildCardGallery(p);
+        if (showBadges) {
+          const isAvail = !(ocu.get(String(p.id)) || []).some(r => r.ci < coVal && r.co > ciVal);
+          const gbody = c.querySelector('.gbody');
+          if (gbody) {
+            const badge = document.createElement('span');
+            badge.className = isAvail ? 'avail-yes' : 'avail-flex';
+            badge.textContent = isAvail ? '✓ Disponible para tus fechas' : '~ Consultá disponibilidad';
+            gbody.insertBefore(badge, gbody.firstChild);
+          }
+        }
+        gridG.appendChild(c);
+        animObs.observe(c);
+      });
     }
   } catch(e) {
     console.warn('Error buscando disponibilidad', e);
@@ -1474,11 +1536,13 @@ window.filterProps = function() {
   const nombre = (document.getElementById('filter-nombre')?.value || '').toLowerCase().trim();
   const cap = document.getElementById('filter-cap')?.value || '';
   const sort = document.getElementById('filter-sort')?.value || '';
+  const pets = document.getElementById('filter-pets')?.value || '';
   let filtered = (window._allProps || []).filter(p => {
     const matchN = !nombre || (p.nombre || '').toLowerCase().includes(nombre);
     const c = Number(p.capacidad) || 0;
     const matchC = cap === '' || (cap === '4' && c <= 4) || (cap === '8' && c >= 5 && c <= 8) || (cap === '9' && c >= 9);
-    return matchN && matchC;
+    const matchP = pets !== '1' || _isPetFriendly(p);
+    return matchN && matchC && matchP;
   });
   if (sort) {
     filtered = filtered.slice().sort((a, b) => {
