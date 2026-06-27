@@ -1365,11 +1365,6 @@ window.buscarDisponibilidad = async function() {
   const coVal = document.getElementById('hs-co').value;
   const g = _hsGuests;
   const hasDates = ciVal && coVal && coVal > ciVal;
-  if (!_hsFlexible && !hasDates) {
-    const hs = document.getElementById('hero-search');
-    if (hs) { hs.classList.add('hs-err'); setTimeout(() => hs.classList.remove('hs-err'), 1400); }
-    return;
-  }
   ir('propiedades');
   await new Promise(resolve => setTimeout(resolve, 120));
   const gridG = document.getElementById('pgrid-gal');
