@@ -110,7 +110,7 @@
       "name": "¿Los precios están en dólares o pesos?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Nuestras tarifas se publican en dólares estadounidenses (USD). El pago puede acordarse en la modalidad más conveniente para el huésped."
+        "text": "Los precios varían según la propiedad: algunas se publican en dólares (USD) y otras en pesos argentinos (ARS). Consultanos por WhatsApp y te confirmamos la tarifa exacta para tu estadía."
       }
     },
     {
@@ -468,19 +468,6 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
   .nbadge { right:1rem; }
   .props-grid, .srgrid { grid-template-columns:1fr; }
   /* Cards de reserva: scroll horizontal en mobile */
-  #pgrid-inicio {
-    display:flex; flex-direction:row;
-    overflow-x:auto; scroll-snap-type:x mandatory;
-    gap:1rem; margin:0 -1.5rem; padding:0 1.5rem 1rem;
-    -webkit-overflow-scrolling:touch; scrollbar-width:none;
-  }
-  #pgrid-inicio::-webkit-scrollbar { display:none; }
-  #pgrid-inicio .pcard { flex:0 0 78vw; max-width:320px; scroll-snap-align:start; }
-  #pgrid-inicio .pdesc { display:none; }
-  .swipe-hint { display:flex; align-items:center; justify-content:center; gap:5px; margin-top:.6rem; font-size:.74rem; color:var(--text-muted); opacity:.75; transition:opacity .5s; pointer-events:none; }
-  .swipe-hint svg { animation:swipeSlide 1.5s ease-in-out infinite; }
-  @keyframes swipeSlide { 0%,100%{transform:translateX(0)} 50%{transform:translateX(6px)} }
-  .swipe-hint.oculto { opacity:0; }
   .nvals { grid-template-columns:1fr 1fr; }
   .hero-arrow { opacity: 0.5; }
   .footer-inner { grid-template-columns:1fr; gap:2rem; }
@@ -491,6 +478,34 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
   .gbtns { flex-direction:column; }
 }
 @media (max-width:480px) { .nvals { grid-template-columns:1fr; } }
+/* ── CAROUSEL PROPIEDADES (INICIO) ──────────────────────── */
+.prop-carousel-outer { max-width:780px; margin:0 auto; }
+.prop-carousel-inner { position:relative; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow); }
+.prop-carousel-track { display:flex; transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.prop-carousel-card { flex:0 0 100%; position:relative; cursor:pointer; overflow:hidden; }
+.prop-carousel-card img { width:100%; height:400px; object-fit:cover; display:block; transition:transform .5s ease; }
+.prop-carousel-card:hover img { transform:scale(1.03); }
+.prop-carousel-overlay { position:absolute; bottom:0; left:0; right:0; padding:2rem 2rem 1.8rem; background:linear-gradient(to top,rgba(27,58,45,.88) 0%,rgba(27,58,45,.15) 70%,transparent 100%); pointer-events:none; }
+.prop-carousel-name { font-family:'Cormorant Garamond',serif; font-size:2.1rem; font-weight:300; color:var(--white); line-height:1.1; }
+.prop-carousel-cap { font-size:.74rem; color:var(--sage); font-weight:500; letter-spacing:.12em; text-transform:uppercase; margin-top:.4rem; }
+.carousel-dots { display:flex; gap:8px; justify-content:center; margin-top:1.2rem; }
+.carousel-dot { width:8px; height:8px; border-radius:50%; background:rgba(27,58,45,.25); border:none; cursor:pointer; padding:0; transition:all .3s; }
+.carousel-dot.on { background:var(--forest); transform:scale(1.3); }
+.carousel-cta { text-align:center; margin-top:1.8rem; }
+@media (max-width:860px) {
+  .prop-carousel-card img { height:280px; }
+  .prop-carousel-name { font-size:1.6rem; }
+}
+/* ── FILTROS PROPIEDADES ─────────────────────────────────── */
+.prop-filters { display:flex; gap:.9rem; flex-wrap:wrap; align-items:center; margin-bottom:2rem; background:var(--white); border-radius:10px; padding:.9rem 1.2rem; box-shadow:0 2px 12px rgba(27,58,45,.07); }
+.prop-filters input[type="text"] { flex:1; min-width:160px; border:1.5px solid var(--cream-dark); border-radius:6px; padding:.52rem .85rem; font-family:inherit; font-size:.88rem; color:var(--text); outline:none; transition:border-color .2s; background:var(--cream); }
+.prop-filters input[type="text"]:focus { border-color:var(--leaf); background:var(--white); }
+.prop-filters select { border:1.5px solid var(--cream-dark); border-radius:6px; padding:.52rem .85rem; font-family:inherit; font-size:.88rem; color:var(--text); outline:none; background:var(--cream); cursor:pointer; transition:border-color .2s; }
+.prop-filters select:focus { border-color:var(--leaf); }
+@media (max-width:600px) {
+  .prop-filters { flex-direction:column; align-items:stretch; }
+  .prop-filters input[type="text"], .prop-filters select { min-width:0; width:100%; }
+}
 </style>
 <link rel="stylesheet" href="aucen-brand.css">
 </head>
@@ -528,14 +543,10 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
     <div class="inicio-props" id="inicio-props">
       <div class="inicio-props-inner">
         <p class="slbl anim">Nuestras propiedades</p>
-        <h2 class="stit anim anim-d1">Reservá tu estadía</h2>
-        <p class="ssub anim anim-d2" style="margin-bottom:2.5rem">Elegí fechas en el calendario y consultá disponibilidad directo por WhatsApp.</p>
-        <div class="props-grid" id="pgrid-inicio">
+        <h2 class="stit anim anim-d1">Conocé los espacios</h2>
+        <p class="ssub anim anim-d2" style="margin-bottom:2rem">Hacé click para conocer todos nuestros alojamientos.</p>
+        <div id="prop-carousel-wrap">
           <div class="loading"><div class="spinner"></div><p>Cargando propiedades…</p></div>
-        </div>
-        <div class="swipe-hint" id="swipe-hint" aria-hidden="true" style="display:none">
-          <span>deslizá para ver más</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
         </div>
       </div>
       <!-- ── Actividades ── -->
@@ -576,7 +587,21 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
     <div class="inner">
       <p class="slbl anim">Nuestras propiedades</p>
       <h2 class="stit anim anim-d1">Espacios para recordar</h2>
-      <p class="ssub anim anim-d2" style="margin-bottom:2.5rem">Cada propiedad está cuidadosamente seleccionada y gestionada para garantizar una experiencia excepcional.</p>
+      <p class="ssub anim anim-d2" style="margin-bottom:2rem">Cada propiedad está cuidadosamente seleccionada y gestionada para garantizar una experiencia excepcional.</p>
+      <div class="prop-filters anim anim-d3" id="prop-filters">
+        <input type="text" id="filter-nombre" placeholder="🔍 Buscar por nombre…" oninput="filterProps()" aria-label="Buscar por nombre">
+        <select id="filter-cap" onchange="filterProps()" aria-label="Filtrar por capacidad">
+          <option value="">Todas las capacidades</option>
+          <option value="4">Hasta 4 huéspedes</option>
+          <option value="8">5 a 8 huéspedes</option>
+          <option value="9">9 o más huéspedes</option>
+        </select>
+        <select id="filter-sort" onchange="filterProps()" aria-label="Ordenar por precio">
+          <option value="">Sin ordenar</option>
+          <option value="asc">Precio: menor a mayor</option>
+          <option value="desc">Precio: mayor a menor</option>
+        </select>
+      </div>
       <div class="props-grid" id="pgrid-gal">
         <div class="loading"><div class="spinner"></div><p>Cargando propiedades…</p></div>
       </div>
@@ -606,7 +631,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         </details>
         <details class="faq-item anim anim-d3">
           <summary>¿Los precios están en dólares o pesos?</summary>
-          <p>Nuestras tarifas se publican en dólares (USD). El precio que ves en el cotizador es orientativo — el valor final suele ser igual o menor. Consultanos y te confirmamos la tarifa exacta.</p>
+          <p>Los precios varían según la propiedad: algunas se publican en dólares (USD) y otras en pesos argentinos (ARS). Consultanos por WhatsApp y te confirmamos la tarifa exacta para tu estadía.</p>
         </details>
         <details class="faq-item anim anim-d4">
           <summary>¿Qué incluye la estadía?</summary>
@@ -1133,9 +1158,6 @@ function buildCardGallery(p){
   }
   const btns=document.createElement('div'); btns.className='gbtns';
   const waA=document.createElement('a'); waA.className='gbwa'; waA.href=`${CONTACT.wa}?text=${msg}`; waA.target='_blank'; waA.innerHTML=wasvg()+' Consultar por WhatsApp'; btns.appendChild(waA);
-  const calBtn=document.createElement('button'); calBtn.className='gbcal'; calBtn.textContent='📅 Ver disponibilidad';
-  calBtn.addEventListener('click',()=>{ir('inicio');setTimeout(()=>document.getElementById('inicio-props').scrollIntoView({behavior:'smooth'}),TIMINGS.scrollDelay);});
-  btns.appendChild(calBtn);
   if(p.sitioUrl){const infoA=document.createElement('a');infoA.className='gbinfo';infoA.setAttribute('href',p.sitioUrl);infoA.target='_blank';infoA.textContent='📋 Más información';btns.appendChild(infoA);}
   body.appendChild(btns);
   card.appendChild(body);
@@ -1241,8 +1263,116 @@ async function cargarReservas(p){
   }
 }
 
+let _carouselIdx = 0, _carouselTimer = null;
+
+function buildCarousel(props, wrap) {
+  if (!wrap) return;
+  if (!props.length) { wrap.innerHTML = ''; return; }
+  const container = document.createElement('div');
+  container.className = 'prop-carousel-outer';
+  const inner = document.createElement('div');
+  inner.className = 'prop-carousel-inner';
+  const track = document.createElement('div');
+  track.className = 'prop-carousel-track';
+  track.id = 'carousel-track';
+  props.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'prop-carousel-card';
+    card.addEventListener('click', () => ir('propiedades'));
+    card.title = 'Ver todas las propiedades';
+    const foto = (Array.isArray(p.fotos) && p.fotos.length) ? p.fotos[0] : (p.fotoUrl || FALLBACK_IMG);
+    const img = document.createElement('img');
+    img.setAttribute('src', foto);
+    img.alt = p.nombre || '';
+    img.loading = i === 0 ? 'eager' : 'lazy';
+    img.onerror = () => { img.src = FALLBACK_IMG; img.onerror = null; };
+    card.appendChild(img);
+    const overlay = document.createElement('div');
+    overlay.className = 'prop-carousel-overlay';
+    const nameEl = document.createElement('div');
+    nameEl.className = 'prop-carousel-name';
+    nameEl.textContent = p.nombre || '';
+    overlay.appendChild(nameEl);
+    const capParts = [p.capacidad ? p.capacidad + ' huéspedes' : '', p.tipo || ''].filter(Boolean);
+    if (capParts.length) {
+      const capEl = document.createElement('div');
+      capEl.className = 'prop-carousel-cap';
+      capEl.textContent = capParts.join(' · ');
+      overlay.appendChild(capEl);
+    }
+    card.appendChild(overlay);
+    track.appendChild(card);
+  });
+  inner.appendChild(track);
+  container.appendChild(inner);
+  if (props.length > 1) {
+    const dotsWrap = document.createElement('div');
+    dotsWrap.className = 'carousel-dots';
+    dotsWrap.id = 'carousel-dots';
+    props.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot' + (i === 0 ? ' on' : '');
+      dot.setAttribute('aria-label', 'Propiedad ' + (i + 1));
+      dot.addEventListener('click', () => goCarousel(i));
+      dotsWrap.appendChild(dot);
+    });
+    container.appendChild(dotsWrap);
+  }
+  const ctaDiv = document.createElement('div');
+  ctaDiv.className = 'carousel-cta';
+  const ctaBtn = document.createElement('button');
+  ctaBtn.className = 'btn';
+  ctaBtn.textContent = 'Ver todas las propiedades →';
+  ctaBtn.addEventListener('click', () => ir('propiedades'));
+  ctaDiv.appendChild(ctaBtn);
+  container.appendChild(ctaDiv);
+  wrap.innerHTML = '';
+  wrap.appendChild(container);
+  _carouselIdx = 0;
+  if (_carouselTimer) clearInterval(_carouselTimer);
+  if (props.length > 1) _carouselTimer = setInterval(() => goCarousel((_carouselIdx + 1) % props.length), 4000);
+}
+
+function goCarousel(idx) {
+  _carouselIdx = idx;
+  const track = document.getElementById('carousel-track');
+  if (track) track.style.transform = `translateX(-${idx * 100}%)`;
+  document.querySelectorAll('#carousel-dots .carousel-dot').forEach((d, i) => d.classList.toggle('on', i === idx));
+}
+
+function getPrecioBase(p) {
+  if (!p.tarifas?.length) return Infinity;
+  return Math.min(...p.tarifas.map(t => Number(t.precioBase) || Infinity));
+}
+
+window.filterProps = function() {
+  const nombre = (document.getElementById('filter-nombre')?.value || '').toLowerCase().trim();
+  const cap = document.getElementById('filter-cap')?.value || '';
+  const sort = document.getElementById('filter-sort')?.value || '';
+  let filtered = (window._allProps || []).filter(p => {
+    const matchN = !nombre || (p.nombre || '').toLowerCase().includes(nombre);
+    const c = Number(p.capacidad) || 0;
+    const matchC = cap === '' || (cap === '4' && c <= 4) || (cap === '8' && c >= 5 && c <= 8) || (cap === '9' && c >= 9);
+    return matchN && matchC;
+  });
+  if (sort) {
+    filtered = filtered.slice().sort((a, b) => {
+      const pa = getPrecioBase(a), pb2 = getPrecioBase(b);
+      return sort === 'asc' ? pa - pb2 : pb2 - pa;
+    });
+  }
+  const gridG = document.getElementById('pgrid-gal');
+  if (!gridG) return;
+  gridG.innerHTML = '';
+  if (!filtered.length) {
+    gridG.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:3rem;font-style:italic;grid-column:1/-1">No se encontraron propiedades con esos filtros.</p>';
+    return;
+  }
+  filtered.forEach(p => { const c = buildCardGallery(p); gridG.appendChild(c); animObs.observe(c); });
+};
+
 async function cargarProps(){
-  const gridI = document.getElementById('pgrid-inicio');
+  const carouselWrap = document.getElementById('prop-carousel-wrap');
   const gridG = document.getElementById('pgrid-gal');
   const firestoreTimeout = new Promise((_,r)=>setTimeout(()=>r(new Error('timeout')),TIMINGS.firestoreTimeout));
   try{
@@ -1250,27 +1380,27 @@ async function cargarProps(){
     const snap=await Promise.race([getDocs(q),firestoreTimeout]);
     if(snap.empty){
       const msg='<p style="color:var(--text-muted);text-align:center;padding:3rem;font-style:italic;grid-column:1/-1">Próximamente nuevas propiedades.</p>';
-      gridI.innerHTML=msg; gridG.innerHTML=msg; return;
+      if(carouselWrap) carouselWrap.innerHTML=msg;
+      if(gridG) gridG.innerHTML=msg;
+      return;
     }
-    gridI.innerHTML=''; gridG.innerHTML='';
+    window._allProps=[];
+    if(gridG) gridG.innerHTML='';
     snap.docs.forEach(doc=>{
       const p={id:doc.id,...doc.data()};
-      const cBook=buildCardBooking(p);
-      gridI.appendChild(cBook);
-      animObs.observe(cBook);
-      cargarReservas(p);
+      window._allProps.push(p);
       const cGal=buildCardGallery(p);
-      gridG.appendChild(cGal);
-      animObs.observe(cGal);
+      if(gridG){ gridG.appendChild(cGal); animObs.observe(cGal); }
     });
+    buildCarousel(window._allProps, carouselWrap);
   }catch(e){
-    // TODO: logging en producción
     console.warn('Error al cargar propiedades');
     const msg = e?.message === 'timeout'
       ? 'La carga está tardando más de lo esperado. Verificá tu conexión e intentá recargar.'
       : 'Error al cargar propiedades. Intentá recargar la página.';
     const err=`<p style="color:var(--text-muted);text-align:center;padding:3rem;font-style:italic;grid-column:1/-1">${msg}</p>`;
-    gridI.innerHTML=err; gridG.innerHTML=err;
+    if(carouselWrap) carouselWrap.innerHTML=err;
+    if(gridG) gridG.innerHTML=err;
   }
 }
 
@@ -1395,25 +1525,6 @@ getDoc(doc(db,'sitioWeb_config','partners')).then(snap => {
   animObs.observe(section.querySelector('.partners-nota'));
 }).catch(() => {});
 
-// Swipe hint: solo visible en mobile y con más de 1 propiedad
-(function(){
-  const hint = document.getElementById('swipe-hint');
-  const grid = document.getElementById('pgrid-inicio');
-  if (!hint || !grid) return;
-  function checkHint() {
-    if (window.innerWidth <= 860 && grid.scrollWidth > grid.clientWidth + 20) {
-      hint.style.display = 'flex';
-    } else {
-      hint.style.display = 'none';
-    }
-  }
-  grid.addEventListener('scroll', () => { hint.classList.add('oculto'); }, { once: true });
-  window.addEventListener('resize', checkHint);
-  // Revisamos cuando las props terminen de cargarse
-  const obs = new MutationObserver(() => checkHint());
-  obs.observe(grid, { childList: true });
-  checkHint();
-})();
 </script>
 <!-- Botón flotante WhatsApp -->
 <a class="wa-float" href="https://wa.me/5492944717718" target="_blank" title="Escribinos por WhatsApp">
