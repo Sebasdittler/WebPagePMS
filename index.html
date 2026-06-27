@@ -653,23 +653,33 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
       <p class="slbl anim">Nuestras propiedades</p>
       <h2 class="stit anim anim-d1">Espacios para recordar</h2>
       <p class="ssub anim anim-d2" style="margin-bottom:2rem">Cada propiedad está cuidadosamente seleccionada y gestionada para garantizar una experiencia excepcional.</p>
-      <div class="prop-filters anim anim-d3" id="prop-filters">
-        <input type="text" id="filter-nombre" placeholder="🔍 Buscar por nombre…" oninput="filterProps()" aria-label="Buscar por nombre">
-        <select id="filter-cap" onchange="filterProps()" aria-label="Filtrar por capacidad">
-          <option value="">Todas las capacidades</option>
-          <option value="4">Hasta 4 huéspedes</option>
-          <option value="8">5 a 8 huéspedes</option>
-          <option value="9">9 o más huéspedes</option>
-        </select>
-        <select id="filter-sort" onchange="filterProps()" aria-label="Ordenar por precio">
-          <option value="">Sin ordenar</option>
-          <option value="asc">Precio: menor a mayor</option>
-          <option value="desc">Precio: mayor a menor</option>
-        </select>
-        <select id="filter-pets" onchange="filterProps()" aria-label="Mascotas">
-          <option value="">Con y sin mascotas</option>
-          <option value="1">🐾 Solo pet friendly</option>
-        </select>
+      <div class="hero-search anim anim-d3" id="prop-search" style="margin-top:0; animation:none; max-width:100%;">
+        <div class="hero-search-row">
+          <div class="hero-sf">
+            <span class="hero-sl">Entrada</span>
+            <input type="date" id="ps-ci" aria-label="Fecha de entrada">
+          </div>
+          <div class="hero-sf">
+            <span class="hero-sl">Salida</span>
+            <input type="date" id="ps-co" aria-label="Fecha de salida">
+          </div>
+          <div class="hero-sf hero-sf-guests">
+            <span class="hero-sl">Huéspedes</span>
+            <div class="hero-sg">
+              <button onclick="psGuests(-1)" aria-label="Menos huéspedes">−</button>
+              <span id="ps-guests">2</span>
+              <button onclick="psGuests(1)" aria-label="Más huéspedes">+</button>
+            </div>
+          </div>
+          <button class="hero-sbtn" onclick="buscarDesdeProps()">
+            <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            Buscar
+          </button>
+        </div>
+        <div class="hero-opts">
+          <button class="hero-opt" id="ps-flex" onclick="togglePsOpt('flex')">📅 Fechas flexibles ±1 sem</button>
+          <button class="hero-opt" id="ps-pets" onclick="togglePsOpt('pets')">🐾 Pet friendly</button>
+        </div>
       </div>
       <div class="props-grid" id="pgrid-gal">
         <div class="loading"><div class="spinner"></div><p>Cargando propiedades…</p></div>
@@ -1336,18 +1346,58 @@ async function cargarReservas(p){
 let _hsGuests = 2, _hsFlexible = false, _hsPets = false;
 window.hsGuests = (d) => {
   _hsGuests = Math.max(1, Math.min(20, _hsGuests + d));
-  const el = document.getElementById('hs-guests');
-  if (el) el.textContent = _hsGuests;
+  document.getElementById('hs-guests').textContent = _hsGuests;
 };
 window.toggleHsOpt = (key) => {
   if (key === 'flex') {
     _hsFlexible = !_hsFlexible;
     document.getElementById('hs-flex')?.classList.toggle('active', _hsFlexible);
+    document.getElementById('ps-flex')?.classList.toggle('active', _hsFlexible);
   } else if (key === 'pets') {
     _hsPets = !_hsPets;
     document.getElementById('hs-pets')?.classList.toggle('active', _hsPets);
+    document.getElementById('ps-pets')?.classList.toggle('active', _hsPets);
   }
 };
+
+// Buscador dentro de Propiedades — misma lógica que el hero, inputs propios
+let _psGuests = 2;
+window.psGuests = (d) => {
+  _psGuests = Math.max(1, Math.min(20, _psGuests + d));
+  document.getElementById('ps-guests').textContent = _psGuests;
+};
+window.togglePsOpt = (key) => {
+  if (key === 'flex') {
+    _hsFlexible = !_hsFlexible;
+    document.getElementById('ps-flex')?.classList.toggle('active', _hsFlexible);
+    document.getElementById('hs-flex')?.classList.toggle('active', _hsFlexible);
+  } else if (key === 'pets') {
+    _hsPets = !_hsPets;
+    document.getElementById('ps-pets')?.classList.toggle('active', _hsPets);
+    document.getElementById('hs-pets')?.classList.toggle('active', _hsPets);
+  }
+};
+window.buscarDesdeProps = async function() {
+  // Sincroniza los inputs de propiedades a los del hero y usa la misma función
+  const ci = document.getElementById('ps-ci').value;
+  const co = document.getElementById('ps-co').value;
+  document.getElementById('hs-ci').value = ci;
+  document.getElementById('hs-co').value = co;
+  _hsGuests = _psGuests;
+  document.getElementById('hs-guests').textContent = _hsGuests;
+  buscarDisponibilidad();
+};
+(function() {
+  const todayStr = new Date().toISOString().split('T')[0];
+  const ci = document.getElementById('ps-ci');
+  const co = document.getElementById('ps-co');
+  if (!ci || !co) return;
+  ci.min = todayStr; co.min = todayStr;
+  ci.addEventListener('change', () => {
+    co.min = ci.value || todayStr;
+    if (co.value && co.value <= ci.value) co.value = '';
+  });
+})();
 (function() {
   const todayStr = new Date().toISOString().split('T')[0];
   const ci = document.getElementById('hs-ci');
