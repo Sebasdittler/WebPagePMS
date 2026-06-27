@@ -1,7 +1,7 @@
 {
-  "name": "AUCEN · Alquileres Exclusivos",
+  "name": "AUCEN — Hospedaje y Alquiler Temporario · Villa La Angostura",
   "short_name": "AUCEN",
-  "description": "Alquileres exclusivos en Villa La Angostura, Patagonia Argentina.",
+  "description": "Hospedaje y alquiler temporario en Villa La Angostura, Patagonia. Casas grandes y modernas, habilitadas por Secretaría de Turismo. Atención personalizada.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F5F2EC",
