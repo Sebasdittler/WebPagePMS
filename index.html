@@ -478,7 +478,37 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
   .gbtns { flex-direction:column; }
 }
 @media (max-width:480px) { .nvals { grid-template-columns:1fr; } }
+/* ── BUSCADOR HERO ──────────────────────────────────────── */
+.hero-search { display:flex; gap:0; background:rgba(253,250,246,.13); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border:1px solid rgba(255,255,255,.22); border-radius:14px; overflow:hidden; margin-top:2.4rem; animation:fadeInUp 1s ease .6s both; width:fit-content; max-width:100%; }
+@supports not (backdrop-filter:blur(1px)) { .hero-search { background:rgba(27,58,45,.8); } }
+.hero-sf { flex:1; min-width:118px; display:flex; flex-direction:column; gap:3px; padding:.82rem 1.15rem; border-right:1px solid rgba(255,255,255,.15); }
+.hero-sf-guests { flex:0 0 auto; min-width:0; }
+.hero-sl { font-size:.59rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.68); }
+.hero-sf input[type="date"] { background:transparent; border:none; color:var(--white); font-family:inherit; font-size:.9rem; font-weight:400; outline:none; width:100%; cursor:pointer; padding:0; min-width:100px; }
+.hero-sf input[type="date"]::-webkit-calendar-picker-indicator { filter:invert(1) opacity(.55); cursor:pointer; }
+.hero-sg { display:flex; align-items:center; gap:9px; }
+.hero-sg button { width:22px; height:22px; border-radius:50%; border:1.5px solid rgba(255,255,255,.42); background:transparent; color:var(--white); cursor:pointer; font-size:.95rem; display:flex; align-items:center; justify-content:center; line-height:1; transition:background .15s; padding:0; }
+.hero-sg button:hover { background:rgba(255,255,255,.15); }
+.hero-sg span { color:var(--white); font-size:.9rem; min-width:20px; text-align:center; font-weight:500; }
+.hero-sbtn { flex:0 0 auto; background:var(--leaf); color:var(--white); border:none; padding:0 1.5rem; font-family:inherit; font-size:.88rem; font-weight:500; cursor:pointer; display:flex; align-items:center; gap:8px; transition:background .2s; white-space:nowrap; }
+.hero-sbtn:hover { background:var(--forest-mid); }
+.hero-search.hs-err { border-color:rgba(245,150,150,.55); animation:hsShake .4s ease; }
+.hero-search.hs-err input[type="date"]:invalid, .hero-search.hs-err input[type="date"][value=""] { color:rgba(245,180,180,.85); }
+@keyframes hsShake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+@media (max-width:860px) {
+  .hero-search { flex-direction:column; border-radius:12px; width:min(100%,360px); }
+  .hero-sf { border-right:none; border-bottom:1px solid rgba(255,255,255,.14); min-width:0; }
+  .hero-sf-guests { border-bottom:1px solid rgba(255,255,255,.14); }
+  .hero-sbtn { padding:1rem; justify-content:center; }
+}
+/* ── BANNER RESULTADO BÚSQUEDA ──────────────────────────── */
+.search-banner { grid-column:1/-1; background:var(--cream-dark); border-radius:8px; padding:.8rem 1.2rem; margin-bottom:.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.5rem; }
+.search-banner-info { font-size:.87rem; color:var(--forest); font-weight:500; }
+.search-banner-clear { background:none; border:1.5px solid var(--sage); border-radius:6px; padding:.3rem .9rem; font-size:.78rem; color:var(--text-muted); cursor:pointer; font-family:inherit; transition:background .15s, color .15s; }
+.search-banner-clear:hover { background:var(--sage); color:var(--white); }
 /* ── CAROUSEL PROPIEDADES (INICIO) ──────────────────────── */
+#prop-carousel-wrap { min-height:510px; }
+@media (max-width:860px) { #prop-carousel-wrap { min-height:390px; } }
 .prop-carousel-outer { max-width:780px; margin:0 auto; }
 .prop-carousel-inner { position:relative; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow); }
 .prop-carousel-track { display:flex; transition:transform .6s cubic-bezier(.4,0,.2,1); }
@@ -533,6 +563,28 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         <p class="hero-eyebrow">Villa La Angostura · Patagonia Argentina</p>
         <h1>Tu refugio<br><em>patagónico</em><br>te espera.</h1>
         <p class="hero-sub">Cabañas y casas únicas en uno de los paisajes más extraordinarios del mundo. Gestión profesional, experiencias auténticas.</p>
+        <div class="hero-search" id="hero-search">
+          <div class="hero-sf">
+            <span class="hero-sl">Entrada</span>
+            <input type="date" id="hs-ci" aria-label="Fecha de entrada">
+          </div>
+          <div class="hero-sf">
+            <span class="hero-sl">Salida</span>
+            <input type="date" id="hs-co" aria-label="Fecha de salida">
+          </div>
+          <div class="hero-sf hero-sf-guests">
+            <span class="hero-sl">Huéspedes</span>
+            <div class="hero-sg">
+              <button onclick="hsGuests(-1)" aria-label="Menos huéspedes">−</button>
+              <span id="hs-guests">2</span>
+              <button onclick="hsGuests(1)" aria-label="Más huéspedes">+</button>
+            </div>
+          </div>
+          <button class="hero-sbtn" onclick="buscarDisponibilidad()">
+            <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            Buscar
+          </button>
+        </div>
         <div class="dots" id="dots"></div>
       </div>
       <div class="hero-arrow" onclick="document.getElementById('inicio-props').scrollIntoView({behavior:'smooth'})">
@@ -1262,6 +1314,79 @@ async function cargarReservas(p){
     renderCal(p.id);
   }
 }
+
+// ── Buscador de disponibilidad por fechas ──────────────────
+let _hsGuests = 2;
+window.hsGuests = (d) => {
+  _hsGuests = Math.max(1, Math.min(20, _hsGuests + d));
+  const el = document.getElementById('hs-guests');
+  if (el) el.textContent = _hsGuests;
+};
+(function() {
+  const todayStr = new Date().toISOString().split('T')[0];
+  const ci = document.getElementById('hs-ci');
+  const co = document.getElementById('hs-co');
+  if (!ci || !co) return;
+  ci.min = todayStr; co.min = todayStr;
+  ci.addEventListener('change', () => {
+    co.min = ci.value || todayStr;
+    if (co.value && co.value <= ci.value) co.value = '';
+  });
+})();
+window.buscarDisponibilidad = async function() {
+  const ciVal = document.getElementById('hs-ci').value;
+  const coVal = document.getElementById('hs-co').value;
+  const g = _hsGuests;
+  if (!ciVal || !coVal || coVal <= ciVal) {
+    const hs = document.getElementById('hero-search');
+    if (hs) { hs.classList.add('hs-err'); setTimeout(() => hs.classList.remove('hs-err'), 1400); }
+    return;
+  }
+  ir('propiedades');
+  await new Promise(resolve => setTimeout(resolve, 120));
+  const gridG = document.getElementById('pgrid-gal');
+  if (!gridG) return;
+  gridG.innerHTML = '<div class="loading" style="grid-column:1/-1"><div class="spinner"></div><p>Buscando disponibilidad…</p></div>';
+  try {
+    const occSnap = await getDocs(collection(db, 'sitioWeb_ocupados'));
+    const ocu = new Map();
+    occSnap.forEach(occDoc => {
+      const r = occDoc.data();
+      const k = String(r.pid);
+      if (!ocu.has(k)) ocu.set(k, []);
+      ocu.get(k).push({ ci: r.ci, co: r.co });
+    });
+    const filtered = (window._allProps || []).filter(p => {
+      const cap = Number(p.capacidad);
+      if (cap > 0 && cap < g) return false;
+      return !(ocu.get(String(p.id)) || []).some(r => r.ci < coVal && r.co > ciVal);
+    });
+    gridG.innerHTML = '';
+    const fmtD = s => { const [,m,d2] = s.split('-'); return d2+'/'+m; };
+    const banner = document.createElement('div');
+    banner.className = 'search-banner';
+    const info = document.createElement('span');
+    info.className = 'search-banner-info';
+    info.textContent = `${filtered.length} propiedad${filtered.length!==1?'es':''} disponible${filtered.length!==1?'s':''} · ${fmtD(ciVal)} → ${fmtD(coVal)} · ${g} huésped${g!==1?'es':''}`;
+    const clearBtn = document.createElement('button');
+    clearBtn.className = 'search-banner-clear';
+    clearBtn.textContent = '✕ Borrar búsqueda';
+    clearBtn.addEventListener('click', () => filterProps());
+    banner.appendChild(info); banner.appendChild(clearBtn);
+    gridG.appendChild(banner);
+    if (!filtered.length) {
+      const noRes = document.createElement('p');
+      noRes.style.cssText = 'color:var(--text-muted);text-align:center;padding:2rem;font-style:italic;grid-column:1/-1';
+      noRes.textContent = 'No encontramos propiedades disponibles para esas fechas. Escribinos por WhatsApp y buscamos opciones.';
+      gridG.appendChild(noRes);
+    } else {
+      filtered.forEach(p => { const c = buildCardGallery(p); gridG.appendChild(c); animObs.observe(c); });
+    }
+  } catch(e) {
+    console.warn('Error buscando disponibilidad', e);
+    gridG.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:2rem;font-style:italic;grid-column:1/-1">Error al buscar. Intentá recargar la página.</p>';
+  }
+};
 
 let _carouselIdx = 0, _carouselTimer = null;
 
