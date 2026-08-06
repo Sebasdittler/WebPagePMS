@@ -533,6 +533,9 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
   .prop-carousel-card img { height:280px; }
   .prop-carousel-name { font-size:1.6rem; }
 }
+/* ── SERVICIOS HEADER 2 COLUMNAS ────────────────────────── */
+.sr-hero { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center; margin-bottom:2.8rem; }
+@media (max-width:860px) { .sr-hero { grid-template-columns:1fr; gap:2rem; } }
 /* ── FILTROS PROPIEDADES ─────────────────────────────────── */
 .prop-filters { display:flex; gap:.9rem; flex-wrap:wrap; align-items:center; margin-bottom:2rem; background:var(--white); border-radius:10px; padding:.9rem 1.2rem; box-shadow:0 2px 12px rgba(27,58,45,.07); }
 .prop-filters input[type="text"] { flex:1; min-width:160px; border:1.5px solid var(--cream-dark); border-radius:6px; padding:.52rem .85rem; font-family:inherit; font-size:.88rem; color:var(--text); outline:none; transition:border-color .2s; background:var(--cream); }
@@ -802,9 +805,20 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
   <div class="vista" id="v-servicios">
     <div class="srbg"></div>
     <div class="inner srinner">
-      <p class="slbl anim">Nuestros servicios</p>
-      <h2 class="stit anim anim-d1">Tu propiedad,<br>en buenas manos</h2>
-      <p class="ssub anim anim-d2">Nos encargamos de todo para que vos solo recibas la liquidación a fin de mes.</p>
+      <div class="sr-hero">
+        <div>
+          <p class="slbl anim">Nuestros servicios</p>
+          <h2 class="stit anim anim-d1">Tu propiedad,<br>en buenas manos</h2>
+          <p class="ssub anim anim-d2">Nos encargamos de todo para que vos solo recibas la liquidación a fin de mes.</p>
+        </div>
+        <div class="srcta anim anim-d2" style="margin-top:0;padding-top:0;border-top:none;">
+          <p class="srcta-lead">¿Tenés una propiedad en Villa La Angostura? <strong>Sumala a nuestra red</strong> y empezá a generar ingresos sin preocuparte por nada.</p>
+          <div class="srcta-btns">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScE0BlsLxeCSm2UmqBDoVksKxirpfZ1F4Gg4dyFHtcqHM4UAQ/viewform?usp=header" target="_blank" class="btn">Sumate como propietario →</a>
+            <a href="https://wa.me/5492944717718?text=Hola%20AUCEN!%20Me%20interesa%20saber%20m%C3%A1s%20sobre%20la%20gesti%C3%B3n%20de%20mi%20propiedad." target="_blank" class="btn-ghost">Hablemos por WhatsApp</a>
+          </div>
+        </div>
+      </div>
 
       <div class="sr-stats anim">
         <div class="sr-stat"><span class="sr-stat-num">24/7</span><span class="sr-stat-lbl">Disponibles</span></div>
@@ -823,14 +837,6 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
         <div class="srcard anim anim-d1"><div class="sricon">💰</div><div class="srtit">Optimización de tarifas</div><div class="srdesc">Ajustamos precios según temporada y demanda para maximizar tu rentabilidad sin sacrificar ocupación.</div></div>
         <div class="srcard anim anim-d2"><div class="sricon">🤝</div><div class="srtit">Beneficios con partners</div><div class="srdesc">Tus huéspedes acceden a descuentos y beneficios exclusivos con nuestros prestadores locales de confianza.</div></div>
         <div class="srcard anim anim-d3"><div class="sricon">📸</div><div class="srtit">Fotografía profesional</div><div class="srdesc">Sesión fotográfica incluida para propiedades nuevas. Imágenes que destacan y convierten visitas en reservas.</div></div>
-      </div>
-
-      <div class="srcta anim">
-        <p class="srcta-lead">¿Tenés una propiedad en Villa La Angostura? <strong>Sumala a nuestra red</strong> y empezá a generar ingresos sin preocuparte por nada.</p>
-        <div class="srcta-btns">
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLScE0BlsLxeCSm2UmqBDoVksKxirpfZ1F4Gg4dyFHtcqHM4UAQ/viewform?usp=header" target="_blank" class="btn">Sumate como propietario →</a>
-          <a href="https://wa.me/5492944717718?text=Hola%20AUCEN!%20Me%20interesa%20saber%20m%C3%A1s%20sobre%20la%20gesti%C3%B3n%20de%20mi%20propiedad." target="_blank" class="btn-ghost">Hablemos por WhatsApp</a>
-        </div>
       </div>
     </div>
     <footer style="position:relative;z-index:2;"><div class="footer-inner"><div class="footer-brand"><span class="logo-f"><img class="logo-mark-sm" src="aucen-logo-transparent.png" alt="">AUCEN<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div><div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div><div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hola@aucen.com.ar">hola@aucen.com.ar</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 AUCEN · Villa La Angostura, Neuquén, Patagonia Argentina</p></div></footer>
