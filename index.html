@@ -517,7 +517,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
 #prop-carousel-wrap { min-height:510px; }
 @media (max-width:860px) { #prop-carousel-wrap { min-height:390px; } }
 .prop-carousel-outer { max-width:780px; margin:0 auto; }
-.prop-carousel-inner { position:relative; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow); }
+.prop-carousel-inner { position:relative; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow); touch-action:pan-y; }
 .prop-carousel-track { display:flex; transition:transform .6s cubic-bezier(.4,0,.2,1); }
 .prop-carousel-card { flex:0 0 100%; position:relative; cursor:pointer; overflow:hidden; }
 .prop-carousel-card img { width:100%; height:400px; object-fit:cover; display:block; transition:transform .5s ease; }
@@ -1545,11 +1545,12 @@ function buildCarousel(props, wrap) {
       const dot = document.createElement('button');
       dot.className = 'carousel-dot' + (i === 0 ? ' on' : '');
       dot.setAttribute('aria-label', 'Propiedad ' + (i + 1));
-      dot.addEventListener('click', () => goCarousel(i));
+      dot.addEventListener('click', () => goCarousel(i, true));
       dotsWrap.appendChild(dot);
     });
     container.appendChild(dotsWrap);
   }
+  attachCarouselSwipe(inner, props.length);
   const ctaDiv = document.createElement('div');
   ctaDiv.className = 'carousel-cta';
   const ctaBtn = document.createElement('button');
@@ -1565,11 +1566,39 @@ function buildCarousel(props, wrap) {
   if (props.length > 1) _carouselTimer = setInterval(() => goCarousel((_carouselIdx + 1) % props.length), 4000);
 }
 
-function goCarousel(idx) {
+function goCarousel(idx, userInitiated) {
   _carouselIdx = idx;
   const track = document.getElementById('carousel-track');
   if (track) track.style.transform = `translateX(-${idx * 100}%)`;
-  document.querySelectorAll('#carousel-dots .carousel-dot').forEach((d, i) => d.classList.toggle('on', i === idx));
+  const dots = document.querySelectorAll('#carousel-dots .carousel-dot');
+  dots.forEach((d, i) => d.classList.toggle('on', i === idx));
+  if (userInitiated && _carouselTimer) {
+    clearInterval(_carouselTimer);
+    const total = dots.length || 1;
+    _carouselTimer = setInterval(() => goCarousel((_carouselIdx + 1) % total), 4000);
+  }
+}
+
+function attachCarouselSwipe(inner, total) {
+  if (!inner || total < 2) return;
+  const THRESH = 40; // px mínimos para contar como swipe
+  let startX = 0, startY = 0, tracking = false;
+  inner.addEventListener('touchstart', e => {
+    if (!e.touches.length) return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    tracking = true;
+  }, { passive: true });
+  inner.addEventListener('touchend', e => {
+    if (!tracking) return;
+    tracking = false;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY;
+    if (Math.abs(dx) < THRESH || Math.abs(dx) < Math.abs(dy)) return; // gesto vertical o muy corto
+    const dir = dx < 0 ? 1 : -1; // izquierda → siguiente, derecha → anterior
+    goCarousel((_carouselIdx + dir + total) % total, true);
+  }, { passive: true });
 }
 
 function getPrecioBase(p) {
