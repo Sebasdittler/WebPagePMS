@@ -238,10 +238,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 @keyframes spin { to { transform:rotate(360deg); } }
 .pcard { background:var(--white); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); display:flex; flex-direction:column; transition:transform .35s cubic-bezier(.22,.68,0,1.2), box-shadow .35s; }
 .pcard:hover { transform:translateY(-6px); box-shadow:0 20px 56px rgba(27,58,45,.22); }
-.pgallery { position:relative; width:100%; height:210px; overflow:hidden; background:linear-gradient(135deg,var(--forest-mid),var(--leaf)); flex-shrink:0; }
-.pgallery-track { display:flex; height:100%; transition:transform .42s cubic-bezier(.4,0,.2,1); }
+.pgallery { position:relative; width:100%; height:210px; overflow:hidden; background:linear-gradient(135deg,var(--forest-mid),var(--leaf)); flex-shrink:0; touch-action:pan-y; }
+.pgallery-track { display:flex; height:100%; transition:transform .3s cubic-bezier(.4,0,.2,1); }
 .pgallery-slide { flex-shrink:0; width:100%; height:100%; }
-.pgallery-slide img { width:100%; height:100%; object-fit:cover; display:block; }
+.pgallery-slide img { width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; }
 .pgallery-slide.ph { display:flex; align-items:center; justify-content:center; }
 .gal-btn { position:absolute; top:50%; transform:translateY(-50%); background:rgba(27,58,45,.55); border:none; color:var(--white); width:30px; height:30px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:.95rem; transition:background .2s, opacity .2s; opacity:0; z-index:2; }
 .pgallery:hover .gal-btn { opacity:1; }
@@ -310,6 +310,23 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 .ggallery .gal-dots { bottom:10px; }
 .ggallery .gal-dot { width:7px; height:7px; }
 .gal-counter { position:absolute; top:12px; right:12px; z-index:2; background:rgba(27,58,45,.6); color:rgba(255,255,255,.85); font-size:.68rem; padding:3px 9px; border-radius:12px; backdrop-filter:blur(4px); }
+/* ── Lightbox de fotos ───────────────────────────────────── */
+.gal-lightbox { position:fixed; inset:0; background:rgba(12,20,16,.95); z-index:2000; opacity:0; pointer-events:none; transition:opacity .25s; }
+.gal-lightbox.on { opacity:1; pointer-events:auto; }
+.gal-lightbox-inner { position:relative; width:100%; height:100%; overflow:hidden; touch-action:pan-y; }
+.gal-lightbox-track { display:flex; height:100%; transition:transform .3s cubic-bezier(.4,0,.2,1); }
+.gal-lightbox-slide { flex:0 0 100%; height:100%; display:flex; align-items:center; justify-content:center; padding:3rem 1rem; box-sizing:border-box; }
+.gal-lightbox-slide img { max-width:100%; max-height:100%; object-fit:contain; border-radius:6px; }
+.gal-lightbox-close { position:absolute; top:1.1rem; right:1.1rem; width:42px; height:42px; border-radius:50%; background:rgba(255,255,255,.12); border:none; color:var(--white); font-size:1.3rem; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:3; transition:background .2s; }
+.gal-lightbox-close:hover { background:rgba(255,255,255,.22); }
+.gal-lightbox-nav { position:absolute; top:50%; transform:translateY(-50%); width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,.12); border:none; color:var(--white); font-size:1.6rem; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:3; transition:background .2s; }
+.gal-lightbox-nav:hover { background:rgba(255,255,255,.22); }
+.gal-lightbox-prev { left:1rem; } .gal-lightbox-next { right:1rem; }
+.gal-lightbox-counter { position:absolute; bottom:1.2rem; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.85); font-size:.75rem; letter-spacing:.05em; background:rgba(255,255,255,.12); padding:.35rem .9rem; border-radius:20px; z-index:3; }
+@media (max-width:600px) {
+  .gal-lightbox-nav { width:38px; height:38px; font-size:1.3rem; }
+  .gal-lightbox-slide { padding:2.2rem .5rem; }
+}
 .gbody { padding:1.8rem; flex:1; display:flex; flex-direction:column; }
 .gtag { display:inline-block; background:var(--cream); color:var(--leaf); font-size:.65rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; padding:3px 10px; border-radius:4px; margin-bottom:.7rem; }
 .gname { font-family:'Cormorant Garamond',serif; font-size:1.75rem; font-weight:400; color:var(--forest); margin-bottom:.5rem; }
@@ -518,7 +535,7 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
 @media (max-width:860px) { #prop-carousel-wrap { min-height:390px; } }
 .prop-carousel-outer { max-width:780px; margin:0 auto; }
 .prop-carousel-inner { position:relative; overflow:hidden; border-radius:var(--radius); box-shadow:var(--shadow); touch-action:pan-y; }
-.prop-carousel-track { display:flex; transition:transform .6s cubic-bezier(.4,0,.2,1); }
+.prop-carousel-track { display:flex; transition:transform .35s cubic-bezier(.4,0,.2,1); }
 .prop-carousel-card { flex:0 0 100%; position:relative; cursor:pointer; overflow:hidden; }
 .prop-carousel-card img { width:100%; height:400px; object-fit:cover; display:block; transition:transform .5s ease; }
 .prop-carousel-card:hover img { transform:scale(1.03); }
@@ -1119,6 +1136,98 @@ window.galGoto = (id,idx) => {
   if(ctr) ctr.textContent=`${g.idx+1} / ${g.total}`;
 };
 
+function attachGallerySwipe(wrap, id) {
+  const g = GAL[id];
+  if (!wrap || !g || g.total < 2) return;
+  const THRESH = 40;
+  let startX = 0, startY = 0, tracking = false;
+  wrap.addEventListener('touchstart', e => {
+    if (!e.touches.length) return;
+    startX = e.touches[0].clientX; startY = e.touches[0].clientY; tracking = true;
+  }, { passive:true });
+  wrap.addEventListener('touchend', e => {
+    if (!tracking) return; tracking = false;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - startX, dy = t.clientY - startY;
+    if (Math.abs(dx) < THRESH || Math.abs(dx) < Math.abs(dy)) return;
+    galNav(id, dx < 0 ? 1 : -1);
+  }, { passive:true });
+}
+
+// ── Lightbox de fotos ──────────────────────────────────────
+let _lb = null;
+function ensureLightbox() {
+  if (_lb) return _lb;
+  const lb = document.createElement('div'); lb.className = 'gal-lightbox';
+  const inner = document.createElement('div'); inner.className = 'gal-lightbox-inner';
+  const track = document.createElement('div'); track.className = 'gal-lightbox-track';
+  const closeBtn = document.createElement('button'); closeBtn.className = 'gal-lightbox-close'; closeBtn.setAttribute('aria-label','Cerrar'); closeBtn.innerHTML = '✕';
+  const prevBtn = document.createElement('button'); prevBtn.className = 'gal-lightbox-nav gal-lightbox-prev'; prevBtn.setAttribute('aria-label','Anterior'); prevBtn.innerHTML = '‹';
+  const nextBtn = document.createElement('button'); nextBtn.className = 'gal-lightbox-nav gal-lightbox-next'; nextBtn.setAttribute('aria-label','Siguiente'); nextBtn.innerHTML = '›';
+  const counter = document.createElement('div'); counter.className = 'gal-lightbox-counter';
+  inner.appendChild(track); inner.appendChild(prevBtn); inner.appendChild(nextBtn); inner.appendChild(counter);
+  lb.appendChild(inner); lb.appendChild(closeBtn);
+  document.body.appendChild(lb);
+
+  _lb = { lb, inner, track, prevBtn, nextBtn, counter, fotos:[], idx:0 };
+
+  const render = () => {
+    _lb.track.style.transform = `translateX(-${_lb.idx * 100}%)`;
+    _lb.counter.textContent = `${_lb.idx + 1} / ${_lb.fotos.length}`;
+  };
+  const go = dir => {
+    const total = _lb.fotos.length;
+    _lb.idx = (_lb.idx + dir + total) % total;
+    render();
+  };
+  const close = () => { lb.classList.remove('on'); document.body.style.overflow = ''; };
+
+  closeBtn.addEventListener('click', close);
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  prevBtn.addEventListener('click', e => { e.stopPropagation(); go(-1); });
+  nextBtn.addEventListener('click', e => { e.stopPropagation(); go(1); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('on')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') go(-1);
+    if (e.key === 'ArrowRight') go(1);
+  });
+  let sx = 0, sy = 0, tracking = false;
+  inner.addEventListener('touchstart', e => {
+    if (!e.touches.length) return;
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true;
+  }, { passive:true });
+  inner.addEventListener('touchend', e => {
+    if (!tracking) return; tracking = false;
+    const t = e.changedTouches[0];
+    const dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+    go(dx < 0 ? 1 : -1);
+  }, { passive:true });
+
+  _lb._render = render; _lb._go = go; _lb._close = close;
+  return _lb;
+}
+
+function openLightbox(fotos, startIdx) {
+  if (!fotos || !fotos.length) return;
+  const lb = ensureLightbox();
+  lb.fotos = fotos;
+  lb.idx = startIdx || 0;
+  lb.track.innerHTML = '';
+  fotos.forEach(url => {
+    const slide = document.createElement('div'); slide.className = 'gal-lightbox-slide';
+    const img = document.createElement('img'); img.src = url; img.alt = '';
+    img.onerror = () => { img.src = FALLBACK_IMG; img.onerror = null; };
+    slide.appendChild(img); lb.track.appendChild(slide);
+  });
+  const multi = fotos.length > 1;
+  lb.prevBtn.style.display = lb.nextBtn.style.display = lb.counter.style.display = multi ? '' : 'none';
+  lb._render();
+  lb.lb.classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+
 function buildGalleryEl(p, prefix, big) {
   const fotos = Array.isArray(p.fotos)&&p.fotos.length ? p.fotos : p.fotoUrl ? [p.fotoUrl] : [];
   const id = prefix + p.id;
@@ -1139,18 +1248,19 @@ function buildGalleryEl(p, prefix, big) {
     img.alt = p.nombre || '';
     img.loading = i === 0 ? 'eager' : 'lazy';
     img.onerror = () => { img.src = FALLBACK_IMG; img.onerror = null; };
+    img.addEventListener('click', e => { e.stopPropagation(); openLightbox(fotos, GAL[id].idx); });
     slide.appendChild(img); track.appendChild(slide);
   });
   wrap.appendChild(track);
   if (fotos.length > 1) {
     const prev = document.createElement('button'); prev.className = 'gal-btn gal-prev'; prev.textContent = '‹';
-    prev.addEventListener('click', () => galNav(id, -1)); wrap.appendChild(prev);
+    prev.addEventListener('click', e => { e.stopPropagation(); galNav(id, -1); }); wrap.appendChild(prev);
     const next = document.createElement('button'); next.className = 'gal-btn gal-next'; next.textContent = '›';
-    next.addEventListener('click', () => galNav(id, 1)); wrap.appendChild(next);
+    next.addEventListener('click', e => { e.stopPropagation(); galNav(id, 1); }); wrap.appendChild(next);
     const dots = document.createElement('div'); dots.className = 'gal-dots'; dots.id = 'gdots-' + id;
     fotos.forEach((_, i) => {
       const btn = document.createElement('button'); btn.className = 'gal-dot' + (i === 0 ? ' on' : '');
-      btn.addEventListener('click', () => galGoto(id, i)); dots.appendChild(btn);
+      btn.addEventListener('click', e => { e.stopPropagation(); galGoto(id, i); }); dots.appendChild(btn);
     });
     wrap.appendChild(dots);
   }
@@ -1158,6 +1268,7 @@ function buildGalleryEl(p, prefix, big) {
     const counter = document.createElement('div'); counter.className = 'gal-counter'; counter.id = 'gctr-' + id;
     counter.textContent = '1 / ' + fotos.length; wrap.appendChild(counter);
   }
+  attachGallerySwipe(wrap, id);
   return wrap;
 }
 
