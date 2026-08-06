@@ -1177,7 +1177,15 @@ function buildCardBooking(p){
   if(p.descripcion){const desc=document.createElement('p');desc.className='pdesc';desc.textContent=p.descripcion;body.appendChild(desc);}
   if((p.amenities||[]).length){
     const amDiv=document.createElement('div');amDiv.className='pam';
-    p.amenities.slice(0,5).forEach(a=>{const pill=document.createElement('span');pill.className='pill';pill.textContent=a;amDiv.appendChild(pill);});
+    const LIMIT=4, ams=p.amenities;
+    ams.slice(0,LIMIT).forEach(am=>{const pill=document.createElement('span');pill.className='pill';pill.textContent=am;amDiv.appendChild(pill);});
+    if(ams.length>LIMIT){
+      const hidden=ams.slice(LIMIT).map(am=>{const pill=document.createElement('span');pill.className='pill';pill.style.display='none';pill.textContent=am;amDiv.appendChild(pill);return pill;});
+      const tog=document.createElement('span');tog.className='pill';tog.style.cssText='cursor:pointer;background:var(--cream-dark);color:var(--text-muted);';tog.textContent=`+${ams.length-LIMIT} más`;
+      let open=false;
+      tog.addEventListener('click',()=>{open=!open;hidden.forEach(el=>el.style.display=open?'':'none');tog.textContent=open?'Ver menos':`+${ams.length-LIMIT} más`;});
+      amDiv.appendChild(tog);
+    }
     body.appendChild(amDiv);
   }
   const cal=document.createElement('div');
