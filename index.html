@@ -1480,27 +1480,81 @@ window.buscarDisponibilidad = async function() {
     banner.appendChild(info); banner.appendChild(clearBtn);
     gridG.appendChild(banner);
     if (!showProps.length) {
-      const noRes = document.createElement('p');
-      noRes.style.cssText = 'color:var(--text-muted);text-align:center;padding:2rem;font-style:italic;grid-column:1/-1';
-      noRes.textContent = _hsPets
-        ? 'No encontramos propiedades pet friendly para esos requisitos. Escribínos por WhatsApp.'
-        : 'No encontramos propiedades para esas fechas. Escribínos por WhatsApp y buscamos opciones.';
+      const noRes = document.createElement('div');
+      noRes.style.cssText = 'color:var(--text-muted);text-align:center;padding:2rem;grid-column:1/-1;display:flex;flex-direction:column;align-items:center;gap:1.2rem';
+      const txt = document.createElement('p');
+      txt.style.fontStyle = 'italic';
+      txt.textContent = _hsPets
+        ? 'No encontramos propiedades pet friendly para esos requisitos.'
+        : hasDates
+          ? 'No encontramos propiedades disponibles para esas fechas.'
+          : 'No encontramos propiedades para esos filtros.';
+      const waMsg = _hsPets
+        ? encodeURIComponent('¡Hola AUCEN! Busco una propiedad pet friendly. ¿Tienen opciones disponibles?')
+        : hasDates
+          ? encodeURIComponent(`¡Hola AUCEN! Busco disponibilidad del ${fmtD(ciVal)} al ${fmtD(coVal)} para ${g} huésped${g!==1?'es':''}. ¿Tienen opciones?`)
+          : encodeURIComponent('¡Hola AUCEN! Quisiera consultar disponibilidad de propiedades.');
+      const waBtn = document.createElement('a');
+      waBtn.href = `${CONTACT.wa}?text=${waMsg}`;
+      waBtn.target = '_blank';
+      waBtn.className = 'bwa';
+      waBtn.style.cssText = 'display:inline-flex;max-width:320px';
+      waBtn.innerHTML = wasvg() + ' Escribinos por WhatsApp';
+      noRes.appendChild(txt);
+      noRes.appendChild(waBtn);
       gridG.appendChild(noRes);
     } else {
       showProps.forEach(p => {
-        const c = buildCardGallery(p);
-        if (showBadges) {
-          const isAvail = !(ocu.get(String(p.id)) || []).some(r => r.ci < coVal && r.co > ciVal);
-          const gbody = c.querySelector('.gbody');
-          if (gbody) {
-            const badge = document.createElement('span');
-            badge.className = isAvail ? 'avail-yes' : 'avail-flex';
-            badge.textContent = isAvail ? '✓ Disponible para tus fechas' : '~ Consultá disponibilidad';
-            gbody.insertBefore(badge, gbody.firstChild);
+        if (hasDates && !_hsFlexible) {
+          const c = buildCardBooking(p);
+          const csState = CS[p.id];
+          csState.a = new Date(ciVal + 'T12:00:00');
+          csState.b = new Date(coVal + 'T12:00:00');
+          csState.guests = g;
+          csState.m = csState.a.getMonth();
+          csState.y = csState.a.getFullYear();
+          const propOcc = ocu.get(String(p.id)) || [];
+          const occ = new Set();
+          propOcc.forEach(r => {
+            const ent = toDate(r.ci), sal = toDate(r.co);
+            if (!ent || !sal) return;
+            const d = new Date(ent);
+            while (d < sal) { occ.add(dk(d)); d.setDate(d.getDate() + 1); }
+          });
+          csState.occ = occ;
+          gridG.appendChild(c);
+          animObs.observe(c);
+          const gcEl = document.getElementById('gc-' + p.id);
+          if (gcEl) gcEl.textContent = g;
+          renderCal(p.id);
+          uw(p.id);
+        } else {
+          const c = buildCardBooking(p);
+          if (showBadges) {
+            const isAvail = !(ocu.get(String(p.id)) || []).some(r => r.ci < coVal && r.co > ciVal);
+            const pbody = c.querySelector('.pbody');
+            if (pbody) {
+              const badge = document.createElement('span');
+              badge.className = isAvail ? 'avail-yes' : 'avail-flex';
+              badge.textContent = isAvail ? '✓ Disponible para tus fechas' : '~ Consultá disponibilidad';
+              pbody.insertBefore(badge, pbody.firstChild);
+            }
           }
+          if (hasDates) {
+            const propOcc = ocu.get(String(p.id)) || [];
+            const occ = new Set();
+            propOcc.forEach(r => {
+              const ent = toDate(r.ci), sal = toDate(r.co);
+              if (!ent || !sal) return;
+              const d = new Date(ent);
+              while (d < sal) { occ.add(dk(d)); d.setDate(d.getDate() + 1); }
+            });
+            CS[p.id].occ = occ;
+          }
+          gridG.appendChild(c);
+          animObs.observe(c);
+          if (hasDates) { renderCal(p.id); } else { cargarReservas(p); }
         }
-        gridG.appendChild(c);
-        animObs.observe(c);
       });
     }
   } catch(e) {
@@ -1645,7 +1699,7 @@ window.filterProps = function() {
     gridG.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:3rem;font-style:italic;grid-column:1/-1">No se encontraron propiedades con esos filtros.</p>';
     return;
   }
-  filtered.forEach(p => { const c = buildCardGallery(p); gridG.appendChild(c); animObs.observe(c); });
+  filtered.forEach(p => { const c = buildCardBooking(p); gridG.appendChild(c); animObs.observe(c); cargarReservas(p); });
 };
 
 async function cargarProps(){
@@ -1666,8 +1720,8 @@ async function cargarProps(){
     snap.docs.forEach(doc=>{
       const p={id:doc.id,...doc.data()};
       window._allProps.push(p);
-      const cGal=buildCardGallery(p);
-      if(gridG){ gridG.appendChild(cGal); animObs.observe(cGal); }
+      const cBook=buildCardBooking(p);
+      if(gridG){ gridG.appendChild(cBook); animObs.observe(cBook); cargarReservas(p); }
     });
     buildCarousel(window._allProps, carouselWrap);
   }catch(e){
