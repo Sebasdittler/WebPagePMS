@@ -300,6 +300,21 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 .pv { font-family:'Cormorant Garamond',serif; font-size:1.35rem; color:var(--forest); }
 .pl { font-size:.72rem; color:var(--text-muted); }
 #v-propiedades { background: var(--cream); }
+/* ── Página de detalle de propiedad ─────────────────────── */
+#v-detalle { background: var(--cream); }
+.pinfo-link { display:inline-block; font-size:.82rem; color:var(--forest-mid); font-weight:500; text-decoration:none; margin-top:.2rem; margin-bottom:1rem; }
+.pinfo-link:hover { text-decoration:underline; }
+.detail-back { display:inline-flex; align-items:center; gap:6px; background:none; border:none; color:var(--forest-mid); font-family:inherit; font-size:.85rem; font-weight:500; cursor:pointer; padding:0; margin-bottom:1.6rem; }
+.detail-back:hover { text-decoration:underline; }
+.detail-grid { display:grid; grid-template-columns:1.3fr 1fr; gap:2.6rem; align-items:start; }
+.detail-info .ggallery { border-radius:var(--radius); margin-bottom:1.5rem; }
+.detail-name { font-family:'Cormorant Garamond',serif; font-size:2.1rem; font-weight:400; color:var(--forest); margin-bottom:.7rem; }
+.detail-desc { font-size:.95rem; color:var(--text-muted); font-weight:300; line-height:1.85; margin-bottom:1.3rem; }
+.detail-booking { position:sticky; top:1.5rem; }
+@media (max-width:900px) {
+  .detail-grid { grid-template-columns:1fr; }
+  .detail-booking { position:static; }
+}
 .gcard { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column; transition: transform .35s cubic-bezier(.22,.68,0,1.2), box-shadow .35s; }
 .gcard:hover { transform: translateY(-5px); box-shadow: 0 20px 56px rgba(27,58,45,.2); }
 .ggallery { position:relative; width:100%; height:300px; overflow:hidden; background:linear-gradient(135deg,var(--forest-mid),var(--leaf)); flex-shrink:0; }
@@ -714,6 +729,17 @@ footer { background:var(--forest); color:rgba(245,240,232,.6); padding:3rem 3rem
       <div class="footer-bottom"><p>© 2025 AUCEN · Villa La Angostura, Neuquén, Patagonia Argentina</p><div class="footer-social"><a class="fsoc" href="https://www.instagram.com/somoshagrids/" target="_blank" title="Instagram"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a><a class="fsoc" href="https://wa.me/5492944717718" target="_blank" title="WhatsApp"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a></div></div>
     </footer>
   </div>
+  <div class="vista" id="v-detalle">
+    <div class="inner" id="detalle-content"></div>
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand"><span class="logo-f"><img class="logo-mark-sm" src="aucen-logo-transparent.png" alt="">AUCEN<span>·</span></span><p>Gestión profesional de alquileres turísticos en Villa La Angostura.</p></div>
+        <div class="footer-col"><h5>Navegación</h5><ul><li><button onclick="ir('inicio')">Inicio</button></li><li><button onclick="ir('propiedades')">Propiedades</button></li><li><button onclick="ir('preguntas')">Preguntas frecuentes</button></li><li><button onclick="ir('nosotros')">Nosotros</button></li><li><button onclick="ir('servicios')">Nuestros servicios</button></li></ul></div>
+        <div class="footer-col"><h5>Contacto</h5><ul><li><a href="https://wa.me/5492944717718" target="_blank">WhatsApp</a></li><li><a href="mailto:hola@aucen.com.ar">hola@aucen.com.ar</a></li><li><a href="https://pmsfangbyhagrids.vercel.app/" target="_blank">Portal propietarios</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>© 2025 AUCEN · Villa La Angostura, Neuquén, Patagonia Argentina</p></div>
+    </footer>
+  </div>
   <div class="vista" id="v-preguntas">
     <div class="inner">
       <p class="slbl anim">Preguntas frecuentes</p>
@@ -898,8 +924,10 @@ function observeAnims(root) {
 observeAnims();
 
 let cur = 'inicio';
+const TITLE_DEFAULT = document.title;
 window.ir = function(pag) {
   if (pag === cur) { cerrarMenu(); return; }
+  if (cur === 'detalle' && pag !== 'detalle') { document.title = TITLE_DEFAULT; history.pushState({}, '', '/'); }
   document.getElementById('v-' + cur).classList.remove('on');
   document.querySelectorAll('.nbtn').forEach(b => b.classList.toggle('active', b.dataset.p === pag));
   cur = pag;
@@ -919,6 +947,101 @@ document.getElementById('ham').addEventListener('click', () => {
   document.getElementById('nl').classList.toggle('open');
   document.getElementById('ham').classList.toggle('open');
 });
+
+// ── Página de detalle por propiedad (aucen.com.ar/nombre-propiedad) ──
+function slugify(str) {
+  return String(str||'')
+    .normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'') || 'propiedad';
+}
+const PROP_BY_SLUG = {};
+function buildSlugs(props) {
+  const used = {};
+  props.forEach(p => {
+    const base = slugify(p.nombre || p.id);
+    let slug = base, n = 2;
+    while (used[slug]) { slug = base + '-' + n; n++; }
+    used[slug] = true;
+    p._slug = slug;
+    PROP_BY_SLUG[slug] = p;
+  });
+}
+
+function buildPropertyDetail(p) {
+  const wrap = document.createElement('div');
+  const back = document.createElement('button');
+  back.className = 'detail-back';
+  back.innerHTML = '‹ Volver a propiedades';
+  back.addEventListener('click', () => cerrarDetalle());
+  wrap.appendChild(back);
+
+  const grid = document.createElement('div'); grid.className = 'detail-grid';
+  const colInfo = document.createElement('div'); colInfo.className = 'detail-info';
+  colInfo.appendChild(buildGalleryEl(p, 'd', true));
+  const tipo = [p.tipo, p.capacidad ? p.capacidad + ' huéspedes' : ''].filter(Boolean).join(' · ');
+  const tag = document.createElement('span'); tag.className = 'ptag'; tag.textContent = tipo; colInfo.appendChild(tag);
+  const h1 = document.createElement('h1'); h1.className = 'detail-name'; h1.textContent = p.nombre || ''; colInfo.appendChild(h1);
+  if (p.descripcion) { const desc = document.createElement('p'); desc.className = 'detail-desc'; desc.textContent = p.descripcion; colInfo.appendChild(desc); }
+  if ((p.amenities || []).length) {
+    const amDiv = document.createElement('div'); amDiv.className = 'pam';
+    p.amenities.forEach(am => { const pill = document.createElement('span'); pill.className = 'pill'; pill.textContent = am; amDiv.appendChild(pill); });
+    colInfo.appendChild(amDiv);
+  }
+
+  const key = 'det-' + p.id;
+  const colBook = document.createElement('div'); colBook.className = 'detail-booking';
+  colBook.appendChild(buildCardBooking(p, { key, skipGallery:true, skipHeader:true }));
+
+  grid.appendChild(colInfo); grid.appendChild(colBook);
+  wrap.appendChild(grid);
+  return { el: wrap, key };
+}
+
+window.abrirDetalle = function(p, opts) {
+  opts = opts || {};
+  const dv = document.getElementById('v-detalle'), content = document.getElementById('detalle-content');
+  if (!dv || !content) return;
+  content.innerHTML = '';
+  const { el, key } = buildPropertyDetail(p);
+  content.appendChild(el);
+  cargarReservas(p, key);
+
+  if (cur !== 'detalle') document.getElementById('v-' + cur).classList.remove('on');
+  document.querySelectorAll('.nbtn').forEach(b => b.classList.toggle('active', b.dataset.p === 'propiedades'));
+  cur = 'detalle';
+  dv.classList.add('on');
+  dv.scrollTo({ top: 0 });
+  setTimeout(() => observeAnims(dv), TIMINGS.animDelay);
+  cerrarMenu();
+
+  document.title = `${p.nombre} · AUCEN`;
+  if (opts.push !== false) history.pushState({ slug: p._slug }, '', '/' + p._slug);
+};
+
+function cerrarDetalle(opts) {
+  opts = opts || {};
+  if (cur !== 'detalle') return;
+  document.getElementById('v-detalle').classList.remove('on');
+  cur = 'propiedades';
+  document.getElementById('v-propiedades').classList.add('on');
+  document.title = TITLE_DEFAULT;
+  if (opts.push !== false) history.pushState({}, '', '/');
+}
+
+window.addEventListener('popstate', () => {
+  const slug = location.pathname.replace(/^\/+|\/+$/g, '');
+  const p = slug ? PROP_BY_SLUG[slug] : null;
+  if (p) window.abrirDetalle(p, { push:false });
+  else if (cur === 'detalle') cerrarDetalle({ push:false });
+});
+
+function handleInitialRoute() {
+  const slug = location.pathname.replace(/^\/+|\/+$/g, '');
+  if (!slug) return;
+  const p = PROP_BY_SLUG[slug];
+  if (p) window.abrirDetalle(p, { push:false });
+  else history.replaceState({}, '', '/');
+}
 
 const FALLBACK_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect width='800' height='500' fill='%231b3a2d'/%3E%3Cpath d='M0 360L200 200L350 290L550 140L800 280V500H0Z' fill='%232d5a43'/%3E%3C/svg%3E";
 const FOTOS_FALLBACK = [FALLBACK_IMG];
@@ -1275,55 +1398,67 @@ function buildGalleryEl(p, prefix, big) {
   return wrap;
 }
 
-function buildCardBooking(p){
+function buildCardBooking(p, opts){
+  opts = opts || {};
+  const key = opts.key || p.id;
   const hoy=new Date();
-  CS[p.id]={y:hoy.getFullYear(),m:hoy.getMonth(),occ:new Set(),a:null,b:null,guests:2,bebes:0};
+  CS[key]={y:hoy.getFullYear(),m:hoy.getMonth(),occ:new Set(),a:null,b:null,guests:2,bebes:0};
   if (!window._propDataCache) window._propDataCache = {};
-  window._propDataCache[p.id] = p;
-  CS[p.id].maxGuests = Number(p.capacidad) || 99;
+  window._propDataCache[key] = p;
+  CS[key].maxGuests = Number(p.capacidad) || 99;
   const card=document.createElement('div');
-  card.className='pcard anim'; card.id='pc-'+p.id;
-  card.appendChild(buildGalleryEl(p,'b',false));
+  card.className='pcard anim'; card.id='pc-'+key;
+  if(!opts.skipGallery) card.appendChild(buildGalleryEl(p,'b',false));
   const body=document.createElement('div'); body.className='pbody';
-  const tipo=[p.tipo,p.capacidad?p.capacidad+' huéspedes':''].filter(Boolean).join(' · ');
-  const tag=document.createElement('span'); tag.className='ptag'; tag.textContent=tipo; body.appendChild(tag);
-  const h3=document.createElement('h3'); h3.className='pname'; h3.id='pn-'+p.id; h3.textContent=p.nombre||''; body.appendChild(h3);
-  if(p.descripcion){const desc=document.createElement('p');desc.className='pdesc';desc.textContent=p.descripcion;body.appendChild(desc);}
-  if((p.amenities||[]).length){
-    const amDiv=document.createElement('div');amDiv.className='pam';
-    const LIMIT=4, ams=p.amenities;
-    ams.slice(0,LIMIT).forEach(am=>{const pill=document.createElement('span');pill.className='pill';pill.textContent=am;amDiv.appendChild(pill);});
-    if(ams.length>LIMIT){
-      const hidden=ams.slice(LIMIT).map(am=>{const pill=document.createElement('span');pill.className='pill';pill.style.display='none';pill.textContent=am;amDiv.appendChild(pill);return pill;});
-      const tog=document.createElement('span');tog.className='pill';tog.style.cssText='cursor:pointer;background:var(--cream-dark);color:var(--text-muted);';tog.textContent=`+${ams.length-LIMIT} más`;
-      let open=false;
-      tog.addEventListener('click',()=>{open=!open;hidden.forEach(el=>el.style.display=open?'':'none');tog.textContent=open?'Ver menos':`+${ams.length-LIMIT} más`;});
-      amDiv.appendChild(tog);
+  const h3=document.createElement('h3'); h3.className='pname'; h3.id='pn-'+key; h3.textContent=p.nombre||'';
+  if(!opts.skipHeader){
+    const tipo=[p.tipo,p.capacidad?p.capacidad+' huéspedes':''].filter(Boolean).join(' · ');
+    const tag=document.createElement('span'); tag.className='ptag'; tag.textContent=tipo; body.appendChild(tag);
+    body.appendChild(h3);
+    if(p.descripcion){const desc=document.createElement('p');desc.className='pdesc';desc.textContent=p.descripcion;body.appendChild(desc);}
+    if((p.amenities||[]).length){
+      const amDiv=document.createElement('div');amDiv.className='pam';
+      const LIMIT=4, ams=p.amenities;
+      ams.slice(0,LIMIT).forEach(am=>{const pill=document.createElement('span');pill.className='pill';pill.textContent=am;amDiv.appendChild(pill);});
+      if(ams.length>LIMIT){
+        const hidden=ams.slice(LIMIT).map(am=>{const pill=document.createElement('span');pill.className='pill';pill.style.display='none';pill.textContent=am;amDiv.appendChild(pill);return pill;});
+        const tog=document.createElement('span');tog.className='pill';tog.style.cssText='cursor:pointer;background:var(--cream-dark);color:var(--text-muted);';tog.textContent=`+${ams.length-LIMIT} más`;
+        let open=false;
+        tog.addEventListener('click',()=>{open=!open;hidden.forEach(el=>el.style.display=open?'':'none');tog.textContent=open?'Ver menos':`+${ams.length-LIMIT} más`;});
+        amDiv.appendChild(tog);
+      }
+      body.appendChild(amDiv);
     }
-    body.appendChild(amDiv);
+    const slug = p._slug || slugify(p.nombre||p.id);
+    const infoA=document.createElement('a'); infoA.className='pinfo-link'; infoA.href='/'+slug;
+    infoA.textContent='Ver detalle completo →';
+    infoA.addEventListener('click', e=>{ e.preventDefault(); abrirDetalle(p); });
+    body.appendChild(infoA);
+  } else {
+    h3.style.display='none'; body.appendChild(h3); // oculto: uw() lo usa para el mensaje de WhatsApp
   }
   const cal=document.createElement('div');
   cal.innerHTML=`<div class="calwrap">
         <div class="calhead">
-          <button class="calnav" onclick="cprev('${p.id}')">‹</button>
-          <span class="calmth" id="cm-${p.id}"></span>
-          <button class="calnav" onclick="cnext('${p.id}')">›</button>
+          <button class="calnav" onclick="cprev('${key}')">‹</button>
+          <span class="calmth" id="cm-${key}"></span>
+          <button class="calnav" onclick="cnext('${key}')">›</button>
         </div>
-        <div class="calgrid" id="cg-${p.id}"><div class="caltxt">Cargando disponibilidad…</div></div>
+        <div class="calgrid" id="cg-${key}"><div class="caltxt">Cargando disponibilidad…</div></div>
         <div class="calleg">
           <div class="li"><div class="ld" style="background:#c8eed8"></div>Disponible</div>
           <div class="li"><div class="ld" style="background:#f5b8b8"></div>Ocupado</div>
         </div>
       </div>
-      <div class="cal-hint" id="ch-${p.id}">Elegí tu fecha de entrada</div>
-      <div class="booking-panel" id="bp-${p.id}" style="display:none">
-        <div class="datebox" id="db-${p.id}"></div>
+      <div class="cal-hint" id="ch-${key}">Elegí tu fecha de entrada</div>
+      <div class="booking-panel" id="bp-${key}" style="display:none">
+        <div class="datebox" id="db-${key}"></div>
         <div class="guestbox">
           <label>Huéspedes</label>
           <div class="gctrls">
-            <button onclick="changeGuests('${p.id}',-1)">−</button>
-            <span id="gc-${p.id}">2</span>
-            <button onclick="changeGuests('${p.id}',1)">+</button>
+            <button onclick="changeGuests('${key}',-1)">−</button>
+            <span id="gc-${key}">2</span>
+            <button onclick="changeGuests('${key}',1)">+</button>
           </div>
         </div>
         <div class="guestbox">
@@ -1332,13 +1467,13 @@ function buildCardBooking(p){
             <div style="font-size:.62rem;color:var(--text-muted);margin-top:1px">Menores de 2 años · no pagan</div>
           </div>
           <div class="gctrls">
-            <button onclick="changeBebes('${p.id}',-1)">−</button>
-            <span id="gb-${p.id}">0</span>
-            <button onclick="changeBebes('${p.id}',1)">+</button>
+            <button onclick="changeBebes('${key}',-1)">−</button>
+            <span id="gb-${key}">0</span>
+            <button onclick="changeBebes('${key}',1)">+</button>
           </div>
         </div>
-        <div id="pb-${p.id}" style="display:none" class="pricebox"></div>
-        <a class="bwa off" id="bw-${p.id}" href="#" onclick="return false;">${wasvg()} Seleccioná fechas para consultar</a>
+        <div id="pb-${key}" style="display:none" class="pricebox"></div>
+        <a class="bwa off" id="bw-${key}" href="#" onclick="return false;">${wasvg()} Seleccioná fechas para consultar</a>
       </div>`;
   while(cal.firstChild) body.appendChild(cal.firstChild);
   card.appendChild(body);
@@ -1449,7 +1584,8 @@ window.changeBebes = (id, delta) => {
   uw(id);
 };
 
-async function cargarReservas(p){
+async function cargarReservas(p, key){
+  const k = key || p.id;
   try{
     const q=query(collection(db,'sitioWeb_ocupados'),where('pid','==',p.id));
     const snap=await getDocs(q); const occ=new Set();
@@ -1461,12 +1597,12 @@ async function cargarReservas(p){
       const c=new Date(entrada);
       while(c<salida){occ.add(dk(c));c.setDate(c.getDate()+1);}
     });
-    if(CS[p.id]) CS[p.id].occ=occ;
-    renderCal(p.id);
+    if(CS[k]) CS[k].occ=occ;
+    renderCal(k);
   }catch(e){
     // TODO: logging en producción
     console.warn('Error al cargar disponibilidad');
-    renderCal(p.id);
+    renderCal(k);
   }
 }
 
@@ -1829,15 +1965,15 @@ async function cargarProps(){
       if(gridG) gridG.innerHTML=msg;
       return;
     }
-    window._allProps=[];
+    window._allProps=snap.docs.map(doc=>({id:doc.id,...doc.data()}));
+    buildSlugs(window._allProps);
     if(gridG) gridG.innerHTML='';
-    snap.docs.forEach(doc=>{
-      const p={id:doc.id,...doc.data()};
-      window._allProps.push(p);
+    window._allProps.forEach(p=>{
       const cBook=buildCardBooking(p);
       if(gridG){ gridG.appendChild(cBook); animObs.observe(cBook); cargarReservas(p); }
     });
     buildCarousel(window._allProps, carouselWrap);
+    handleInitialRoute();
   }catch(e){
     console.warn('Error al cargar propiedades');
     const msg = e?.message === 'timeout'
