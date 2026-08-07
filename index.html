@@ -255,6 +255,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 .pname { font-family:'Cormorant Garamond',serif; font-size:1.45rem; font-weight:400; color:var(--forest); margin-bottom:.35rem; }
 .pname-link { color:inherit; text-decoration:none; cursor:pointer; transition:color .2s; }
 .pname-link:hover { color:var(--leaf); text-decoration:underline; }
+.pname-cta { display:inline-block; font-size:.78rem; font-weight:600; color:var(--leaf); text-decoration:underline; text-underline-offset:2px; margin-bottom:.7rem; cursor:pointer; }
+.pname-cta:hover { color:var(--forest-mid); }
 .pdesc { font-size:.84rem; color:var(--text-muted); font-weight:300; margin-bottom:.9rem; line-height:1.7; flex:1; }
 .pam { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:.9rem; }
 .pill { background:var(--cream); color:var(--text-muted); font-size:.68rem; padding:2px 7px; border-radius:4px; }
@@ -1429,6 +1431,9 @@ function buildCardBooking(p, opts){
     nameA.addEventListener('click', e=>{ e.preventDefault(); abrirDetalle(p); });
     h3.appendChild(nameA);
     body.appendChild(h3);
+    const ctaA=document.createElement('a'); ctaA.className='pname-cta'; ctaA.href='/'+slug; ctaA.textContent='Conocé la propiedad →';
+    ctaA.addEventListener('click', e=>{ e.preventDefault(); abrirDetalle(p); });
+    body.appendChild(ctaA);
     if(p.descripcion){const desc=document.createElement('p');desc.className='pdesc';desc.textContent=p.descripcion;body.appendChild(desc);}
     if((p.amenities||[]).length){
       const amDiv=document.createElement('div');amDiv.className='pam';
