@@ -253,6 +253,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 .pbody { padding:1.4rem; flex:1; display:flex; flex-direction:column; }
 .ptag { display:inline-block; background:var(--cream); color:var(--leaf); font-size:.64rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; padding:3px 9px; border-radius:4px; margin-bottom:.6rem; }
 .pname { font-family:'Cormorant Garamond',serif; font-size:1.45rem; font-weight:400; color:var(--forest); margin-bottom:.35rem; }
+.pname-link { color:inherit; text-decoration:none; cursor:pointer; transition:color .2s; }
+.pname-link:hover { color:var(--leaf); text-decoration:underline; }
 .pdesc { font-size:.84rem; color:var(--text-muted); font-weight:300; margin-bottom:.9rem; line-height:1.7; flex:1; }
 .pam { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:.9rem; }
 .pill { background:var(--cream); color:var(--text-muted); font-size:.68rem; padding:2px 7px; border-radius:4px; }
@@ -302,8 +304,10 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; height: var(--na
 #v-propiedades { background: var(--cream); }
 /* ── Página de detalle de propiedad ─────────────────────── */
 #v-detalle { background: var(--cream); }
-.pinfo-link { display:inline-block; font-size:.82rem; color:var(--forest-mid); font-weight:500; text-decoration:none; margin-top:.2rem; margin-bottom:1rem; }
-.pinfo-link:hover { text-decoration:underline; }
+.detail-sites { display:flex; align-items:center; justify-content:space-between; gap:12px; background:var(--white); border:1.5px solid var(--leaf); border-radius:10px; padding:1rem 1.2rem; margin-bottom:1.4rem; text-decoration:none; transition:background .2s, transform .15s; }
+.detail-sites:hover { background:rgba(74,140,106,.08); transform:translateY(-1px); }
+.detail-sites span { font-size:.9rem; font-weight:500; color:var(--leaf); }
+.detail-sites svg { flex-shrink:0; color:var(--leaf); }
 .detail-back { display:inline-flex; align-items:center; gap:6px; background:none; border:none; color:var(--forest-mid); font-family:inherit; font-size:.85rem; font-weight:500; cursor:pointer; padding:0; margin-bottom:1.6rem; }
 .detail-back:hover { text-decoration:underline; }
 .detail-grid { display:grid; grid-template-columns:1.3fr 1fr; gap:2.6rem; align-items:start; }
@@ -982,6 +986,12 @@ function buildPropertyDetail(p) {
   const tag = document.createElement('span'); tag.className = 'ptag'; tag.textContent = tipo; colInfo.appendChild(tag);
   const h1 = document.createElement('h1'); h1.className = 'detail-name'; h1.textContent = p.nombre || ''; colInfo.appendChild(h1);
   if (p.descripcion) { const desc = document.createElement('p'); desc.className = 'detail-desc'; desc.textContent = p.descripcion; colInfo.appendChild(desc); }
+  if (p.sitioUrl) {
+    const sitesA = document.createElement('a');
+    sitesA.className = 'detail-sites'; sitesA.href = p.sitioUrl; sitesA.target = '_blank'; sitesA.rel = 'noreferrer';
+    sitesA.innerHTML = '<span>📋 Ver ficha completa de la casa</span><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+    colInfo.appendChild(sitesA);
+  }
   if ((p.amenities || []).length) {
     const amDiv = document.createElement('div'); amDiv.className = 'pam';
     p.amenities.forEach(am => { const pill = document.createElement('span'); pill.className = 'pill'; pill.textContent = am; amDiv.appendChild(pill); });
@@ -1410,10 +1420,14 @@ function buildCardBooking(p, opts){
   card.className='pcard anim'; card.id='pc-'+key;
   if(!opts.skipGallery) card.appendChild(buildGalleryEl(p,'b',false));
   const body=document.createElement('div'); body.className='pbody';
-  const h3=document.createElement('h3'); h3.className='pname'; h3.id='pn-'+key; h3.textContent=p.nombre||'';
+  const h3=document.createElement('h3'); h3.className='pname'; h3.id='pn-'+key;
   if(!opts.skipHeader){
     const tipo=[p.tipo,p.capacidad?p.capacidad+' huéspedes':''].filter(Boolean).join(' · ');
     const tag=document.createElement('span'); tag.className='ptag'; tag.textContent=tipo; body.appendChild(tag);
+    const slug = p._slug || slugify(p.nombre||p.id);
+    const nameA=document.createElement('a'); nameA.className='pname-link'; nameA.href='/'+slug; nameA.textContent=p.nombre||'';
+    nameA.addEventListener('click', e=>{ e.preventDefault(); abrirDetalle(p); });
+    h3.appendChild(nameA);
     body.appendChild(h3);
     if(p.descripcion){const desc=document.createElement('p');desc.className='pdesc';desc.textContent=p.descripcion;body.appendChild(desc);}
     if((p.amenities||[]).length){
@@ -1429,13 +1443,8 @@ function buildCardBooking(p, opts){
       }
       body.appendChild(amDiv);
     }
-    const slug = p._slug || slugify(p.nombre||p.id);
-    const infoA=document.createElement('a'); infoA.className='pinfo-link'; infoA.href='/'+slug;
-    infoA.textContent='Ver detalle completo →';
-    infoA.addEventListener('click', e=>{ e.preventDefault(); abrirDetalle(p); });
-    body.appendChild(infoA);
   } else {
-    h3.style.display='none'; body.appendChild(h3); // oculto: uw() lo usa para el mensaje de WhatsApp
+    h3.textContent=p.nombre||''; h3.style.display='none'; body.appendChild(h3); // oculto: uw() lo usa para el mensaje de WhatsApp
   }
   const cal=document.createElement('div');
   cal.innerHTML=`<div class="calwrap">
